@@ -2,18 +2,20 @@ import mongoose from "mongoose";
 import { MongoMemoryServer } from "mongodb-memory-server";
 import { MongoClient } from "mongodb";
 
+let mongo;
 let connection: MongoClient;
 let mongoServer: MongoMemoryServer;
 
 const connect = async () => {
-  mongoServer = await MongoMemoryServer.create();
-  connection = await MongoClient.connect(mongoServer.getUri(), {});
+  // mongoServer = await MongoMemoryServer.create();
+  // connection = await MongoClient.connect(mongoServer.getUri(), {});
+  mongo = await mongoose.connect("mongodb://localhost:27017/auth");
 };
 
 const close = async () => {
   await mongoose.connection.dropDatabase();
   await mongoose.connection.close();
-  await mongoServer.stop();
+  // await mongoServer.stop();
 };
 
 const clear = async () => {
