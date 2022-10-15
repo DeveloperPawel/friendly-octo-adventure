@@ -1,9 +1,13 @@
 import mongoose from "mongoose";
+import { UserType } from "../../../common/src/types/UserTypes";
 import { Password } from "../services/password";
+
+export { UserType };
 
 interface UserAttributes {
   email: string;
   password: string;
+  role: UserType;
 }
 
 interface UserModel extends mongoose.Model<UserDoc> {
@@ -13,6 +17,7 @@ interface UserModel extends mongoose.Model<UserDoc> {
 interface UserDoc extends mongoose.Document {
   email: string;
   password: string;
+  role: UserType;
 }
 
 const userSchema = new mongoose.Schema(
@@ -24,6 +29,12 @@ const userSchema = new mongoose.Schema(
     password: {
       type: String,
       required: true,
+    },
+    role: {
+      type: String,
+      required: true,
+      enum: Object.values(UserType),
+      default: UserType.Patient,
     },
   },
   {

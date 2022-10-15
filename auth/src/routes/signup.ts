@@ -4,6 +4,7 @@ import { body } from "express-validator";
 import jwt from "jsonwebtoken";
 import { validateRequest } from "../../../common/src/middleware/validate-request";
 import { BadRequestError } from "../../../common/src/errors/bad-request-error";
+import { UserType } from "../models/user";
 
 const router = express.Router();
 
@@ -28,7 +29,7 @@ router.post(
       throw new BadRequestError();
     }
 
-    const user = User.build({ email, password });
+    const user = User.build({ email, password, role: UserType.Patient });
     await user.save();
 
     const userJWT = jwt.sign(
