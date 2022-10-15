@@ -4,7 +4,7 @@ import { json } from "body-parser";
 import CookieSession from "cookie-session";
 
 import { NotFoundError } from "./errors/not-found-error";
-import { errorHandler } from "./errors/error-handler";
+import { errorHandler } from "./middleware/error-handler";
 
 import { userRouter } from "./routes/user";
 import { signupRouter } from "./routes/signup";
