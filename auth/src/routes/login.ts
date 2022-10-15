@@ -1,7 +1,9 @@
 import jwt from "jsonwebtoken";
 import express, { Request, Response } from "express";
 import { body } from "express-validator";
-import { validateRequest } from "../middleware/validate-request";
+import { validateRequest } from "../../../common/src/middleware/validate-request";
+import { BadRequestError } from "../../../common/src/errors/bad-request-error";
+import { NotAuthorizedError } from "../../../common/src/errors/not-authorized-error";
 import { User } from "../models/user";
 import { Password } from "../services/password";
 
@@ -20,7 +22,7 @@ router.post(
     const existingUser = await User.findOne({ email });
 
     if (!existingUser) {
-      throw new Error("Bad request");
+      throw new BadRequestError();
     }
 
     const matchPassword = await Password.compare(
@@ -29,7 +31,7 @@ router.post(
     );
 
     if (!matchPassword) {
-      throw new Error("Invalid credentials");
+      throw new NotAuthorizedError();
     }
 
     const userJWT = jwt.sign(

@@ -2,7 +2,8 @@ import express, { Request, Response } from "express";
 import { User } from "../models/user";
 import { body } from "express-validator";
 import jwt from "jsonwebtoken";
-import { validateRequest } from "../middleware/validate-request";
+import { validateRequest } from "../../../common/src/middleware/validate-request";
+import { BadRequestError } from "../../../common/src/errors/bad-request-error";
 
 const router = express.Router();
 
@@ -24,7 +25,7 @@ router.post(
     const existingUser = await User.findOne({ email });
 
     if (existingUser) {
-      throw new Error(`User ${existingUser.email} already exists`);
+      throw new BadRequestError();
     }
 
     const user = User.build({ email, password });

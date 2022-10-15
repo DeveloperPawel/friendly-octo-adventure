@@ -3,8 +3,8 @@ import "express-async-errors";
 import { json } from "body-parser";
 import CookieSession from "cookie-session";
 
-import { NotFoundError } from "./errors/not-found-error";
-import { errorHandler } from "./middleware/error-handler";
+import { NotFoundError } from "../../common/src/errors/not-found-error";
+import { errorHandler } from "../../common/src/middleware/error-handler";
 
 import { userRouter } from "./routes/user";
 import { signupRouter } from "./routes/signup";
