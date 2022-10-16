@@ -7,7 +7,9 @@ export const providerAuth = (
   res: Response,
   next: NextFunction
 ) => {
-  if (req.user!.role !== UserType.Provider) {
+  const necessaryRoles: Array<string> = [UserType.Provider, UserType.Admin];
+
+  if (!necessaryRoles.includes(req.user!.role)) {
     throw new NotAuthorizedError();
   }
 
