@@ -4,9 +4,9 @@ import express, { Request, Response } from "express";
 const router = express.Router();
 
 router.post("/api/patient/add", providerAuth, (req: Request, res: Response) => {
-  req.session = null;
+  const { patientId, providerId } = req.body;
 
-  res.status(200).send({});
+  res.status(201).send({});
 });
 
 export { router as addPatientRouter };

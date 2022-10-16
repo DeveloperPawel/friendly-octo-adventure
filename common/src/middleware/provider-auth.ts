@@ -1,4 +1,5 @@
-import { Request, Response, NextFunction } from "express";
+import { Response, NextFunction } from "express";
+import { Request } from "../definitions/request";
 import { NotAuthorizedError } from "../errors/not-authorized-error";
 import { UserType } from "../types/UserTypes";
 
@@ -9,7 +10,7 @@ export const providerAuth = (
 ) => {
   const necessaryRoles: Array<string> = [UserType.Provider, UserType.Admin];
 
-  if (!necessaryRoles.includes(req.user!.role)) {
+  if (!necessaryRoles.includes(req!.user!.role)) {
     throw new NotAuthorizedError();
   }
 
