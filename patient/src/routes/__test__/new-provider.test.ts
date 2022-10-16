@@ -2,12 +2,11 @@ import mongoose from "mongoose";
 import request from "supertest";
 import { app } from "../../app";
 
-it("creates new patient", async () => {
+it("Creates a new Provider", async () => {
   await request(app)
-    .post(`/api/patient/new`)
+    .post(`/api/patient/provider/new`)
     .send({
-      patientId: new mongoose.Types.ObjectId().toHexString(),
-      discharge: new Date(),
+      providerId: new mongoose.Types.ObjectId().toHexString(),
     })
     .expect(201);
 });

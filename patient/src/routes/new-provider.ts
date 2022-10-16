@@ -3,10 +3,10 @@ import express, { Request, Response } from "express";
 
 const router = express.Router();
 
-router.post("/api/patient/add", providerAuth, (req: Request, res: Response) => {
+router.post("/api/patient/provider/new", (req: Request, res: Response) => {
   req.session = null;
 
   res.status(200).send({});
 });
 
-export { router as addPatientRouter };
+export { router as newProviderRouter };

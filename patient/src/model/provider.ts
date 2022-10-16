@@ -3,7 +3,7 @@ import { Patient, patientSchema } from "./patient";
 
 interface ProviderAttributes {
   providerId: string;
-  patients: Array<typeof Patient>;
+  patients?: Array<typeof Patient>;
 }
 
 interface ProviderDoc extends mongoose.Document {

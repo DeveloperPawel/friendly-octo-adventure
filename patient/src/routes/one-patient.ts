@@ -3,8 +3,8 @@ import express, { Request, Response } from "express";
 
 const router = express.Router();
 
-router.post(
-  "/api/patient/:patientId",
+router.get(
+  "/api/patient/patient/:patientId",
   providerAuth,
   (req: Request, res: Response) => {
     req.session = null;
