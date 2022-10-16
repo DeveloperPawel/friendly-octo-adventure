@@ -10,9 +10,9 @@ router.post("/api/auth/signup/:id", async (req: Request, res: Response) => {
   if (req.params.id === null) {
     throw new BadRequestError();
   }
-  const adminExists = await User.findById(req.params.id);
+  const adminReferal = await User.findById(req.params.id);
 
-  if (!adminExists) {
+  if (!adminReferal) {
     throw new BadRequestError();
   }
 
