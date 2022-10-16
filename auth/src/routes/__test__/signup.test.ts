@@ -92,7 +92,7 @@ it("creates one admin", async () => {
       email: "test@test.com",
       password: "testpassword",
     })
-    .expect(401);
+    .expect(400);
 });
 
 it("creates a provider", async () => {
@@ -101,7 +101,7 @@ it("creates a provider", async () => {
     password: "testpassword",
     role: UserType.Admin,
   });
-  admin.save();
+  await admin.save();
 
   const response = await request(app)
     .post(`/api/auth/signup/${admin.id}`)
