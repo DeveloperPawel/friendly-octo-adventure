@@ -13,7 +13,7 @@ it("retrieves one patient as admin", async () => {
   await patient.save();
 
   await request(app)
-    .get(`/api/patient/${patient.id}`)
+    .get(`/api/patient/patient/${patient.id}`)
     .set("Cookie", adminCookie)
     .send({
       patientId: new mongoose.Types.ObjectId().toHexString(),
@@ -32,7 +32,7 @@ it("retrieves one patient as provider", async () => {
   await patient.save();
 
   await request(app)
-    .get(`/api/patient/${patient.id}`)
+    .get(`/api/patient/patient/${patient.id}`)
     .set("Cookie", providerCookie)
     .expect(200);
 });
@@ -44,5 +44,8 @@ it("returns 401 when not authorized", async () => {
   });
   await patient.save();
 
-  await request(app).get(`/api/patient/${patient.id}`).expect(401);
+  await request(app)
+    .get(`/api/patient/patient/${patient.id}`)
+    .send()
+    .expect(401);
 });

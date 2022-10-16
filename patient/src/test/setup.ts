@@ -15,12 +15,12 @@ afterEach(async () => await db.clear());
 afterAll(async () => await db.close());
 
 global.providersignin = () => {
-  const userData = {
+  const payload = {
     id: new mongoose.Types.ObjectId().toHexString(),
     role: UserType.Provider,
   };
 
-  const token = jwt.sign(userData, "jwt_key");
+  const token = jwt.sign(payload, "jwt_key");
 
   const session = { jwt: token };
 
@@ -28,16 +28,16 @@ global.providersignin = () => {
 
   const base64 = Buffer.from(sessionJSON).toString("base64");
 
-  return [`express:sess=${base64}`];
+  return [`session=${base64}`];
 };
 
 global.adminsignin = () => {
-  const userData = {
+  const payload = {
     id: new mongoose.Types.ObjectId().toHexString(),
     role: UserType.Provider,
   };
 
-  const token = jwt.sign(userData, "jwt_key");
+  const token = jwt.sign(payload, "jwt_key");
 
   const session = { jwt: token };
 
@@ -45,5 +45,5 @@ global.adminsignin = () => {
 
   const base64 = Buffer.from(sessionJSON).toString("base64");
 
-  return [`express:sess=${base64}`];
+  return [`session=${base64}`];
 };

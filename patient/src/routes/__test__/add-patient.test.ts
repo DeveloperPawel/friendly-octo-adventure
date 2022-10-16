@@ -16,7 +16,7 @@ it("adds patient to provider as admin", async () => {
   const provider = Provider.build({
     providerId: new mongoose.Types.ObjectId().toHexString(),
   });
-  provider.save();
+  await provider.save();
 
   await request(app)
     .post(`/api/patient/add`)
