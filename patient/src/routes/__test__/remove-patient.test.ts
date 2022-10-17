@@ -10,15 +10,24 @@ it("removes patient from provider as provider", async () => {
   const provider = Provider.build({
     providerId: new mongoose.Types.ObjectId().toHexString(),
   });
-  provider.save();
+  await provider.save();
 
   const patient = Patient.build({
     patientId: new mongoose.Types.ObjectId().toHexString(),
     discharge: new Date(),
   });
-  patient.save();
+  await patient.save();
 
-  await request(app)
+  const updatedProvider = await request(app)
+    .post(`/api/patient/add`)
+    .set("Cookie", providerCookie)
+    .send({
+      patientId: patient.id,
+      providerId: provider.id,
+    })
+    .expect(201);
+
+  const response = await request(app)
     .post(`/api/patient/remove`)
     .set("Cookie", providerCookie)
     .send({
@@ -26,6 +35,8 @@ it("removes patient from provider as provider", async () => {
       patientId: patient.id,
     })
     .expect(202);
+
+  expect(response.body?.patients.length).toEqual(0);
 });
 
 it("removes patient from provider as admin", async () => {
@@ -34,15 +45,24 @@ it("removes patient from provider as admin", async () => {
   const provider = Provider.build({
     providerId: new mongoose.Types.ObjectId().toHexString(),
   });
-  provider.save();
+  await provider.save();
 
   const patient = Patient.build({
     patientId: new mongoose.Types.ObjectId().toHexString(),
     discharge: new Date(),
   });
-  patient.save();
+  await patient.save();
 
-  await request(app)
+  const updatedProvider = await request(app)
+    .post(`/api/patient/add`)
+    .set("Cookie", adminCookie)
+    .send({
+      patientId: patient.id,
+      providerId: provider.id,
+    })
+    .expect(201);
+
+  const response = await request(app)
     .post(`/api/patient/remove`)
     .set("Cookie", adminCookie)
     .send({
@@ -50,4 +70,6 @@ it("removes patient from provider as admin", async () => {
       patientId: patient.id,
     })
     .expect(202);
+
+  expect(response.body?.patients.length).toEqual(0);
 });
