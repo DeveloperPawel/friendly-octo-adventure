@@ -10,19 +10,19 @@ it("retreives all patients", async () => {
     patientId: new mongoose.Types.ObjectId().toHexString(),
     discharge: new Date(),
   });
-  patient.save();
+  await patient.save();
 
   const patient2 = Patient.build({
     patientId: new mongoose.Types.ObjectId().toHexString(),
     discharge: new Date(),
   });
-  patient2.save();
+  await patient2.save();
 
   const patient3 = Patient.build({
     patientId: new mongoose.Types.ObjectId().toHexString(),
     discharge: new Date(),
   });
-  patient3.save();
+  await patient3.save();
 
   const response = await request(app)
     .get(`/api/patient/patients/5`)
@@ -38,10 +38,10 @@ it("returns 401 unauthorized", async () => {
     patientId: new mongoose.Types.ObjectId().toHexString(),
     discharge: new Date(),
   });
-  patient.save();
+  await patient.save();
 
   const response = await request(app)
-    .get(`/api/patient/patients`)
+    .get(`/api/patient/patients/2`)
     .send()
     .expect(401);
 });
