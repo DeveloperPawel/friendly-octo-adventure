@@ -1,16 +1,21 @@
 import { providerAuth } from "./../../../common/src/middleware/provider-auth";
 import express, { Request, Response } from "express";
-import { activeUser } from "../../../common/src/middleware/active-user";
+import { Provider } from "../model/provider";
+import { NotFoundError } from "../../../common/src/errors/not-found-error";
 
 const router = express.Router();
 
 router.get(
   "/api/patient/provider/:providerId",
   providerAuth,
-  (req: Request, res: Response) => {
-    req.session = null;
+  async (req: Request, res: Response) => {
+    const foundProvider = await Provider.findById(req.params.providerId);
 
-    res.status(200).send({});
+    if (!foundProvider) {
+      throw new NotFoundError();
+    }
+
+    res.status(200).send(foundProvider);
   }
 );
 

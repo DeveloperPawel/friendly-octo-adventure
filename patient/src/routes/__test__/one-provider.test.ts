@@ -5,8 +5,9 @@ import { Provider } from "../../model/provider";
 
 it("retrieves one provider as provider", async () => {
   const providerCookie = global.providersignin();
+  const providerId = new mongoose.Types.ObjectId().toHexString();
   const provider = Provider.build({
-    providerId: new mongoose.Types.ObjectId().toHexString(),
+    providerId,
   });
   await provider.save();
 
@@ -16,13 +17,14 @@ it("retrieves one provider as provider", async () => {
     .send()
     .expect(200);
 
-  expect(response.body?.providerId).toEqual(provider.id);
+  expect(response.body?.providerId).toEqual(providerId);
 });
 
 it("retrieves one provider as admin", async () => {
   const adminCookie = global.adminsignin();
+  const providerId = new mongoose.Types.ObjectId().toHexString();
   const provider = Provider.build({
-    providerId: new mongoose.Types.ObjectId().toHexString(),
+    providerId,
   });
   await provider.save();
 
@@ -32,7 +34,7 @@ it("retrieves one provider as admin", async () => {
     .send()
     .expect(200);
 
-  expect(response.body?.providerId).toEqual(provider.id);
+  expect(response.body?.providerId).toEqual(providerId);
 });
 
 it("returns 401 unauthorized when accessed by an unauthorized user", async () => {
