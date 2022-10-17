@@ -25,7 +25,7 @@ it("retreives all patients", async () => {
   patient3.save();
 
   const response = await request(app)
-    .get(`/api/patient/patients`)
+    .get(`/api/patient/patients/5`)
     .set("Cookie", adminCookie)
     .send()
     .expect(200);

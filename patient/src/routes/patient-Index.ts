@@ -5,7 +5,7 @@ import { activeUser } from "../../../common/src/middleware/active-user";
 const router = express.Router();
 
 router.get(
-  "/api/patient/patients",
+  "/api/patient/patients/:amount",
   adminAuth,
   (req: Request, res: Response) => {
     req.session = null;
