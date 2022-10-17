@@ -34,7 +34,7 @@ global.providersignin = () => {
 global.adminsignin = () => {
   const payload = {
     id: new mongoose.Types.ObjectId().toHexString(),
-    role: UserType.Provider,
+    role: UserType.Admin,
   };
 
   const token = jwt.sign(payload, "jwt_key");
