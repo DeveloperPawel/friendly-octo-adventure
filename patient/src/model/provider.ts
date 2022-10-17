@@ -8,6 +8,7 @@ interface ProviderAttributes {
 
 interface ProviderDoc extends mongoose.Document {
   providerId: string;
+  patients?: Array<typeof Patient>;
 }
 
 interface ProviderModel extends mongoose.Model<ProviderDoc> {
@@ -20,7 +21,12 @@ const providerSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    patients: [patientSchema],
+    patients: [
+      {
+        type: mongoose.Types.ObjectId,
+        ref: "Patient",
+      },
+    ],
   },
   {
     toJSON: {

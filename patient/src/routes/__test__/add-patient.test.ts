@@ -18,7 +18,7 @@ it("adds patient to provider as admin", async () => {
   });
   await provider.save();
 
-  await request(app)
+  const updatedProvider = await request(app)
     .post(`/api/patient/add`)
     .set("Cookie", adminCookie)
     .send({
@@ -26,6 +26,11 @@ it("adds patient to provider as admin", async () => {
       providerId: provider.id,
     })
     .expect(201);
+
+  expect(updatedProvider.body?.patients.length).toEqual(1);
+
+  const updatedPatient = await Patient.findById(patient.id);
+  expect(updatedPatient?.providerId).toEqual(provider.id);
 });
 
 it("adds patient to provider as provider", async () => {
@@ -42,7 +47,7 @@ it("adds patient to provider as provider", async () => {
   });
   provider.save();
 
-  await request(app)
+  const updatedProvider = await request(app)
     .post(`/api/patient/add`)
     .set("Cookie", providerCookie)
     .send({
@@ -50,4 +55,9 @@ it("adds patient to provider as provider", async () => {
       providerId: provider.id,
     })
     .expect(201);
+
+  expect(updatedProvider.body?.patients.length).toEqual(1);
+
+  const updatedPatient = await Patient.findById(patient.id);
+  expect(updatedPatient?.providerId).toEqual(provider.id);
 });
