@@ -14,12 +14,12 @@ it("retrieves all providers", async () => {
   const provider2 = Provider.build({
     providerId: new mongoose.Types.ObjectId().toHexString(),
   });
-  await provider.save();
+  await provider2.save();
 
   const provider3 = Provider.build({
     providerId: new mongoose.Types.ObjectId().toHexString(),
   });
-  await provider.save();
+  await provider3.save();
 
   const response = await request(app)
     .get(`/api/patient/providers/5`)
