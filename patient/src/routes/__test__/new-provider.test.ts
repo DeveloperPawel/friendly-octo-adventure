@@ -3,10 +3,15 @@ import request from "supertest";
 import { app } from "../../app";
 
 it("Creates a new Provider", async () => {
-  await request(app)
+  const adminCookie = global.adminsignin();
+  const providerId = new mongoose.Types.ObjectId().toHexString();
+  const response = await request(app)
     .post(`/api/patient/provider/new`)
+    .set("Cookie", adminCookie)
     .send({
-      providerId: new mongoose.Types.ObjectId().toHexString(),
+      providerId,
     })
     .expect(201);
+
+  expect(response.body?.providerId).toEqual(providerId);
 });

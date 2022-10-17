@@ -1,12 +1,23 @@
 import express, { Request, Response } from "express";
 import { providerAuth } from "../../../common/src/middleware/provider-auth";
+import { Patient } from "../model/patient";
 
 const router = express.Router();
 
-router.post("/api/patient/new", providerAuth, (req: Request, res: Response) => {
-  req.session = null;
+router.post(
+  "/api/patient/new",
+  providerAuth,
+  async (req: Request, res: Response) => {
+    const { discharge, patientId } = req.body;
 
-  res.status(200).send({});
-});
+    const patient = Patient.build({
+      patientId,
+      discharge,
+    });
+    await patient.save();
+
+    res.status(201).send(patient);
+  }
+);
 
 export { router as newPatientRouter };
