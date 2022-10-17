@@ -9,11 +9,23 @@ it("retrieves all providers", async () => {
   const provider = Provider.build({
     providerId: new mongoose.Types.ObjectId().toHexString(),
   });
-  provider.save();
+  await provider.save();
 
-  await request(app)
-    .get(`/api/patient/providers`)
+  const provider2 = Provider.build({
+    providerId: new mongoose.Types.ObjectId().toHexString(),
+  });
+  await provider.save();
+
+  const provider3 = Provider.build({
+    providerId: new mongoose.Types.ObjectId().toHexString(),
+  });
+  await provider.save();
+
+  const response = await request(app)
+    .get(`/api/patient/providers/5`)
     .set("Cookie", adminCookie)
     .send()
     .expect(200);
+
+  expect(response.body?.length).toEqual(3);
 });
