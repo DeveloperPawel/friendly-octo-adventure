@@ -27,7 +27,7 @@ router.post(
     foundProvider.patients?.push(foundPatient.id);
     await foundProvider.save();
 
-    foundPatient.providerId = foundProvider.id;
+    foundPatient.providerId = providerId;
     await foundPatient.save();
 
     res.status(201).send(foundProvider);
