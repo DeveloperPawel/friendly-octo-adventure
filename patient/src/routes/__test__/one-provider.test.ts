@@ -10,11 +10,13 @@ it("retrieves one provider as provider", async () => {
   });
   await provider.save();
 
-  await request(app)
+  const response = await request(app)
     .get(`/api/patient/provider/${provider.id}`)
     .set("Cookie", providerCookie)
     .send()
     .expect(200);
+
+  expect(response.body?.providerId).toEqual(provider.id);
 });
 
 it("retrieves one provider as admin", async () => {
@@ -24,9 +26,23 @@ it("retrieves one provider as admin", async () => {
   });
   await provider.save();
 
-  await request(app)
+  const response = await request(app)
     .get(`/api/patient/provider/${provider.id}`)
     .set("Cookie", adminCookie)
     .send()
     .expect(200);
+
+  expect(response.body?.providerId).toEqual(provider.id);
+});
+
+it("returns 401 unauthorized when accessed by an unauthorized user", async () => {
+  const provider = Provider.build({
+    providerId: new mongoose.Types.ObjectId().toHexString(),
+  });
+  await provider.save();
+
+  await request(app)
+    .get(`/api/patient/provider/${provider.id}`)
+    .send()
+    .expect(401);
 });
