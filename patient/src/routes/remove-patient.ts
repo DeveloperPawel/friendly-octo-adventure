@@ -29,6 +29,9 @@ router.post(
     });
     await foundProvider.save();
 
+    foundPatient.providerId = undefined;
+    await foundPatient.save();
+
     res.status(202).send(foundProvider);
   }
 );
