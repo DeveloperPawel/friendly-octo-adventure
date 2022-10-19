@@ -1,11 +1,11 @@
+import { patientAuth } from "./../../../common/src/middleware/patient-auth";
 import express, { Request, Response } from "express";
-import { adminAuth } from "../../../common/src/middleware/admin-auth";
 
 const router = express.Router();
 
 router.get(
-  "/api/order/patient/orders/:date",
-  adminAuth,
+  "/api/order/food-item/:foodItemId",
+  patientAuth,
   (req: Request, res: Response) => {
     req.session = null;
 
@@ -13,4 +13,4 @@ router.get(
   }
 );
 
-export { router as dateOrderRouter };
+export { router as foodItemRouter };

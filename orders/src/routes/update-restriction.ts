@@ -1,12 +1,16 @@
 import express, { Request, Response } from "express";
-import { activeUser } from "../../../common/src/middleware/active-user";
+import { providerAuth } from "../../../common/src/middleware/provider-auth";
 
 const router = express.Router();
 
-router.post("/api/auth/logout", activeUser, (req: Request, res: Response) => {
-  req.session = null;
+router.post(
+  "/api/order/update-restriction",
+  providerAuth,
+  (req: Request, res: Response) => {
+    req.session = null;
 
-  res.status(200).send({});
-});
+    res.status(200).send({});
+  }
+);
 
-export { router as logoutRouter };
+export { router as updateRestrictionRouter };

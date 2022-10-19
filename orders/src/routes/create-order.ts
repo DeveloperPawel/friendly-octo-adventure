@@ -1,12 +1,16 @@
+import { patientAuth } from "./../../../common/src/middleware/patient-auth";
 import express, { Request, Response } from "express";
-import { activeUser } from "../../../common/src/middleware/active-user";
 
 const router = express.Router();
 
-router.post("/api/auth/logout", activeUser, (req: Request, res: Response) => {
-  req.session = null;
+router.post(
+  "/api/order/create-order",
+  patientAuth,
+  (req: Request, res: Response) => {
+    req.session = null;
 
-  res.status(200).send({});
-});
+    res.status(200).send({});
+  }
+);
 
-export { router as logoutRouter };
+export { router as createOrderRouter };
