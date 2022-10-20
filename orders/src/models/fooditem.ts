@@ -11,8 +11,8 @@ export interface FoodItemDoc extends mongoose.Document {
   ingredients?: Array<IngredientDoc>;
 }
 
-interface FoodItemModel extends mongoose.Model<FoodItemModel> {
-  build(attributes: FoodItemAttributes): FoodItemModel;
+interface FoodItemModel extends mongoose.Model<FoodItemDoc> {
+  build(attributes: FoodItemAttributes): FoodItemDoc;
 }
 
 const foodItemSchema = new mongoose.Schema(

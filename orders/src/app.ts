@@ -23,6 +23,8 @@ import { updateOrderRouter } from "./routes/update-order";
 import { updatePreferenceRouter } from "./routes/update-preference";
 import { updateRestrictionRouter } from "./routes/update-restriction";
 import { foodItemRouter } from "./routes/food-item";
+import { restrictionIndexRouter } from "./routes/restriction-index";
+import { preferenceIndexRouter } from "./routes/preference-index";
 
 const app = express();
 app.use(json());
@@ -50,6 +52,8 @@ app.use(updateOrderRouter);
 app.use(updatePreferenceRouter);
 app.use(updateRestrictionRouter);
 app.use(foodItemRouter);
+app.use(restrictionIndexRouter);
+app.use(preferenceIndexRouter);
 
 app.get("*", async (req, res) => {
   throw new NotFoundError();
