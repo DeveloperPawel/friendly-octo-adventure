@@ -1,16 +1,17 @@
+import { UserType } from "@mimenu/common";
 import mongoose from "mongoose";
 import { IngredientDoc } from "./ingredient";
 
 interface PreferenceAttributes {
   preferenceId: string;
-  ingredient: IngredientDoc;
   value: string;
+  userType: UserType;
 }
 
 export interface PreferenceDoc extends mongoose.Document {
   preferenceId: string;
-  ingredient?: IngredientDoc;
   value: string;
+  userType: UserType;
 }
 
 interface PreferenceModel extends mongoose.Model<PreferenceDoc> {
@@ -23,13 +24,15 @@ const preferenceSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    ingredient: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Ingredient",
-    },
     value: {
       type: String,
       required: true,
+    },
+    userType: {
+      type: String,
+      required: true,
+      enum: Object.values(UserType),
+      default: UserType.Patient,
     },
   },
   {

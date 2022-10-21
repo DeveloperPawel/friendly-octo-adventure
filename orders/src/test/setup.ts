@@ -50,7 +50,7 @@ global.adminsignin = () => {
 global.patientsignin = () => {
   const payload = {
     id: new mongoose.Types.ObjectId().toHexString(),
-    role: UserType.Admin,
+    role: UserType.Patient,
   };
 
   const token = jwt.sign(payload, "jwt_key");

@@ -4,7 +4,7 @@ import { providerAuth } from "@mimenu/common";
 const router = express.Router();
 
 router.post(
-  "/api/order/create-restriction",
+  "/api/order/add-restriction",
   providerAuth,
   (req: Request, res: Response) => {
     req.session = null;
@@ -13,4 +13,4 @@ router.post(
   }
 );
 
-export { router as createRestrictionRouter };
+export { router as addRestrictionRouter };

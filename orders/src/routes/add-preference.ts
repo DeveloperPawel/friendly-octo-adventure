@@ -4,7 +4,7 @@ import express, { Request, Response } from "express";
 const router = express.Router();
 
 router.post(
-  "/api/order/create-preference",
+  "/api/order/add-preference",
   providerAuth,
   (req: Request, res: Response) => {
     req.session = null;
@@ -13,4 +13,4 @@ router.post(
   }
 );
 
-export { router as createPreferenceRouter };
+export { router as addPreferenceRouter };

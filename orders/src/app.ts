@@ -8,8 +8,8 @@ import { errorHandler } from "@mimenu/common";
 import { activeUser } from "@mimenu/common";
 
 import { createOrderRouter } from "./routes/create-order";
-import { createPreferenceRouter } from "./routes/create-preference";
-import { createRestrictionRouter } from "./routes/create-restriction";
+import { addPreferenceRouter } from "./routes/add-preference";
+import { addRestrictionRouter } from "./routes/add-restriction";
 import { getDayIndexRouter } from "./routes/day-index";
 import { getOneDayRouter } from "./routes/day";
 import { deleteOrderRouter } from "./routes/delete-order";
@@ -37,8 +37,8 @@ app.use(
 app.use(activeUser);
 
 app.use(createOrderRouter);
-app.use(createPreferenceRouter);
-app.use(createRestrictionRouter);
+app.use(addPreferenceRouter);
+app.use(addRestrictionRouter);
 app.use(getOneDayRouter);
 app.use(getDayIndexRouter);
 app.use(deleteOrderRouter);

@@ -4,7 +4,7 @@ import express, { Request, Response } from "express";
 const router = express.Router();
 
 router.get(
-  "/api/order/day-index",
+  "/api/order/day-index/:amount",
   patientAuth,
   (req: Request, res: Response) => {
     req.session = null;

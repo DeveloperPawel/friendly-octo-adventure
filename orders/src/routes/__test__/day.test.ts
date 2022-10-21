@@ -1,7 +1,7 @@
 import request from "supertest";
 import { app } from "../../app";
 import mongoose from "mongoose";
-import { formatDate } from "../../../../common/src/functions/date";
+import { formatDate } from "@mimenu/common";
 
 it("patient can view single day", async () => {
   const patientCookie = global.patientsignin();
@@ -17,7 +17,7 @@ it("patient can view multiple days", async () => {
   const patientCookie = global.patientsignin();
 
   const response = await request(app)
-    .get(`/api/order/day-index`)
+    .get(`/api/order/day-index/5`)
     .set("Cookie", patientCookie)
     .send()
     .expect(200);
