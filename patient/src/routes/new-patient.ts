@@ -1,5 +1,5 @@
 import express, { Request, Response } from "express";
-import { providerAuth } from "../../../common/src/middleware/provider-auth";
+import { providerAuth } from "@mimenu/common";
 import { Patient } from "../model/patient";
 
 const router = express.Router();

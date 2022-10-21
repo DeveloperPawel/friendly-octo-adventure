@@ -1,9 +1,9 @@
 import jwt from "jsonwebtoken";
 import express, { Request, Response } from "express";
 import { body } from "express-validator";
-import { validateRequest } from "../../../common/src/middleware/validate-request";
-import { BadRequestError } from "../../../common/src/errors/bad-request-error";
-import { NotAuthorizedError } from "../../../common/src/errors/not-authorized-error";
+import { validateRequest } from "@mimenu/common";
+import { BadRequestError } from "@mimenu/common";
+import { NotAuthorizedError } from "@mimenu/common";
 import { User } from "../models/user";
 import { Password } from "../services/password";
 

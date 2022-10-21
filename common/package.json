@@ -1,7 +1,6 @@
 {
   "name": "@mimenu/common",
-  "version": "1.0.0",
-  "description": "",
+  "version": "1.0.3",
   "main": "./build/index.js",
   "types": "./build/index.d.ts",
   "files": [
@@ -30,5 +29,6 @@
   },
   "devDependencies": {
     "del-cli": "^5.0.0"
-  }
+  },
+  "description": ""
 }

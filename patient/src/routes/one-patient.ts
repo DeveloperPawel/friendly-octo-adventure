@@ -1,7 +1,7 @@
-import { providerAuth } from "./../../../common/src/middleware/provider-auth";
+import { providerAuth } from "@mimenu/common";
 import express, { Request, Response } from "express";
 import { Patient } from "../model/patient";
-import { NotFoundError } from "../../../common/src/errors/not-found-error";
+import { NotFoundError } from "@mimenu/common";
 
 const router = express.Router();
 

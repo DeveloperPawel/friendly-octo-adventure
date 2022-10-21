@@ -1,4 +1,4 @@
-import { providerAuth } from "./../../../common/src/middleware/provider-auth";
+import { providerAuth } from "@mimenu/common";
 import express, { Request, Response } from "express";
 
 const router = express.Router();

@@ -1,7 +1,7 @@
 import express, { Request, Response } from "express";
 import { body } from "express-validator";
-import { BadRequestError } from "../../../common/src/errors/bad-request-error";
-import { validateRequest } from "../../../common/src/middleware/validate-request";
+import { BadRequestError } from "@mimenu/common";
+import { validateRequest } from "@mimenu/common";
 import { User, UserType } from "../models/user";
 
 const router = express.Router();

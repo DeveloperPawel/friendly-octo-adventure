@@ -1,5 +1,5 @@
 import express, { Request, Response } from "express";
-import { adminAuth } from "../../../common/src/middleware/admin-auth";
+import { adminAuth } from "@mimenu/common";
 
 const router = express.Router();
 

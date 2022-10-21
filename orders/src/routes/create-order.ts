@@ -1,4 +1,4 @@
-import { patientAuth } from "./../../../common/src/middleware/patient-auth";
+import { patientAuth } from "@mimenu/common";
 import express, { Request, Response } from "express";
 
 const router = express.Router();

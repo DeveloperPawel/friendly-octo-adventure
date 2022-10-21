@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import { UserType } from "../../../common/src/types/UserTypes";
+import { UserType } from "@mimenu/common";
 import { Password } from "../services/password";
 
 export { UserType };

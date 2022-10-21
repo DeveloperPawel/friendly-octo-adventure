@@ -1,5 +1,5 @@
 import express, { Request, Response } from "express";
-import { activeUser } from "../../../common/src/middleware/active-user";
+import { activeUser } from "@mimenu/common";
 
 const router = express.Router();
 

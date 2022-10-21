@@ -1,4 +1,4 @@
-import { adminAuth } from "./../../../common/src/middleware/admin-auth";
+import { adminAuth } from "@mimenu/common";
 import express, { Request, Response } from "express";
 
 const router = express.Router();

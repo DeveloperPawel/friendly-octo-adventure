@@ -1,14 +1,14 @@
 import mongoose from "mongoose";
-import { Patient, patientSchema } from "./patient";
+import { PatientDoc } from "./patient";
 
 interface ProviderAttributes {
   providerId: string;
-  patients?: Array<typeof Patient>;
+  patients?: Array<PatientDoc>;
 }
 
 interface ProviderDoc extends mongoose.Document {
   providerId: string;
-  patients?: Array<typeof Patient>;
+  patients?: Array<PatientDoc>;
 }
 
 interface ProviderModel extends mongoose.Model<ProviderDoc> {

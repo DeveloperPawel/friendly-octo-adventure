@@ -1,33 +1,33 @@
 //definitions
-export * from "../src/definitions/request";
+export * from "./definitions/request";
 
 //errors
-export * from "../src/errors/bad-request-error";
-export * from "../src/errors/custom-error";
-export * from "../src/errors/database-connection-error";
-export * from "../src/errors/not-authorized-error";
-export * from "../src/errors/not-found-error";
+export * from "./errors/bad-request-error";
+export * from "./errors/custom-error";
+export * from "./errors/database-connection-error";
+export * from "./errors/not-authorized-error";
+export * from "./errors/not-found-error";
 
 //events - listiners/publishers
-export * from "../src/events/base-event";
-export * from "../src/events/base-listener";
-export * from "../src/events/base-publisher";
-export * from "../src/events/subjects";
+export * from "./events/base-event";
+export * from "./events/base-listener";
+export * from "./events/base-publisher";
+export * from "./events/subjects";
 
 //events
-export * from "../src/events/patient/patient-created-event";
-export * from "../src/events/provider/provider-created-event";
+export * from "./events/patient/patient-created-event";
+export * from "./events/provider/provider-created-event";
 
 //functions
-export * from "../src/functions/date";
+export * from "./functions/date";
 
 //middlewares
-export * from "../src/middleware/active-user";
-export * from "../src/middleware/admin-auth";
-export * from "../src/middleware/error-handler";
-export * from "../src/middleware/patient-auth";
-export * from "../src/middleware/provider-auth";
-export * from "../src/middleware/validate-request";
+export * from "./middleware/active-user";
+export * from "./middleware/admin-auth";
+export * from "./middleware/error-handler";
+export * from "./middleware/patient-auth";
+export * from "./middleware/provider-auth";
+export * from "./middleware/validate-request";
 
 //Types
-export * from "../src/types/UserTypes";
+export * from "./types/UserTypes";

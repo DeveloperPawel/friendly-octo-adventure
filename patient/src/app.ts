@@ -3,9 +3,9 @@ import "express-async-errors";
 import { json } from "body-parser";
 import CookieSession from "cookie-session";
 
-import { NotFoundError } from "../../common/src/errors/not-found-error";
-import { errorHandler } from "../../common/src/middleware/error-handler";
-import { activeUser } from "../../common/src/middleware/active-user";
+import { NotFoundError } from "@mimenu/common";
+import { errorHandler } from "@mimenu/common";
+import { activeUser } from "@mimenu/common";
 
 import { addPatientRouter } from "./routes/add-patient";
 import { newPatientRouter } from "./routes/new-patient";

@@ -7,7 +7,7 @@ interface PatientAttributes {
   providerId?: string;
 }
 
-interface PatientDoc extends mongoose.Document {
+export interface PatientDoc extends mongoose.Document {
   patientId: string;
   discharge: Date;
   providerId?: string;

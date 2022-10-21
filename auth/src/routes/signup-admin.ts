@@ -1,9 +1,9 @@
 import { UserType } from "../models/user";
 import express, { Request, Response } from "express";
 import { body } from "express-validator";
-import { BadRequestError } from "../../../common/src/errors/bad-request-error";
+import { BadRequestError } from "@mimenu/common";
 import { User } from "../models/user";
-import { validateRequest } from "../../../common/src/middleware/validate-request";
+import { validateRequest } from "@mimenu/common";
 
 const router = express.Router();
 
