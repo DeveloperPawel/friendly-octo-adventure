@@ -3,11 +3,13 @@ import { FoodItemDoc } from "./fooditem";
 
 interface EntreeAttributes {
   entreeId: string;
+  name: string;
   foodItems: Array<FoodItemDoc>;
 }
 
 export interface EntreeDoc extends mongoose.Document {
   entreeId: string;
+  name: string;
   foodItems?: Array<FoodItemDoc>;
 }
 
@@ -18,6 +20,10 @@ interface EntreeModel extends mongoose.Model<EntreeDoc> {
 const entreeSchema = new mongoose.Schema(
   {
     entreeId: {
+      type: String,
+      required: true,
+    },
+    name: {
       type: String,
       required: true,
     },

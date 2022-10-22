@@ -61,9 +61,23 @@ const daySchema = new mongoose.Schema(
 );
 
 daySchema.statics.build = (attributes: DayAttributes) => {
-  return new Day(attributes);
+  let newAttributes: DayAttributes = attributes;
+  newAttributes.date = new Date(formatDateAlpha(attributes.date));
+  return new Day(newAttributes);
 };
 
 const Day = mongoose.model<DayDoc, DayModel>("Day", daySchema);
+
+function padTo2Digits(num: number) {
+  return num.toString().padStart(2, "0");
+}
+
+export function formatDateAlpha(date: Date) {
+  return [
+    date.getFullYear(),
+    padTo2Digits(date.getMonth() + 1),
+    padTo2Digits(date.getDate()),
+  ].join("-");
+}
 
 export { Day };

@@ -6,7 +6,7 @@ import { formatDate, UserType } from "@mimenu/common";
 import { Ingredient } from "../../models/ingredient";
 import { FoodItem } from "../../models/fooditem";
 import { Entree } from "../../models/entree";
-import { Day } from "../../models/day";
+import { Day, formatDateAlpha } from "../../models/day";
 
 const setup = async () => {
   const flour = Ingredient.build({
@@ -23,6 +23,7 @@ const setup = async () => {
 
   const entree = Entree.build({
     entreeId: new mongoose.Types.ObjectId().toHexString(),
+    name: "toast",
     foodItems: [bread],
   });
   await entree.save();
@@ -61,10 +62,11 @@ it("patient can view single day", async () => {
   const { flour, bread, entree, patientCookie, patientId, day, dayId } =
     await setup();
   const response = await request(app)
-    .get(`/api/order/day/${formatDate(new Date())}`)
+    .get(`/api/order/day/${formatDateAlpha(new Date())}`)
     .set("Cookie", patientCookie)
     .send()
     .expect(200);
+
   expect(response.body?.dayId).toEqual(dayId);
 });
 
