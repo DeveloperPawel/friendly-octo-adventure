@@ -14,6 +14,7 @@ import { signupAdminRouter } from "./routes/signup-admin";
 import { signupProviderRouter } from "./routes/signup-provider";
 
 const app = express();
+app.set("trust proxy", true);
 app.use(json());
 app.use(
   CookieSession({
@@ -22,9 +23,9 @@ app.use(
   })
 );
 
+app.use(userRouter);
 app.use(signupProviderRouter);
 app.use(signupAdminRouter);
-app.use(userRouter);
 app.use(signupRouter);
 app.use(loginRouter);
 app.use(logoutRouter);

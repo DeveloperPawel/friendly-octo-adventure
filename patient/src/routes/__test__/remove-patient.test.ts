@@ -7,13 +7,15 @@ import { Provider } from "../../model/provider";
 it("removes patient from provider as provider", async () => {
   const providerCookie = global.providersignin();
 
+  const providerId = new mongoose.Types.ObjectId().toHexString();
   const provider = Provider.build({
-    providerId: new mongoose.Types.ObjectId().toHexString(),
+    providerId,
   });
   await provider.save();
 
+  let patientId = new mongoose.Types.ObjectId().toHexString();
   const patient = Patient.build({
-    patientId: new mongoose.Types.ObjectId().toHexString(),
+    patientId,
     discharge: new Date(),
   });
   await patient.save();
@@ -22,8 +24,8 @@ it("removes patient from provider as provider", async () => {
     .post(`/api/patient/add`)
     .set("Cookie", providerCookie)
     .send({
-      patientId: patient.id,
-      providerId: provider.id,
+      patientId: patientId,
+      providerId: providerId,
     })
     .expect(201);
 
@@ -31,8 +33,8 @@ it("removes patient from provider as provider", async () => {
     .post(`/api/patient/remove`)
     .set("Cookie", providerCookie)
     .send({
-      providerId: provider.id,
-      patientId: patient.id,
+      providerId: providerId,
+      patientId: patientId,
     })
     .expect(202);
 
@@ -42,13 +44,15 @@ it("removes patient from provider as provider", async () => {
 it("removes patient from provider as admin", async () => {
   const adminCookie = global.adminsignin();
 
+  const providerId = new mongoose.Types.ObjectId().toHexString();
   const provider = Provider.build({
-    providerId: new mongoose.Types.ObjectId().toHexString(),
+    providerId,
   });
   await provider.save();
 
+  let patientId = new mongoose.Types.ObjectId().toHexString();
   const patient = Patient.build({
-    patientId: new mongoose.Types.ObjectId().toHexString(),
+    patientId,
     discharge: new Date(),
   });
   await patient.save();
@@ -57,8 +61,8 @@ it("removes patient from provider as admin", async () => {
     .post(`/api/patient/add`)
     .set("Cookie", adminCookie)
     .send({
-      patientId: patient.id,
-      providerId: provider.id,
+      patientId: patientId,
+      providerId: providerId,
     })
     .expect(201);
 
@@ -66,8 +70,8 @@ it("removes patient from provider as admin", async () => {
     .post(`/api/patient/remove`)
     .set("Cookie", adminCookie)
     .send({
-      providerId: provider.id,
-      patientId: patient.id,
+      providerId: providerId,
+      patientId: patientId,
     })
     .expect(202);
 

@@ -7,14 +7,16 @@ import { Provider } from "../../model/provider";
 it("adds patient to provider as admin", async () => {
   const adminCookie = global.adminsignin();
 
+  let patientId = new mongoose.Types.ObjectId().toHexString();
   const patient = Patient.build({
-    patientId: new mongoose.Types.ObjectId().toHexString(),
+    patientId,
     discharge: new Date(),
   });
   await patient.save();
 
+  let providerId = new mongoose.Types.ObjectId().toHexString();
   const provider = Provider.build({
-    providerId: new mongoose.Types.ObjectId().toHexString(),
+    providerId,
   });
   await provider.save();
 
@@ -22,30 +24,32 @@ it("adds patient to provider as admin", async () => {
     .post(`/api/patient/add`)
     .set("Cookie", adminCookie)
     .send({
-      patientId: patient.id,
-      providerId: provider.id,
+      patientId,
+      providerId,
     })
     .expect(201);
 
   expect(updatedProvider.body?.patients.length).toEqual(1);
 
-  const updatedPatient = await Patient.findById(patient.id);
-  expect(updatedPatient?.providerId).toEqual(provider.id);
+  const updatedPatient = await Patient.findOne({ patientId });
+  expect(updatedPatient?.providerId).toEqual(providerId);
 });
 
 it("adds patient to provider as provider", async () => {
   const providerCookie = global.providersignin();
 
+  let patientId = new mongoose.Types.ObjectId().toHexString();
   const patient = Patient.build({
-    patientId: new mongoose.Types.ObjectId().toHexString(),
+    patientId,
     discharge: new Date(),
   });
   await patient.save();
 
+  let providerId = new mongoose.Types.ObjectId().toHexString();
   const provider = Provider.build({
-    providerId: new mongoose.Types.ObjectId().toHexString(),
+    providerId,
   });
-  provider.save();
+  await provider.save();
 
   const updatedProvider = await request(app)
     .post(`/api/patient/add`)
@@ -58,6 +62,6 @@ it("adds patient to provider as provider", async () => {
 
   expect(updatedProvider.body?.patients.length).toEqual(1);
 
-  const updatedPatient = await Patient.findById(patient.id);
-  expect(updatedPatient?.providerId).toEqual(provider.id);
+  const updatedPatient = await Patient.findOne({ patientId });
+  expect(updatedPatient?.providerId).toEqual(providerId);
 });

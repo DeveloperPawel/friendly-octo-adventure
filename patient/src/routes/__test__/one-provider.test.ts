@@ -12,7 +12,7 @@ it("retrieves one provider as provider", async () => {
   await provider.save();
 
   const response = await request(app)
-    .get(`/api/patient/provider/${provider.id}`)
+    .get(`/api/patient/provider/${providerId}`)
     .set("Cookie", providerCookie)
     .send()
     .expect(200);
@@ -29,7 +29,7 @@ it("retrieves one provider as admin", async () => {
   await provider.save();
 
   const response = await request(app)
-    .get(`/api/patient/provider/${provider.id}`)
+    .get(`/api/patient/provider/${providerId}`)
     .set("Cookie", adminCookie)
     .send()
     .expect(200);
@@ -38,13 +38,14 @@ it("retrieves one provider as admin", async () => {
 });
 
 it("returns 401 unauthorized when accessed by an unauthorized user", async () => {
+  const providerId = new mongoose.Types.ObjectId().toHexString();
   const provider = Provider.build({
-    providerId: new mongoose.Types.ObjectId().toHexString(),
+    providerId,
   });
   await provider.save();
 
   await request(app)
-    .get(`/api/patient/provider/${provider.id}`)
+    .get(`/api/patient/provider/${providerId}`)
     .send()
     .expect(401);
 });

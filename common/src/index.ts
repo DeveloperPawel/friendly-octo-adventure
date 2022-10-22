@@ -7,6 +7,7 @@ export * from "./errors/custom-error";
 export * from "./errors/database-connection-error";
 export * from "./errors/not-authorized-error";
 export * from "./errors/not-found-error";
+export * from "./errors/validation-error";
 
 //events - listiners/publishers
 export * from "./events/base-event";

@@ -36,6 +36,7 @@ router.post(
       {
         id: user.id,
         email: user.email,
+        role: UserType.Patient,
       },
       "jwt_key"
     );

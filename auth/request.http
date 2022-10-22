@@ -1,0 +1,23 @@
+POST https://mimenu.dev/api/auth/signup
+Content-Type: application/json
+
+{
+    "email": "test1@test.com",
+    "password": "awrndfid"
+}
+
+####################################333
+
+POST https://mimenu.dev/api/auth/signup
+Content-Type: application/json
+
+{
+    "email": "test1@com",
+    "password": "awrndfid"
+}
+
+################################################################
+
+GET https://mimenu.dev/api/auth/current
+Content-Type: application/json
+Cookie: session=eyJqd3QiOiJleUpoYkdjaU9pSklVekkxTmlJc0luUjVjQ0k2SWtwWFZDSjkuZXlKcFpDSTZJall6TlRNd1lXSTNPV1EzTjJZeFpUWmlOakEwTm1JMVpTSXNJbVZ0WVdsc0lqb2lkR1Z6ZERGQWRHVnpkQzVqYjIwaUxDSnBZWFFpT2pFMk5qWXpPRFkyTVRWOS5PVGdlSWNrQTJrd3JDcExFa002SC1KQmlpamJpX25ib0JOVXV2UHpVRV9VIn0=; path=/; secure; httponly
