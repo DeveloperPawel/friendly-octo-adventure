@@ -7,27 +7,34 @@ import { FoodItem } from "../../models/fooditem";
 import { Entree } from "../../models/entree";
 import { UserType } from "@mimenu/common";
 import { Restriction } from "../../models/restriction";
+import { Patient } from "../../models/patient";
 
 const setup = async () => {
   const flour = Ingredient.build({
     ingredientId: new mongoose.Types.ObjectId().toHexString(),
-    title: "flour",
+    name: "flour",
   });
   await flour.save();
 
   const bread = FoodItem.build({
     foodItemId: new mongoose.Types.ObjectId().toHexString(),
+    name: "bread",
     ingredients: [flour],
   });
   await bread.save();
 
   const entree = Entree.build({
     entreeId: new mongoose.Types.ObjectId().toHexString(),
+    name: "toast",
     foodItems: [bread],
   });
   await entree.save();
 
   const patientId = new mongoose.Types.ObjectId().toHexString();
+  const patient = Patient.build({
+    patientId,
+  });
+  await patient.save();
 
   const payload = {
     id: patientId,
@@ -44,12 +51,13 @@ const setup = async () => {
 
   const patientCookie = [`session=${base64}`];
 
-  return { flour, bread, entree, patientCookie, patientId };
+  return { flour, bread, entree, patientCookie, patientId, patient };
 };
 
 it("admin add restriction", async () => {
   const adminCookie = global.adminsignin();
-  const { flour, bread, entree, patientCookie, patientId } = await setup();
+  const { flour, bread, entree, patientCookie, patientId, patient } =
+    await setup();
 
   const restrictId = new mongoose.Types.ObjectId().toHexString();
   const restriction = Restriction.build({
@@ -58,19 +66,25 @@ it("admin add restriction", async () => {
   });
   await restriction.save();
 
+  expect(patient!.restrictions!.length).toEqual(0);
+
   const response = await request(app)
     .post(`/api/order/add-restriction`)
     .set("Cookie", adminCookie)
     .send({
-      restrictionId: restriction.id,
+      restrictionId: restrictId,
       patientId,
     })
-    .expect(201);
+    .expect(200);
+
+  const updatedpatient = await Patient.findOne({ patientId });
+  expect(updatedpatient!.restrictions!.length).toEqual(1);
 });
 
 it("provider add restriction", async () => {
   const providerCookie = global.providersignin();
-  const { flour, bread, entree, patientCookie, patientId } = await setup();
+  const { flour, bread, entree, patientCookie, patientId, patient } =
+    await setup();
 
   const restrictId = new mongoose.Types.ObjectId().toHexString();
   const restriction = Restriction.build({
@@ -79,92 +93,25 @@ it("provider add restriction", async () => {
   });
   await restriction.save();
 
-  const response = await request(app)
-    .post(`/api/order/create-restriction`)
-    .set("Cookie", providerCookie)
-    .send({
-      restrictionId: restriction.id,
-      patientId,
-    })
-    .expect(201);
-});
-
-it("admin update restriction", async () => {
-  const adminCookie = global.adminsignin();
-  const { flour, bread, entree, patientCookie, patientId } = await setup();
-
-  const restrictIdMech = new mongoose.Types.ObjectId().toHexString();
-  const restrictionMech = Restriction.build({
-    restrictionId: restrictIdMech,
-    type: "mechanical soft",
-  });
-  await restrictionMech.save();
-
-  const firstResponse = await request(app)
-    .post(`/api/order/add-restriction`)
-    .set("Cookie", adminCookie)
-    .send({
-      restrictionId: restrictionMech.id,
-      patientId,
-    })
-    .expect(201);
-
-  const restrictId = new mongoose.Types.ObjectId().toHexString();
-  const restriction = Restriction.build({
-    restrictionId: restrictId,
-    type: "liquid",
-  });
-  await restriction.save();
+  expect(patient!.restrictions!.length).toEqual(0);
 
   const response = await request(app)
-    .post(`/api/order/update-restriction`)
-    .set("Cookie", adminCookie)
-    .send({
-      restrictionId: restriction.id,
-      patientId,
-    })
-    .expect(201);
-});
-
-it("provider update restriction", async () => {
-  const providerCookie = global.providersignin();
-  const { flour, bread, entree, patientCookie, patientId } = await setup();
-
-  const restrictIdMech = new mongoose.Types.ObjectId().toHexString();
-  const restrictionMech = Restriction.build({
-    restrictionId: restrictIdMech,
-    type: "mechanical soft",
-  });
-  await restrictionMech.save();
-
-  const firstResponse = await request(app)
     .post(`/api/order/add-restriction`)
     .set("Cookie", providerCookie)
     .send({
-      restrictionId: restrictionMech.id,
+      restrictionId: restrictId,
       patientId,
     })
-    .expect(201);
+    .expect(200);
 
-  const restrictId = new mongoose.Types.ObjectId().toHexString();
-  const restriction = Restriction.build({
-    restrictionId: restrictId,
-    type: "liquid",
-  });
-  await restriction.save();
-  const response = await request(app)
-    .post(`/api/order/update-restriction`)
-    .set("Cookie", providerCookie)
-    .send({
-      restrictionId: restriction.id,
-      patientId,
-    })
-    .expect(201);
+  const updatedpatient = await Patient.findOne({ patientId });
+  expect(updatedpatient!.restrictions!.length).toEqual(1);
 });
 
 it("admin delete restriction", async () => {
   const adminCookie = global.adminsignin();
-  const { flour, bread, entree, patientCookie, patientId } = await setup();
+  const { flour, bread, entree, patientCookie, patientId, patient } =
+    await setup();
 
   const restrictId = new mongoose.Types.ObjectId().toHexString();
   const restriction = Restriction.build({
@@ -173,28 +120,27 @@ it("admin delete restriction", async () => {
   });
   await restriction.save();
 
-  const firstResponse = await request(app)
-    .post(`/api/order/add-restriction`)
-    .set("Cookie", adminCookie)
-    .send({
-      restrictionId: restriction.id,
-      patientId,
-    })
-    .expect(201);
+  patient!.restrictions!.push(restriction);
+  await patient!.save();
+  expect(patient!.restrictions!.length).toEqual(1);
 
   const response = await request(app)
-    .post(`/api/order/remove-restriction`)
+    .post(`/api/order/delete-restriction`)
     .set("Cookie", adminCookie)
     .send({
-      restrictionId: restriction.id,
+      restrictionId: restrictId,
       patientId,
     })
-    .expect(200);
+    .expect(202);
+
+  const updatedpatient = await Patient.findOne({ patientId });
+  expect(updatedpatient!.restrictions!.length).toEqual(0);
 });
 
 it("provider delete restriction", async () => {
   const providerCookie = global.providersignin();
-  const { flour, bread, entree, patientCookie, patientId } = await setup();
+  const { flour, bread, entree, patientCookie, patientId, patient } =
+    await setup();
 
   const restrictId = new mongoose.Types.ObjectId().toHexString();
   const restriction = Restriction.build({
@@ -203,21 +149,19 @@ it("provider delete restriction", async () => {
   });
   await restriction.save();
 
-  const firstResponse = await request(app)
-    .post(`/api/order/add-restriction`)
-    .set("Cookie", providerCookie)
-    .send({
-      restrictionId: restriction.id,
-      patientId,
-    })
-    .expect(201);
+  patient!.restrictions!.push(restriction);
+  await patient!.save();
+  expect(patient!.restrictions!.length).toEqual(1);
 
   const response = await request(app)
-    .post(`/api/order/remove-restriction`)
+    .post(`/api/order/delete-restriction`)
     .set("Cookie", providerCookie)
     .send({
-      restrictionId: restriction.id,
+      restrictionId: restrictId,
       patientId,
     })
-    .expect(200);
+    .expect(202);
+
+  const updatedpatient = await Patient.findOne({ patientId });
+  expect(updatedpatient!.restrictions!.length).toEqual(0);
 });

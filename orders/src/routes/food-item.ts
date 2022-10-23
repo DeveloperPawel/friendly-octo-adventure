@@ -1,15 +1,22 @@
-import { patientAuth } from "@mimenu/common";
+import { NotFoundError, patientAuth } from "@mimenu/common";
 import express, { Request, Response } from "express";
+import { FoodItem } from "../models/fooditem";
 
 const router = express.Router();
 
 router.get(
   "/api/order/food-item/:foodItemId",
   patientAuth,
-  (req: Request, res: Response) => {
-    req.session = null;
+  async (req: Request, res: Response) => {
+    const foundFoodItem = await FoodItem.findOne({
+      foodItemId: req.params.foodItemId,
+    });
 
-    res.status(200).send({});
+    if (!foundFoodItem) {
+      throw new NotFoundError();
+    }
+
+    res.status(200).send(foundFoodItem);
   }
 );
 

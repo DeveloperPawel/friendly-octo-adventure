@@ -11,12 +11,13 @@ import { Day, formatDateAlpha } from "../../models/day";
 const setup = async () => {
   const flour = Ingredient.build({
     ingredientId: new mongoose.Types.ObjectId().toHexString(),
-    title: "flour",
+    name: "flour",
   });
   await flour.save();
 
   const bread = FoodItem.build({
     foodItemId: new mongoose.Types.ObjectId().toHexString(),
+    name: "bread",
     ingredients: [flour],
   });
   await bread.save();
@@ -75,7 +76,7 @@ it("patient can view multiple days", async () => {
     await setup();
 
   const response = await request(app)
-    .get(`/api/order/day-index/5`)
+    .get(`/api/order/day-index`)
     .set("Cookie", patientCookie)
     .send()
     .expect(200);

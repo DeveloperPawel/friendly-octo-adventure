@@ -3,11 +3,13 @@ import { IngredientDoc } from "./ingredient";
 
 interface FoodItemAttributes {
   foodItemId: string;
+  name: string;
   ingredients: Array<IngredientDoc>;
 }
 
 export interface FoodItemDoc extends mongoose.Document {
   foodItemId: string;
+  name: string;
   ingredients?: Array<IngredientDoc>;
 }
 
@@ -18,6 +20,10 @@ interface FoodItemModel extends mongoose.Model<FoodItemDoc> {
 const foodItemSchema = new mongoose.Schema(
   {
     foodItemId: {
+      type: String,
+      required: true,
+    },
+    name: {
       type: String,
       required: true,
     },

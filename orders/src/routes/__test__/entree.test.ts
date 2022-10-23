@@ -10,18 +10,21 @@ import { UserType } from "@mimenu/common";
 const setup = async () => {
   const flour = Ingredient.build({
     ingredientId: new mongoose.Types.ObjectId().toHexString(),
-    title: "flour",
+    name: "flour",
   });
   await flour.save();
 
   const bread = FoodItem.build({
     foodItemId: new mongoose.Types.ObjectId().toHexString(),
+    name: "bread",
     ingredients: [flour],
   });
   await bread.save();
 
+  let entreeId = new mongoose.Types.ObjectId().toHexString();
   const entree = Entree.build({
-    entreeId: new mongoose.Types.ObjectId().toHexString(),
+    entreeId,
+    name: "toast",
     foodItems: [bread],
   });
   await entree.save();
@@ -43,17 +46,18 @@ const setup = async () => {
 
   const patientCookie = [`session=${base64}`];
 
-  return { flour, bread, entree, patientCookie, patientId };
+  return { flour, bread, entree, entreeId, patientCookie, patientId };
 };
 
 it("patient can retreive an entree", async () => {
-  const { flour, bread, entree, patientCookie, patientId } = await setup();
+  const { flour, bread, entree, entreeId, patientCookie, patientId } =
+    await setup();
 
   const response = await request(app)
-    .get(`/api/order/entree/${entree.id}`)
+    .get(`/api/order/entree/${entreeId}`)
     .set("Cookie", patientCookie)
     .send()
     .expect(200);
 
-  expect(response.body?.entreeId).toBeDefined();
+  expect(response.body?.entreeId).toEqual(entreeId);
 });

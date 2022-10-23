@@ -7,9 +7,7 @@ router.post(
   "/api/order/delete-order",
   providerAuth,
   (req: Request, res: Response) => {
-    req.session = null;
-
-    res.status(200).send({});
+    res.status(202).send({});
   }
 );
 

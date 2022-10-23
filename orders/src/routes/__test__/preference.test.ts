@@ -7,27 +7,34 @@ import { FoodItem } from "../../models/fooditem";
 import { Entree } from "../../models/entree";
 import { UserType } from "@mimenu/common";
 import { Preference } from "../../models/preference";
+import { Patient } from "../../models/patient";
 
 const setup = async () => {
   const flour = Ingredient.build({
     ingredientId: new mongoose.Types.ObjectId().toHexString(),
-    title: "flour",
+    name: "flour",
   });
   await flour.save();
 
   const bread = FoodItem.build({
     foodItemId: new mongoose.Types.ObjectId().toHexString(),
+    name: "bread",
     ingredients: [flour],
   });
   await bread.save();
 
   const entree = Entree.build({
     entreeId: new mongoose.Types.ObjectId().toHexString(),
+    name: "toast",
     foodItems: [bread],
   });
   await entree.save();
 
   const patientId = new mongoose.Types.ObjectId().toHexString();
+  const patient = Patient.build({
+    patientId,
+  });
+  await patient.save();
 
   const payload = {
     id: patientId,
@@ -44,7 +51,7 @@ const setup = async () => {
 
   const patientCookie = [`session=${base64}`];
 
-  return { flour, bread, entree, patientCookie, patientId };
+  return { flour, bread, entree, patientCookie, patientId, patient };
 };
 
 it("admin add preference", async () => {
@@ -63,10 +70,13 @@ it("admin add preference", async () => {
     .post(`/api/order/add-preference`)
     .set("Cookie", adminCookie)
     .send({
-      preferenceId: preference.id,
+      preferenceId: prefId,
       patientId,
     })
-    .expect(201);
+    .expect(200);
+
+  const foundPatient = await Patient.findOne({ patientId });
+  expect(foundPatient!.preferences!.length).toEqual(1);
 });
 
 it("provider add preference", async () => {
@@ -85,10 +95,13 @@ it("provider add preference", async () => {
     .post(`/api/order/add-preference`)
     .set("Cookie", providerCookie)
     .send({
-      preferenceId: preference.id,
+      preferenceId: prefId,
       patientId,
     })
-    .expect(201);
+    .expect(200);
+
+  const foundPatient = await Patient.findOne({ patientId });
+  expect(foundPatient!.preferences!.length).toEqual(1);
 });
 
 it("patient add preference", async () => {
@@ -106,7 +119,7 @@ it("patient add preference", async () => {
     .post(`/api/order/add-preference`)
     .set("Cookie", patientCookie)
     .send({
-      preferenceId: preference.id,
+      preferenceId: prefId,
       patientId,
     })
     .expect(200);
@@ -114,7 +127,8 @@ it("patient add preference", async () => {
 
 it("admin remove preference", async () => {
   const adminCookie = global.adminsignin();
-  const { flour, bread, entree, patientCookie, patientId } = await setup();
+  const { flour, bread, entree, patientCookie, patientId, patient } =
+    await setup();
 
   const prefId = new mongoose.Types.ObjectId().toHexString();
   const preference = Preference.build({
@@ -123,20 +137,28 @@ it("admin remove preference", async () => {
     userType: UserType.Provider,
   });
   await preference.save();
+
+  patient!.preferences!.push(preference);
+  await patient.save();
+  expect(patient!.preferences!.length).toEqual(1);
 
   const response = await request(app)
     .post(`/api/order/delete-preference`)
     .set("Cookie", adminCookie)
     .send({
-      preferenceId: preference.id,
+      preferenceId: prefId,
       patientId,
     })
     .expect(202);
+
+  const updatedPatient = await Patient.findOne({ patientId });
+  expect(updatedPatient!.preferences!.length).toEqual(0);
 });
 
 it("provider remove preference", async () => {
   const providerCookie = global.providersignin();
-  const { flour, bread, entree, patientCookie, patientId } = await setup();
+  const { flour, bread, entree, patientCookie, patientId, patient } =
+    await setup();
 
   const prefId = new mongoose.Types.ObjectId().toHexString();
   const preference = Preference.build({
@@ -146,18 +168,26 @@ it("provider remove preference", async () => {
   });
   await preference.save();
 
+  patient!.preferences!.push(preference);
+  await patient.save();
+  expect(patient!.preferences!.length).toEqual(1);
+
   const response = await request(app)
-    .post(`/api/order/remove-preference`)
+    .post(`/api/order/delete-preference`)
     .set("Cookie", providerCookie)
     .send({
-      preferenceId: preference.id,
+      preferenceId: prefId,
       patientId,
     })
     .expect(202);
+
+  const updatedPatient = await Patient.findOne({ patientId });
+  expect(updatedPatient!.preferences!.length).toEqual(0);
 });
 
 it("patient remove preference - authorized", async () => {
-  const { flour, bread, entree, patientCookie, patientId } = await setup();
+  const { flour, bread, entree, patientCookie, patientId, patient } =
+    await setup();
 
   const prefId = new mongoose.Types.ObjectId().toHexString();
   const preference = Preference.build({
@@ -167,18 +197,26 @@ it("patient remove preference - authorized", async () => {
   });
   await preference.save();
 
+  patient!.preferences!.push(preference);
+  await patient.save();
+  expect(patient!.preferences!.length).toEqual(1);
+
   const response = await request(app)
-    .post(`/api/order/remove-preference`)
+    .post(`/api/order/delete-preference`)
     .set("Cookie", patientCookie)
     .send({
-      preferenceId: preference.id,
+      preferenceId: prefId,
       patientId,
     })
     .expect(202);
+
+  const updatedPatient = await Patient.findOne({ patientId });
+  expect(updatedPatient!.preferences!.length).toEqual(0);
 });
 
 it("patient remove preference - unauthorized - returns 401", async () => {
-  const { flour, bread, entree, patientCookie, patientId } = await setup();
+  const { flour, bread, entree, patientCookie, patientId, patient } =
+    await setup();
 
   const prefId = new mongoose.Types.ObjectId().toHexString();
   const preference = Preference.build({
@@ -188,11 +226,15 @@ it("patient remove preference - unauthorized - returns 401", async () => {
   });
   await preference.save();
 
+  patient!.preferences!.push(preference);
+  await patient.save();
+  expect(patient!.preferences!.length).toEqual(1);
+
   const response = await request(app)
-    .post(`/api/order/remove-preference`)
+    .post(`/api/order/delete-preference`)
     .set("Cookie", patientCookie)
     .send({
-      preferenceId: preference.id,
+      preferenceId: prefId,
       patientId,
     })
     .expect(401);

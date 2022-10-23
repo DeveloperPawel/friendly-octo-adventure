@@ -14,13 +14,27 @@ router.get(
       date: new Date(req.params.date),
     })
       .populate([
-        { path: "breakfast", model: "Entree" },
-        { path: "lunch", model: "Entree" },
-        { path: "dinner", model: "Entree" },
+        {
+          path: "breakfast",
+          populate: [
+            { path: "foodItems", populate: [{ path: "ingredients" }] },
+          ],
+        },
+        {
+          path: "lunch",
+          populate: [
+            { path: "foodItems", populate: [{ path: "ingredients" }] },
+          ],
+        },
+        {
+          path: "dinner",
+          populate: [
+            { path: "foodItems", populate: [{ path: "ingredients" }] },
+          ],
+        },
       ])
       .exec();
 
-    console.log(foundDay);
     if (!foundDay) {
       throw new NotFoundError();
     }

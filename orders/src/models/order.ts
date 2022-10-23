@@ -1,12 +1,16 @@
 import mongoose from "mongoose";
+import { formatDateAlpha } from "./day";
+import { EntreeDoc } from "./entree";
 
 interface OrderAttributes {
-  entreeId: string;
+  entree: EntreeDoc;
+  date: Date;
   patientId: string;
 }
 
 export interface OrderDoc extends mongoose.Document {
-  entreeId: string;
+  entree: EntreeDoc;
+  date: Date;
   patientId: string;
 }
 
@@ -16,8 +20,12 @@ interface OrderModel extends mongoose.Model<OrderDoc> {
 
 const orderSchema = new mongoose.Schema(
   {
-    entreeId: {
-      type: String,
+    entree: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Entree",
+    },
+    date: {
+      type: mongoose.Schema.Types.Date,
       required: true,
     },
     patientId: {
@@ -36,7 +44,9 @@ const orderSchema = new mongoose.Schema(
 );
 
 orderSchema.statics.build = (attributes: OrderAttributes) => {
-  return new Order(attributes);
+  let newAttributes: OrderAttributes = attributes;
+  newAttributes.date = new Date(formatDateAlpha(attributes.date));
+  return new Order(newAttributes);
 };
 
 const Order = mongoose.model<OrderDoc, OrderModel>("Order", orderSchema);

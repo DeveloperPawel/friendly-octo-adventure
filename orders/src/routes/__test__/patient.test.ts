@@ -11,23 +11,30 @@ import { Patient } from "../../models/patient";
 const setup = async () => {
   const flour = Ingredient.build({
     ingredientId: new mongoose.Types.ObjectId().toHexString(),
-    title: "flour",
+    name: "flour",
   });
   await flour.save();
 
   const bread = FoodItem.build({
     foodItemId: new mongoose.Types.ObjectId().toHexString(),
+    name: "bread",
     ingredients: [flour],
   });
   await bread.save();
 
+  let entreeId = new mongoose.Types.ObjectId().toHexString();
   const entree = Entree.build({
-    entreeId: new mongoose.Types.ObjectId().toHexString(),
+    entreeId,
+    name: "toast",
     foodItems: [bread],
   });
   await entree.save();
 
   const patientId = new mongoose.Types.ObjectId().toHexString();
+  const patient = Patient.build({
+    patientId,
+  });
+  await patient.save();
 
   const payload = {
     id: patientId,
@@ -44,7 +51,7 @@ const setup = async () => {
 
   const patientCookie = [`session=${base64}`];
 
-  return { flour, bread, entree, patientCookie, patientId };
+  return { flour, bread, entree, entreeId, patientCookie, patientId };
 };
 
 it("patient can retrieve patient", async () => {
@@ -53,20 +60,21 @@ it("patient can retrieve patient", async () => {
   const response = await request(app)
     .get(`/api/order/patient/${patientId}`)
     .set("Cookie", patientCookie)
-    .send({})
+    .send()
     .expect(200);
 });
 
 it("patient can not retrieve another patient", async () => {
   const { flour, bread, entree, patientCookie, patientId } = await setup();
 
+  let secondPatientId = new mongoose.Types.ObjectId().toHexString();
   const patient = Patient.build({
-    patientId: new mongoose.Types.ObjectId().toHexString(),
+    patientId: secondPatientId,
   });
   await patient.save();
 
   const response = await request(app)
-    .get(`/api/order/patient/${patient.id}`)
+    .get(`/api/order/patient/${secondPatientId}`)
     .set("Cookie", patientCookie)
     .send()
     .expect(401);

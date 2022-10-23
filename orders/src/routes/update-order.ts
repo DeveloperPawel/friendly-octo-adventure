@@ -1,15 +1,48 @@
 import express, { Request, Response } from "express";
-import { patientAuth } from "@mimenu/common";
+import {
+  NotAuthorizedError,
+  NotFoundError,
+  patientAuth,
+  UserType,
+} from "@mimenu/common";
+import { Patient } from "../models/patient";
+import { Entree } from "../models/entree";
+import { Order } from "../models/order";
 
 const router = express.Router();
 
 router.post(
   "/api/order/patient/order",
   patientAuth,
-  (req: Request, res: Response) => {
-    req.session = null;
+  async (req: Request, res: Response) => {
+    const { patientId, entreeId, orderId } = req.body;
 
-    res.status(200).send({});
+    if (req.user?.id !== patientId && req.user?.role === UserType.Patient) {
+      throw new NotAuthorizedError();
+    }
+
+    const foundPatient = await Patient.findOne({ patientId });
+
+    if (!foundPatient) {
+      throw new NotFoundError();
+    }
+
+    const foundEntree = await Entree.findOne({ entreeId });
+
+    if (!foundEntree) {
+      throw new NotFoundError();
+    }
+
+    const foundOrder = await Order.findOne({ orderId });
+
+    if (!foundOrder) {
+      throw new NotFoundError();
+    }
+
+    foundOrder.entree = foundEntree;
+    await foundOrder.save();
+
+    res.status(200).send(foundOrder);
   }
 );
 

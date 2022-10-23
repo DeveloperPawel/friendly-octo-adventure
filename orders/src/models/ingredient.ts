@@ -2,12 +2,12 @@ import mongoose from "mongoose";
 
 interface IngredientAttributes {
   ingredientId: string;
-  title: string;
+  name: string;
 }
 
 export interface IngredientDoc extends mongoose.Document {
   ingredientId: string;
-  title: string;
+  name: string;
 }
 
 interface IngredientModel extends mongoose.Model<IngredientDoc> {
@@ -20,7 +20,7 @@ const ingredientSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    title: {
+    name: {
       type: String,
       required: true,
     },

@@ -8,27 +8,35 @@ import { Entree } from "../../models/entree";
 import { FoodItem } from "../../models/fooditem";
 import { Ingredient } from "../../models/ingredient";
 import { formatDate, UserType } from "@mimenu/common";
+import { formatDateAlpha } from "../../models/day";
 
 const setup = async () => {
   const flour = Ingredient.build({
     ingredientId: new mongoose.Types.ObjectId().toHexString(),
-    title: "flour",
+    name: "flour",
   });
   await flour.save();
 
   const bread = FoodItem.build({
     foodItemId: new mongoose.Types.ObjectId().toHexString(),
+    name: "bread",
     ingredients: [flour],
   });
   await bread.save();
 
+  let entreeId = new mongoose.Types.ObjectId().toHexString();
   const entree = Entree.build({
-    entreeId: new mongoose.Types.ObjectId().toHexString(),
+    entreeId,
+    name: "toast",
     foodItems: [bread],
   });
   await entree.save();
 
   const patientId = new mongoose.Types.ObjectId().toHexString();
+  const patient = Patient.build({
+    patientId,
+  });
+  await patient.save();
 
   const payload = {
     id: patientId,
@@ -45,42 +53,40 @@ const setup = async () => {
 
   const patientCookie = [`session=${base64}`];
 
-  return { flour, bread, entree, patientCookie, patientId };
+  return { flour, bread, entree, entreeId, patientCookie, patientId };
 };
 
 it("create order - patient create order", async () => {
-  const { flour, bread, entree, patientCookie, patientId } = await setup();
+  const { flour, bread, entree, entreeId, patientCookie, patientId } =
+    await setup();
 
   const response = await request(app)
     .post(`/api/order/create-order`)
     .set("Cookie", patientCookie)
     .send({
-      entreeId: entree.id,
+      entreeId,
+      date: new Date(),
       patientId,
     })
     .expect(201);
 
-  expect(response.body?.id).toBeDefined();
+  expect(response.body?.entree.entreeId).toEqual(entreeId);
 });
 
 it("patient retrieves patients orders", async () => {
-  const { flour, bread, entree, patientCookie, patientId } = await setup();
+  const { flour, bread, entree, entreeId, patientCookie, patientId } =
+    await setup();
 
   let amount = 2;
 
-  for (let index = 0; index < amount - 1; index++) {
-    let newEntree = Entree.build({
-      entreeId: new mongoose.Types.ObjectId().toHexString(),
-      foodItems: [bread],
-    });
-    await newEntree.save();
-
+  for (let index = 0; index < amount; index++) {
     await request(app)
       .post(`/api/order/create-order`)
       .set("Cookie", patientCookie)
       .send({
-        entreeId: newEntree.id,
+        entreeId,
         patientId,
+        date: new Date(),
       })
       .expect(201);
   }
@@ -96,29 +102,25 @@ it("patient retrieves patients orders", async () => {
 it("get orders - admin can retrieve orders by day", async () => {
   const adminCookie = global.adminsignin();
 
-  const { flour, bread, entree, patientCookie, patientId } = await setup();
+  const { flour, bread, entree, entreeId, patientCookie, patientId } =
+    await setup();
 
   let amount = 2;
 
-  for (let index = 0; index < amount - 1; index++) {
-    let newEntree = Entree.build({
-      entreeId: new mongoose.Types.ObjectId().toHexString(),
-      foodItems: [bread],
-    });
-    await newEntree.save();
-
+  for (let index = 0; index < amount; index++) {
     await request(app)
       .post(`/api/order/create-order`)
       .set("Cookie", patientCookie)
       .send({
-        entreeId: newEntree.id,
+        entreeId,
+        date: new Date(),
         patientId,
       })
       .expect(201);
   }
 
   const response = await request(app)
-    .post(`/api/order/patient/orders/${formatDate(new Date())}`)
+    .get(`/api/order/patient/orders/${formatDateAlpha(new Date())}`)
     .set("Cookie", adminCookie)
     .send()
     .expect(200);
@@ -127,43 +129,52 @@ it("get orders - admin can retrieve orders by day", async () => {
 });
 
 it("update order - change entree", async () => {
-  const { flour, bread, entree, patientCookie, patientId } = await setup();
+  const { flour, bread, entree, entreeId, patientCookie, patientId } =
+    await setup();
 
   const response = await request(app)
     .post(`/api/order/create-order`)
     .set("Cookie", patientCookie)
     .send({
-      entreeId: entree.id,
+      entreeId,
+      date: new Date(),
       patientId,
     })
     .expect(201);
 
+  const orderId = response.body.id;
+
+  let secondEntreeId = new mongoose.Types.ObjectId().toHexString();
   let newEntree = Entree.build({
-    entreeId: new mongoose.Types.ObjectId().toHexString(),
+    entreeId: secondEntreeId,
+    name: "toast",
     foodItems: [bread],
   });
   await newEntree.save();
 
   const secResponse = await request(app)
-    .post(`/api/order/patient/order/${response.body?.id}`)
+    .post(`/api/order/patient/order`)
     .set("Cookie", patientCookie)
     .send({
       patientId,
-      entreeId: newEntree.id,
+      orderId,
+      entreeId: secondEntreeId,
     })
     .expect(200);
 
-  expect(secResponse.body?.entreeId).toEqual(newEntree.id);
+  expect(secResponse.body?.entree.entreeId).toEqual(secondEntreeId);
 });
 
 it("delete order - patient unauthorized returns 401", async () => {
-  const { flour, bread, entree, patientCookie, patientId } = await setup();
+  const { flour, bread, entree, entreeId, patientCookie, patientId } =
+    await setup();
 
   const createOrderResponse = await request(app)
     .post(`/api/order/create-order`)
     .set("Cookie", patientCookie)
     .send({
-      entreeId: entree.id,
+      entreeId,
+      date: new Date(),
       patientId,
     })
     .expect(201);
@@ -180,13 +191,15 @@ it("delete order - patient unauthorized returns 401", async () => {
 it("delete order - provider authorized", async () => {
   const providerCookie = global.providersignin();
 
-  const { flour, bread, entree, patientCookie, patientId } = await setup();
+  const { flour, bread, entree, entreeId, patientCookie, patientId } =
+    await setup();
 
   const createOrderResponse = await request(app)
     .post(`/api/order/create-order`)
     .set("Cookie", patientCookie)
     .send({
-      entreeId: entree.id,
+      entreeId,
+      date: new Date(),
       patientId,
     })
     .expect(201);
@@ -203,13 +216,15 @@ it("delete order - provider authorized", async () => {
 it("delete order - admin authorized", async () => {
   const adminCookie = global.adminsignin();
 
-  const { flour, bread, entree, patientCookie, patientId } = await setup();
+  const { flour, bread, entree, entreeId, patientCookie, patientId } =
+    await setup();
 
   const createOrderResponse = await request(app)
     .post(`/api/order/create-order`)
     .set("Cookie", patientCookie)
     .send({
-      entreeId: entree.id,
+      entreeId,
+      date: new Date(),
       patientId,
     })
     .expect(201);
