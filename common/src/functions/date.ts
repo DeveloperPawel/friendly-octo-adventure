@@ -4,8 +4,8 @@ function padTo2Digits(num: number) {
 
 export function formatDate(date: Date) {
   return [
-    padTo2Digits(date.getDate()),
-    padTo2Digits(date.getMonth() + 1),
     date.getFullYear(),
+    padTo2Digits(date.getMonth() + 1),
+    padTo2Digits(date.getDate()),
   ].join("-");
 }
