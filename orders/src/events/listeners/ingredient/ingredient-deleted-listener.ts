@@ -23,6 +23,6 @@ export class IngredientDeletedListener extends Listener<IngredientDeletedEvent> 
           throw new NotFoundError();
         }
       }
-    );
+    ).clone();
   }
 }

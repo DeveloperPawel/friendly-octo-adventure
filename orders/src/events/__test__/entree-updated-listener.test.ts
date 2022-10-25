@@ -24,8 +24,9 @@ const setup = async () => {
   });
   await fooditem.save();
 
+  const secondFoodItemId = new mongoose.Types.ObjectId().toHexString();
   const secondfooditem = FoodItem.build({
-    foodItemId,
+    foodItemId: secondFoodItemId,
     name: "avacado toast",
     ingredients: [bread],
   });
@@ -42,7 +43,7 @@ const setup = async () => {
 
   const eventData: EntreeUpdatedEvent[`data`] = {
     entreeId,
-    foodItems: [entreeId],
+    foodItems: [foodItemId],
   };
 
   // @ts-ignore

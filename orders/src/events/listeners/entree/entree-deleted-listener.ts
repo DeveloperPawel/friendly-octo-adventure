@@ -23,6 +23,6 @@ export class EntreeDeletedListener extends Listener<EntreeDeletedEvent> {
           throw new NotFoundError();
         }
       }
-    );
+    ).clone();
   }
 }

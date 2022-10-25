@@ -30,9 +30,8 @@ export class EntreeUpdatedListener extends Listener<EntreeUpdatedEvent> {
       for (const foodItemId of updateObject.foodItems) {
         const foodItem = await FoodItem.findOne({ foodItemId });
 
-        if (foodItem) {
-          foundEntree.foodItems.push(foodItem);
-        }
+        if (!foodItem) continue;
+        foundEntree.foodItems.push(foodItem);
       }
     }
 

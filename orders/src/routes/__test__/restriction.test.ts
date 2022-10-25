@@ -167,8 +167,7 @@ it("provider delete restriction", async () => {
 });
 
 it("retrieves all restrictions", async () => {
-  const { flour, bread, entree, patientCookie, patientId, patient } =
-    await setup();
+  const providerCookie = global.providersignin();
 
   const restriction = Restriction.build({
     restrictionId: new mongoose.Types.ObjectId().toHexString(),
@@ -184,7 +183,7 @@ it("retrieves all restrictions", async () => {
 
   const response = await request(app)
     .get(`/api/order/restrictions`)
-    .set("Cookie", patientCookie)
+    .set("Cookie", providerCookie)
     .send()
     .expect(200);
 

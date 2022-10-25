@@ -23,6 +23,6 @@ export class FoodItemDeletedListener extends Listener<FoodItemDeletedEvent> {
           throw new NotFoundError();
         }
       }
-    );
+    ).clone();
   }
 }

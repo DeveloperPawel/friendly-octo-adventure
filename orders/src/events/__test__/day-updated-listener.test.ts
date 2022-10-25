@@ -1,6 +1,7 @@
 import { DayUpdatedEvent, formatDateAlpha } from "@mimenu/common";
 import mongoose from "mongoose";
 import { Day } from "../../models/day";
+import { Entree } from "../../models/entree";
 import { FoodItem } from "../../models/fooditem";
 import { Ingredient } from "../../models/ingredient";
 import { natsWrapper } from "../../nats-wrapper";
@@ -33,9 +34,17 @@ const setup = async () => {
   });
   await fooditem.save();
 
+  const entreeId = new mongoose.Types.ObjectId().toHexString();
+  const entree = Entree.build({
+    entreeId,
+    name: "avacado toast breakfast",
+    foodItems: [],
+  });
+  await entree.save();
+
   const addfoodItem: DayUpdatedEvent[`data`] = {
     dayId,
-    breakfast: [foodItemId],
+    breakfast: [entreeId],
   };
 
   const secondDate = formatDateAlpha(new Date());

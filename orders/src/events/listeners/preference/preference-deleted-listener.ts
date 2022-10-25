@@ -23,6 +23,6 @@ export class PreferenceDeletedListener extends Listener<PreferenceDeletedEvent> 
           throw new NotFoundError();
         }
       }
-    );
+    ).clone();
   }
 }

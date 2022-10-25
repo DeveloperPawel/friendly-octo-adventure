@@ -23,6 +23,6 @@ export class RestrictionDeletedListener extends Listener<RestrictionDeletedEvent
           throw new NotFoundError();
         }
       }
-    );
+    ).clone();
   }
 }

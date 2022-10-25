@@ -36,9 +36,11 @@ export class DayUpdatedListener extends Listener<DayUpdatedEvent> {
       for (const breakfastId of updateObject.breakfast) {
         const breakfast = await Entree.findOne({ entreeId: breakfastId });
 
-        if (breakfast) {
-          day.breakfast.push(breakfast);
+        if (!breakfast) {
+          throw new NotFoundError();
         }
+
+        day.breakfast.push(breakfast);
       }
     }
 
@@ -47,9 +49,9 @@ export class DayUpdatedListener extends Listener<DayUpdatedEvent> {
       for (const lunchId of updateObject.lunch) {
         const lunch = await Entree.findOne({ entreeId: lunchId });
 
-        if (lunch) {
-          day.lunch.push(lunch);
-        }
+        if (!lunch) continue;
+
+        day.lunch.push(lunch);
       }
     }
 
@@ -58,9 +60,9 @@ export class DayUpdatedListener extends Listener<DayUpdatedEvent> {
       for (const dinnerId of updateObject.dinner) {
         const dinner = await Entree.findOne({ entreeId: dinnerId });
 
-        if (dinner) {
-          day.dinner.push(dinner);
-        }
+        if (!dinner) continue;
+
+        day.dinner.push(dinner);
       }
     }
     await day.save();

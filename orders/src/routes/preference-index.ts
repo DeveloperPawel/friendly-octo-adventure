@@ -1,15 +1,16 @@
 import express, { Request, Response } from "express";
 import { patientAuth } from "@mimenu/common";
+import { Preference } from "../models/preference";
 
 const router = express.Router();
 
 router.get(
   "/api/order/preferences",
   patientAuth,
-  (req: Request, res: Response) => {
-    req.session = null;
+  async (req: Request, res: Response) => {
+    const preferences = await Preference.find().limit(20);
 
-    res.status(200).send({});
+    res.status(200).send(preferences);
   }
 );
 

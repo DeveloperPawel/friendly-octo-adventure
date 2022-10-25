@@ -53,7 +53,7 @@ it("updates an ingredient", async () => {
   await listener.onMessage(eventData, message);
 
   const updatedIngredient = await Ingredient.findOne({ ingredientId });
-  expect(updatedIngredient).toEqual(updatedValue);
+  expect(updatedIngredient!.name).toEqual(updatedValue);
 });
 
 it("acks the message", async () => {

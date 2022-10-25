@@ -20,6 +20,6 @@ export class DayDeletedListener extends Listener<DayDeletedEvent> {
       } else {
         throw new NotFoundError();
       }
-    });
+    }).clone();
   }
 }

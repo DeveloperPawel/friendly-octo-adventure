@@ -17,10 +17,14 @@ export class FoodItemCreatedListener extends Listener<FoodItemCreatedEvent> {
         ingredientList.push(ingredient);
       }
     }
+
     const foodItem = FoodItem.build({
       foodItemId: data.foodItemId,
       name: data.name,
       ingredients: ingredientList,
     });
+    await foodItem.save();
+
+    message.ack();
   }
 }
