@@ -28,6 +28,12 @@ export abstract class Listener<T extends Event> {
       this.queueGroupName,
       this.subscriptionOptions()
     );
+
+    suscription.on("message", (message: Message) => {
+      console.log(`Message recieved ${this.subject} | ${this.queueGroupName}`);
+      const parseData = this.parseMessage(message);
+      this.onMessage(parseData, message);
+    });
   }
 
   parseMessage(msg: Message) {

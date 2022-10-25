@@ -9,7 +9,9 @@ router.get(
   "/api/patient/patient/:patientId",
   providerAuth,
   async (req: Request, res: Response) => {
-    const foundPatient = await Patient.findById(req.params.patientId);
+    const foundPatient = await Patient.findOne({
+      patientId: req.params.patientId,
+    });
 
     if (!foundPatient) {
       throw new NotFoundError();

@@ -5,6 +5,8 @@ import jwt from "jsonwebtoken";
 import { validateRequest } from "@mimenu/common";
 import { BadRequestError } from "@mimenu/common";
 import { UserType } from "../models/user";
+import { PatientCreatedPublisher } from "../events/publishers/patient/patient-created-publisher";
+import { natsWrapper } from "../nats-wrapper";
 
 const router = express.Router();
 
@@ -44,6 +46,10 @@ router.post(
     req.session = {
       jwt: userJWT,
     };
+
+    await new PatientCreatedPublisher(natsWrapper.client).publish({
+      id: user.id,
+    });
 
     // console.log(JSON.stringify(req, null, 2));
 

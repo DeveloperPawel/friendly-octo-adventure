@@ -6,12 +6,14 @@ interface OrderAttributes {
   entree: EntreeDoc;
   date: Date;
   patientId: string;
+  orderId?: string;
 }
 
 export interface OrderDoc extends mongoose.Document {
   entree: EntreeDoc;
   date: Date;
   patientId: string;
+  orderId?: string;
 }
 
 interface OrderModel extends mongoose.Model<OrderDoc> {
@@ -29,6 +31,10 @@ const orderSchema = new mongoose.Schema(
       required: true,
     },
     patientId: {
+      type: String,
+      required: true,
+    },
+    orderId: {
       type: String,
       required: true,
     },

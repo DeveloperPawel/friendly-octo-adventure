@@ -3,13 +3,13 @@ import mongoose from "mongoose";
 // patient attributes
 interface PatientAttributes {
   patientId: string;
-  discharge: Date;
+  discharge?: Date;
   providerId?: string;
 }
 
 export interface PatientDoc extends mongoose.Document {
   patientId: string;
-  discharge: Date;
+  discharge?: Date;
   providerId?: string;
 }
 

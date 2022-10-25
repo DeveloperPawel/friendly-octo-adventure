@@ -9,3 +9,11 @@ export function formatDate(date: Date) {
     padTo2Digits(date.getDate()),
   ].join("-");
 }
+
+export function formatDateAlpha(date: Date) {
+  return [
+    date.getFullYear(),
+    padTo2Digits(date.getMonth() + 1),
+    padTo2Digits(date.getDate()),
+  ].join("-");
+}

@@ -14,7 +14,7 @@ it("retrieves one patient as admin", async () => {
   await patient.save();
 
   await request(app)
-    .get(`/api/patient/patient/${patient.id}`)
+    .get(`/api/patient/patient/${patientId}`)
     .set("Cookie", adminCookie)
     .send({
       patientId,

@@ -8,6 +8,8 @@ declare global {
   var providersignin: () => string[];
 }
 
+jest.mock("../nats-wrapper.ts");
+
 beforeAll(async () => await db.connect());
 afterEach(async () => await db.clear());
 afterAll(async () => await db.close());

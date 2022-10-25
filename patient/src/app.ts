@@ -8,13 +8,12 @@ import { errorHandler } from "@mimenu/common";
 import { activeUser } from "@mimenu/common";
 
 import { addPatientRouter } from "./routes/add-patient";
-import { newPatientRouter } from "./routes/new-patient";
 import { onePatientRouter } from "./routes/one-patient";
 import { oneProviderRouter } from "./routes/one-provider";
 import { allPatientRouter } from "./routes/patient-Index";
 import { allProviderRouter } from "./routes/provider-index";
 import { removePatientRouter } from "./routes/remove-patient";
-import { newProviderRouter } from "./routes/new-provider";
+import { updatePatientRouter } from "./routes/update-patient";
 
 const app = express();
 app.use(json());
@@ -26,14 +25,13 @@ app.use(
 );
 app.use(activeUser);
 
-app.use(newProviderRouter);
 app.use(addPatientRouter);
-app.use(newPatientRouter);
 app.use(onePatientRouter);
 app.use(oneProviderRouter);
 app.use(allPatientRouter);
 app.use(allProviderRouter);
 app.use(removePatientRouter);
+app.use(updatePatientRouter);
 
 app.get("*", async (req, res) => {
   throw new NotFoundError();

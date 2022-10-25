@@ -3,6 +3,8 @@ import express, { Request, Response } from "express";
 import { Patient } from "../model/patient";
 import { NotFoundError } from "@mimenu/common";
 import { Provider } from "../model/provider";
+import { PatientProviderUpdatedPublisher } from "../events/publihsers/patient/patient-provider-updated-publisher";
+import { natsWrapper } from "../nats-wrapper";
 
 const router = express.Router();
 
@@ -29,6 +31,11 @@ router.post(
 
     foundPatient.providerId = providerId;
     await foundPatient.save();
+
+    new PatientProviderUpdatedPublisher(natsWrapper.client).publish({
+      patientId,
+      providerId,
+    });
 
     res.status(201).send(foundProvider);
   }

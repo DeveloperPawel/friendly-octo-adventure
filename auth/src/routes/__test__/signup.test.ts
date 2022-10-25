@@ -2,6 +2,7 @@ import mongoose from "mongoose";
 import request from "supertest";
 import { app } from "../../app";
 import { User, UserType } from "../../models/user";
+import { natsWrapper } from "../../nats-wrapper";
 
 it("returns 201 after successful signup", async () => {
   return await request(app)
@@ -110,4 +111,17 @@ it("creates a provider", async () => {
       password: "testpassword",
     })
     .expect(201);
+  expect(natsWrapper.client.publish).toHaveBeenCalled();
+});
+
+it("emits patient created event", async () => {
+  await request(app)
+    .post("/api/auth/signup")
+    .send({
+      email: "test@test.com",
+      password: "testpassword",
+    })
+    .expect(201);
+
+  expect(natsWrapper.client.publish).toHaveBeenCalled();
 });

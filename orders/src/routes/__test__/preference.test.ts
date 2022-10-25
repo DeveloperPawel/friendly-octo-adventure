@@ -239,3 +239,30 @@ it("patient remove preference - unauthorized - returns 401", async () => {
     })
     .expect(401);
 });
+
+it("retrieves all preferences", async () => {
+  const { flour, bread, entree, patientCookie, patientId, patient } =
+    await setup();
+
+  const preference = Preference.build({
+    preferenceId: new mongoose.Types.ObjectId().toHexString(),
+    value: "dairy",
+    userType: UserType.Patient,
+  });
+  await preference.save();
+
+  const preference2 = Preference.build({
+    preferenceId: new mongoose.Types.ObjectId().toHexString(),
+    value: "dairy",
+    userType: UserType.Patient,
+  });
+  await preference2.save();
+
+  const response = await request(app)
+    .get(`/api/order/preferences`)
+    .set("Cookie", patientCookie)
+    .send()
+    .expect(200);
+
+  expect(response.body?.length).toEqual(2);
+});

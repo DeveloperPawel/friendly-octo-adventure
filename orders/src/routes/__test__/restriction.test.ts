@@ -165,3 +165,28 @@ it("provider delete restriction", async () => {
   const updatedpatient = await Patient.findOne({ patientId });
   expect(updatedpatient!.restrictions!.length).toEqual(0);
 });
+
+it("retrieves all restrictions", async () => {
+  const { flour, bread, entree, patientCookie, patientId, patient } =
+    await setup();
+
+  const restriction = Restriction.build({
+    restrictionId: new mongoose.Types.ObjectId().toHexString(),
+    type: "mechanical soft",
+  });
+  await restriction.save();
+
+  const restriction2 = Restriction.build({
+    restrictionId: new mongoose.Types.ObjectId().toHexString(),
+    type: "mechanical soft",
+  });
+  await restriction2.save();
+
+  const response = await request(app)
+    .get(`/api/order/restrictions`)
+    .set("Cookie", patientCookie)
+    .send()
+    .expect(200);
+
+  expect(response.body?.length).toEqual(2);
+});

@@ -3,6 +3,8 @@ import { body } from "express-validator";
 import { BadRequestError } from "@mimenu/common";
 import { validateRequest } from "@mimenu/common";
 import { User, UserType } from "../models/user";
+import { ProviderCreatedPublisher } from "../events/publishers/provider/provider-created-publisher";
+import { natsWrapper } from "../nats-wrapper";
 
 const router = express.Router();
 
@@ -34,6 +36,10 @@ router.post(
       role: UserType.Provider,
     });
     await newProvider.save();
+
+    new ProviderCreatedPublisher(natsWrapper.client).publish({
+      id: newProvider.id,
+    });
 
     res.status(201).send(newProvider);
   }

@@ -3,6 +3,7 @@ import request from "supertest";
 import { app } from "../../app";
 import { Patient } from "../../model/patient";
 import { Provider } from "../../model/provider";
+import { natsWrapper } from "../../nats-wrapper";
 
 it("removes patient from provider as provider", async () => {
   const providerCookie = global.providersignin();
@@ -39,6 +40,7 @@ it("removes patient from provider as provider", async () => {
     .expect(202);
 
   expect(response.body?.patients.length).toEqual(0);
+  expect(natsWrapper.client.publish).toHaveBeenCalled();
 });
 
 it("removes patient from provider as admin", async () => {
@@ -76,4 +78,5 @@ it("removes patient from provider as admin", async () => {
     .expect(202);
 
   expect(response.body?.patients.length).toEqual(0);
+  expect(natsWrapper.client.publish).toHaveBeenCalled();
 });
