@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import { OrderCard } from "../order-card";
+import { OrderCard } from "../../components/order-card";
 
 test("displays the current order", async () => {
   render(
@@ -71,5 +71,5 @@ test("displays the current order", async () => {
   );
 
   const removebuttons = await screen.queryAllByText("remove");
-  expect(removebuttons).tohavelength(3);
+  expect(removebuttons).toHaveLength(3);
 });
