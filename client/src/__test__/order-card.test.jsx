@@ -1,5 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import { OrderCard } from "../../components/order-card";
+import "@testing-library/jest-dom";
 
 test("displays the current order", async () => {
   render(
@@ -69,6 +70,10 @@ test("displays the current order", async () => {
       }}
     />
   );
+
+  expect(await screen.findByText("eggs")).toBeInTheDocument();
+  expect(await screen.findByText("sandwich")).toBeInTheDocument();
+  expect(await screen.findByText("steak")).toBeInTheDocument();
 
   const removebuttons = await screen.queryAllByText("remove");
   expect(removebuttons).toHaveLength(3);

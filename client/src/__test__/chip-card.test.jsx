@@ -1,5 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import { ChipCard } from "../../components/chip-card";
+import "@testing-library/jest-dom";
 
 test("displays chips with buttons", async () => {
   render(
@@ -18,6 +19,9 @@ test("displays chips with buttons", async () => {
       ]}
     />
   );
+
+  expect(await screen.findByText("dairy")).toBeInTheDocument();
+  expect(await screen.findByText("lettuce")).toBeInTheDocument();
 
   const dairyButton = await screen.getByRole("button", { name: "dairy" });
   expect(dairyButton).toBeEnabled();

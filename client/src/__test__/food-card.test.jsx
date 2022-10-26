@@ -1,4 +1,5 @@
 import { render, screen } from "@testing-library/react";
+import { FoodCard } from "../../components/food-card";
 import "@testing-library/jest-dom";
 
 test("displays food options", async () => {
