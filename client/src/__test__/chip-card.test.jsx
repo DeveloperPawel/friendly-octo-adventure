@@ -5,18 +5,19 @@ import "@testing-library/jest-dom";
 test("displays chips with buttons", async () => {
   render(
     <ChipCard
-      chipList={[
+      displayChipList={[
         {
           preferenceId: "asdflweignirn5",
-          name: "dairy",
+          value: "dairy",
           userType: "patient",
         },
         {
           preferenceId: "asdflwe4543ignirn5",
-          name: "lettuce",
+          value: "lettuce",
           userType: "provider",
         },
       ]}
+      parentFn={(string) => {}}
     />
   );
 

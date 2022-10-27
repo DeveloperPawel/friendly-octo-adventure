@@ -1,6 +1,5 @@
 import { UserType } from "@mimenu/common";
 import mongoose from "mongoose";
-import { IngredientDoc } from "./ingredient";
 
 interface PreferenceAttributes {
   preferenceId: string;

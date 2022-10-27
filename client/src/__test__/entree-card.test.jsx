@@ -1,13 +1,13 @@
 import { render, screen } from "@testing-library/react";
-import { FoodCard } from "../../components/food-card";
+import { EntreeCard } from "../../components/entree-card";
 import "@testing-library/jest-dom";
 
 test("displays food options", async () => {
   render(
-    <FoodCard
+    <EntreeCard
       mealLabel={"breakfast"}
-      patientOrder={""}
-      foodList={[
+      patientOrder={"234n4l345n324ln54"}
+      entreeList={[
         {
           entreeId: "234n4l345n324ln54",
           name: "eggs",
@@ -46,21 +46,21 @@ test("displays food options", async () => {
 
   expect(await screen.findByText("breakfast")).toBeInTheDocument();
   expect(await screen.findByText("eggs")).toBeInTheDocument();
-  expect(await screen.findByText("egg")).toBeInTheDocument();
+
   expect(await screen.findByText("toast")).toBeInTheDocument();
   expect(await screen.findByText("bread")).toBeInTheDocument();
   expect(await screen.findByText("flour")).toBeInTheDocument();
 
-  const foodSelectButtons = await screen.queryAllByText("select");
+  const foodSelectButtons = await screen.queryAllByText("Select");
   expect(foodSelectButtons).toHaveLength(2);
 });
 
 test("displays selected food disabled", async () => {
   render(
-    <FoodCard
+    <EntreeCard
       mealLabel={"breakfast"}
       patientOrder={"234n4l345n324ln54"}
-      foodList={[
+      entreeList={[
         {
           entreeId: "234n4l345n324ln54",
           name: "eggs",

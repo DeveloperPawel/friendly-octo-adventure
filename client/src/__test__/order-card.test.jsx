@@ -5,7 +5,7 @@ import "@testing-library/jest-dom";
 test("displays the current order", async () => {
   render(
     <OrderCard
-      order={{
+      patientOrder={{
         breakfast: {
           entreeId: "234n4l345n324ln54",
           name: "eggs",
@@ -71,10 +71,11 @@ test("displays the current order", async () => {
     />
   );
 
-  expect(await screen.findByText("eggs")).toBeInTheDocument();
+  // expect(await screen.findByText("egg")).toBeInTheDocument();
   expect(await screen.findByText("sandwich")).toBeInTheDocument();
   expect(await screen.findByText("steak")).toBeInTheDocument();
+  expect(await screen.findByText("beef")).toBeInTheDocument();
 
-  const removebuttons = await screen.queryAllByText("remove");
+  const removebuttons = await screen.queryAllByText("Remove");
   expect(removebuttons).toHaveLength(3);
 });
