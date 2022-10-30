@@ -8,9 +8,11 @@ router.post(
   "/api/order/patient-orders",
   providerAuth,
   async (req: Request, res: Response) => {
-    const { orderList } = req.body;
+    const { patientList } = req.body;
 
-    const foundOrders = await Order.find({ orderId: { $in: orderList } }).sort({
+    const foundOrders = await Order.find({
+      patientId: { $in: patientList },
+    }).sort({
       date: -1,
     });
 
