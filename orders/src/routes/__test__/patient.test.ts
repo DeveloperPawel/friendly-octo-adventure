@@ -128,7 +128,7 @@ it("admin can retrieve patient", async () => {
   expect(response.body?.patientId).toEqual(patientId);
 });
 
-it("provider can retrieve own patients orders by date", async () => {
+it("provider can retrieve own patients", async () => {
   const { providerCookie, providerId } = await providerSetup();
   let amount = 4;
   let patientList = [];
@@ -156,6 +156,7 @@ it("provider can retrieve own patients orders by date", async () => {
   for (let index = 0; index < amount; index++) {
     let orderId = new mongoose.Types.ObjectId().toHexString();
     let patientId = new mongoose.Types.ObjectId().toHexString();
+
     let date = new Date();
     date.setDate(date.getDate() - index);
     let order = Order.build({
@@ -165,6 +166,13 @@ it("provider can retrieve own patients orders by date", async () => {
       entree,
     });
     await order.save();
+
+    let patient = Patient.build({
+      patientId,
+      orders: [order],
+    });
+    await patient.save();
+
     patientList.push(patientId);
   }
 
@@ -177,8 +185,4 @@ it("provider can retrieve own patients orders by date", async () => {
     .expect(200);
 
   expect(response.body.length).toEqual(amount);
-  expect(
-    new Date(response.body[0].date).getTime() >
-      new Date(response.body[1].date).getTime()
-  ).toEqual(true);
 });
