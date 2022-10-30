@@ -23,6 +23,7 @@ import { updateOrderRouter } from "./routes/update-order";
 import { foodItemRouter } from "./routes/food-item";
 import { restrictionIndexRouter } from "./routes/restriction-index";
 import { preferenceIndexRouter } from "./routes/preference-index";
+import { providerPatientOrders } from "./routes/provider-patient-orders";
 
 const app = express();
 app.use(json());
@@ -50,6 +51,7 @@ app.use(updateOrderRouter);
 app.use(foodItemRouter);
 app.use(restrictionIndexRouter);
 app.use(preferenceIndexRouter);
+app.use(providerPatientOrders);
 
 app.get("*", async (req, res) => {
   throw new NotFoundError();

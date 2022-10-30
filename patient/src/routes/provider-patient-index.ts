@@ -1,8 +1,6 @@
-import { NotFoundError, providerAuth } from "@mimenu/common";
+import { providerAuth } from "@mimenu/common";
 import express, { Request, Response } from "express";
-import { PatientDischageUpdatedPublisher } from "../events/publihsers/patient/patient-discharge-updated-pulisher";
 import { Patient } from "../model/patient";
-import { natsWrapper } from "../nats-wrapper";
 
 const router = express.Router();
 

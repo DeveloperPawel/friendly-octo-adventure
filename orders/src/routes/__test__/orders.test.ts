@@ -237,3 +237,51 @@ it("delete order - admin authorized", async () => {
     })
     .expect(202);
 });
+
+it("retrieves patients orders ordered by date", async () => {
+  const providerCookie = global.providersignin();
+  let amount = 4;
+  let orderList = [];
+
+  let ingredient = Ingredient.build({
+    ingredientId: new mongoose.Types.ObjectId().toHexString(),
+    name: "bread",
+  });
+  await ingredient.save();
+
+  let foodItem = FoodItem.build({
+    foodItemId: new mongoose.Types.ObjectId().toHexString(),
+    ingredients: [ingredient],
+    name: "toast",
+  });
+  await foodItem.save();
+
+  let entree = Entree.build({
+    entreeId: new mongoose.Types.ObjectId().toHexString(),
+    foodItems: [foodItem],
+    name: "toast breakfast",
+  });
+  await entree.save();
+
+  for (let index = 0; index < amount; index++) {
+    let orderId = new mongoose.Types.ObjectId().toHexString();
+    let order = Order.build({
+      orderId,
+      patientId: orderId,
+      date: new Date(),
+      entree,
+    });
+    await order.save();
+    orderList.push(orderId);
+  }
+
+  const response = await request(app)
+    .post(`/api/order/patient-orders`)
+    .set("Cookie", providerCookie)
+    .send({
+      orderList,
+    })
+    .expect(200);
+
+  expect(response.body.length).toEqual(amount);
+});
