@@ -1,13 +1,5 @@
 import express, { Request, Response } from "express";
-import {
-  NotAuthorizedError,
-  NotFoundError,
-  patientAuth,
-  providerAuth,
-  UserType,
-} from "@mimenu/common";
-import { Patient } from "../models/patient";
-import { Entree } from "../models/entree";
+import { providerAuth } from "@mimenu/common";
 import { Order } from "../models/order";
 
 const router = express.Router();
@@ -18,7 +10,11 @@ router.post(
   async (req: Request, res: Response) => {
     const { orderList } = req.body;
 
-    res.status(200).send({});
+    const foundOrders = await Order.find({ orderId: { $in: orderList } }).sort({
+      date: -1,
+    });
+
+    res.status(200).send(foundOrders);
   }
 );
 
