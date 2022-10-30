@@ -14,6 +14,7 @@ import { allPatientRouter } from "./routes/patient-Index";
 import { allProviderRouter } from "./routes/provider-index";
 import { removePatientRouter } from "./routes/remove-patient";
 import { updatePatientRouter } from "./routes/update-patient";
+import { getProviderPatientsRouter } from "./routes/provider-patient-index";
 
 const app = express();
 app.use(json());
@@ -32,6 +33,7 @@ app.use(allPatientRouter);
 app.use(allProviderRouter);
 app.use(removePatientRouter);
 app.use(updatePatientRouter);
+app.use(getProviderPatientsRouter);
 
 app.get("*", async (req, res) => {
   throw new NotFoundError();
