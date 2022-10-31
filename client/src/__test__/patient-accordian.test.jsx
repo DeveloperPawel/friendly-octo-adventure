@@ -194,17 +194,21 @@ const dayData = {
 test("renders all of the patients", async () => {
   render(<PatientAccordian patients={patientData} day={dayData} />);
 
-  expect(await screen.findByText("patient #4")).toBeInTheDocument();
+  expect(await screen.findByText("patient 4")).toBeInTheDocument();
 });
 
 test("title indicates the status of the patients orders", async () => {
   render(<PatientAccordian patients={patientData} day={dayData} />);
 
-  expect(getByTestId("patient 1 breakfast")).toHaveStyle("color: red");
-  expect(getByTestId("patient 1 lunch")).toHaveStyle("color: red");
-  expect(getByTestId("patient 1 dinner")).toHaveStyle("color: green");
+  const buttontextPatientBreakfast = await screen.findAllByText("Breakfast");
+  const buttontextPatientLunch = await screen.findAllByText("Lunch");
+  const buttontextPatientDinner = await screen.findAllByText("Dinner");
 
-  expect(getByTestId("patient 2 breakfast")).toHaveStyle("color: green");
-  expect(getByTestId("patient 2 lunch")).toHaveStyle("color: green");
-  expect(getByTestId("patient 2 dinner")).toHaveStyle("color: green");
+  expect(buttontextPatientBreakfast[0]).toHaveStyle("color: red");
+  expect(buttontextPatientLunch[0]).toHaveStyle("color: red");
+  expect(buttontextPatientDinner[0]).toHaveStyle("color: green");
+
+  expect(buttontextPatientBreakfast[1]).toHaveStyle("color: green");
+  expect(buttontextPatientLunch[1]).toHaveStyle("color: green");
+  expect(buttontextPatientDinner[1]).toHaveStyle("color: green");
 });
