@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+import { getByTestId, render, screen } from "@testing-library/react";
 import { PatientAccordian } from "../../components/provider-patient-accordian";
 import { formatDateAlpha } from "../../functions/date";
 import "@testing-library/jest-dom";
@@ -11,7 +11,7 @@ const patientData = [
         id: "635e207d10c248095e78ce52",
         breakfast: "635e207d10c248095e78ce4e",
         lunch: "635e207d10c248095e7sd8ce4e",
-        dinner: "635e2ssd07d10c248095e7sd8ce4e",
+        dinner: "635e2ssd0s7d10c248095e7sd8ce4e",
         date: new Date(formatDateAlpha(new Date())),
         patientId: "635e207d10c248095e78ce51",
         orderId: "635e207d10c248095e78ce50",
@@ -191,10 +191,20 @@ const dayData = {
   ],
 };
 
-test("renders all of the patients", () => {
+test("renders all of the patients", async () => {
   render(<PatientAccordian patients={patientData} day={dayData} />);
+
+  expect(await screen.findByText("patient #4")).toBeInTheDocument();
 });
 
-test("title indicates the status of the patients orders", () => {
+test("title indicates the status of the patients orders", async () => {
   render(<PatientAccordian patients={patientData} day={dayData} />);
+
+  expect(getByTestId("patient 1 breakfast")).toHaveStyle("color: red");
+  expect(getByTestId("patient 1 lunch")).toHaveStyle("color: red");
+  expect(getByTestId("patient 1 dinner")).toHaveStyle("color: green");
+
+  expect(getByTestId("patient 2 breakfast")).toHaveStyle("color: green");
+  expect(getByTestId("patient 2 lunch")).toHaveStyle("color: green");
+  expect(getByTestId("patient 2 dinner")).toHaveStyle("color: green");
 });
