@@ -68,6 +68,7 @@ export * from "./events/order/order-updated-admin-event";
 //events
 export * from "./events/patient/patient-created-event";
 export * from "./events/provider/provider-created-event";
+export * from "./events/provider/provider-updated-event";
 
 //functions
 export * from "./functions/date";
