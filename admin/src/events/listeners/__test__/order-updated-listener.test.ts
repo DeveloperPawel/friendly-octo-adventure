@@ -71,7 +71,7 @@ it("updates an order", async () => {
   await listener.onMessage(eventData, message);
 
   const updateOrder = await Order.findOne({ orderId });
-  expect(updateOrder!.entree.id).not.toEqual(foundOrder!.entree.id);
+  expect(updateOrder!.entree != foundOrder!.entree);
 });
 
 it("acks the message", async () => {

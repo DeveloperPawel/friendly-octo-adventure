@@ -53,13 +53,13 @@ const setup = async () => {
 it("deletes an order", async () => {
   const { listener, eventData, message, order, orderId } = await setup();
 
-  const firstDay = await Order.findOne({ orderId });
-  expect(firstDay).toBeDefined();
+  const neworder = await Order.findOne({ orderId });
+  expect(neworder).toBeDefined();
 
   await listener.onMessage(eventData, message);
 
-  const nullDay = await Order.findOne({ orderId });
-  expect(nullDay).toBeNull();
+  const nullOrder = await Order.findOne({ orderId });
+  expect(nullOrder).toBeNull();
 });
 
 it("acks the message", async () => {

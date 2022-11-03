@@ -1,11 +1,16 @@
 import { Listener, ProviderCreatedEvent, Subjects } from "@mimenu/common";
 import { Message } from "node-nats-streaming";
+import { Provider } from "../../../models/provider";
 import { queueGroupName } from "../queue-group-name";
 
 export class ProviderCreatedListener extends Listener<ProviderCreatedEvent> {
   subject: Subjects.ProviderCreated = Subjects.ProviderCreated;
   queueGroupName: string = queueGroupName;
-  onMessage(data: ProviderCreatedEvent[`data`], message: Message): void {
-    throw new Error("Method not implemented.");
+  async onMessage(data: ProviderCreatedEvent[`data`], message: Message) {
+    const provider = Provider.build({
+      providerId: data.id,
+    });
+    await provider.save();
+    message.ack();
   }
 }

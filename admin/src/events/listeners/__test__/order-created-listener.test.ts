@@ -5,6 +5,7 @@ import { Entree } from "../../../models/entree";
 import { FoodItem } from "../../../models/fooditem";
 import { Ingredient } from "../../../models/ingredient";
 import { Order } from "../../../models/order";
+import { Patient } from "../../../models/patient";
 import { natsWrapper } from "../../../nats-wrapper";
 import { OrderCreatedListener } from "../order/order-created-listener";
 
@@ -13,6 +14,11 @@ const setup = async () => {
 
   const orderId = new mongoose.Types.ObjectId().toHexString();
   const patientId = new mongoose.Types.ObjectId().toHexString();
+
+  const patient = Patient.build({
+    patientId,
+  });
+  await patient.save();
 
   const ingredient = Ingredient.build({
     name: "flour",
