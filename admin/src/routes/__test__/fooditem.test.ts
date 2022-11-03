@@ -67,6 +67,7 @@ it("admin can update foodItem", async () => {
     .post(`/api/admin/update-fooditem`)
     .set("Cookie", adminCookie)
     .send({
+      foodItemId: foodItem.id,
       name: "new bread",
       ingredients: [ingredient.id, ingredient2.id],
     })

@@ -49,7 +49,7 @@ it("admin can update ingredient", async () => {
       ingredientId: ingredient.id,
       name,
     })
-    .expect(202);
+    .expect(200);
   expect(response.body.name).toEqual(name);
 });
 

@@ -93,6 +93,7 @@ it("admin can update day", async () => {
     .post(`/api/admin/update-day`)
     .set("Cookie", adminCookie)
     .send({
+      dayId: day.id,
       date: new Date(),
       breakfast: [entree.id],
       lunch: [entree2.id],

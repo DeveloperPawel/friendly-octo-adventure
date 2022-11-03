@@ -22,13 +22,15 @@ it("admin can create entree", async () => {
   await foodItem.save();
 
   const response = await request(app)
-    .post(`/api/admin/create-fooditem`)
+    .post(`/api/admin/create-entree`)
     .set("Cookie", adminCookie)
     .send({
       name: "toast",
-      fooditems: [foodItem.id],
+      foodItems: [foodItem.id],
     })
     .expect(201);
+
+  expect(response.body.foodItems[0].id).toEqual(foodItem.id);
 });
 
 it("admin can delete entree", async () => {
@@ -90,6 +92,7 @@ it("admin can update entree", async () => {
     .post(`/api/admin/update-entree`)
     .set("Cookie", adminCookie)
     .send({
+      entreeId: entree.id,
       name: "new toast",
       foodItems: [foodItem.id, foodItem2.id],
     })

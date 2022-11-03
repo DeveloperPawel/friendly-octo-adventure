@@ -31,28 +31,6 @@ it("admin can delete restriction", async () => {
     .expect(202);
 });
 
-it("admin can update restriction", async () => {
-  const adminCookie = global.signin();
-
-  const restriction = Restriction.build({
-    type: "liquid",
-  });
-  await restriction.save();
-
-  const type = "mech soft";
-
-  const response = await request(app)
-    .post(`/api/admin/delete-restriction`)
-    .set("Cookie", adminCookie)
-    .send({
-      restrictionId: restriction.id,
-      type,
-    })
-    .expect(202);
-
-  expect(response.body.type).toEqual(type);
-});
-
 it("admin can retrieve all restrictions", async () => {
   const adminCookie = global.signin();
   let amount = 4;

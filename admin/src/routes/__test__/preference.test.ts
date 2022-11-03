@@ -32,27 +32,6 @@ it("admin can delete preference", async () => {
     .expect(202);
 });
 
-it("admin can update preference", async () => {
-  const adminCookie = global.signin();
-
-  const preference = Preference.build({
-    value: "dairy",
-  });
-  await preference.save();
-
-  const value = "tree nuts";
-
-  const response = await request(app)
-    .post(`/api/admin/update-preference`)
-    .set("Cookie", adminCookie)
-    .send({
-      value,
-    })
-    .expect(200);
-
-  expect(response.body.value).toEqual(value);
-});
-
 it("admin can retrieve all preferences", async () => {
   const adminCookie = global.signin();
   let amount = 4;
