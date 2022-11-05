@@ -1,9 +1,9 @@
-name: test-admin
+name: test-patient
 
 on:
   pull_request:
     paths:
-      - "admin/**"
+      - "patient/**"
 
 jobs:
   build:
@@ -15,4 +15,4 @@ jobs:
           - 27017:27017
     steps:
       - uses: actions/checkout@v2
-      - run: cd admin && npm install && npm run test:ci
+      - run: cd patient && npm install && npm run test:ci

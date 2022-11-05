@@ -1,9 +1,9 @@
-name: test-admin
+name: test-auth
 
 on:
   pull_request:
     paths:
-      - "admin/**"
+      - "auth/**"
 
 jobs:
   build:
@@ -15,4 +15,4 @@ jobs:
           - 27017:27017
     steps:
       - uses: actions/checkout@v2
-      - run: cd admin && npm install && npm run test:ci
+      - run: cd auth && npm install && npm run test:ci
