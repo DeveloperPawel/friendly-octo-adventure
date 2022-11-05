@@ -1,5 +1,9 @@
 import mongoose from "mongoose";
 import { app } from "./app";
+import { OrderCreatedListener } from "./events/listeners/order/order-created-listener";
+import { OrderDeletedListener } from "./events/listeners/order/order-deleted-listener";
+import { OrderUpdatedListener } from "./events/listeners/order/order-updated-listener";
+import { PatientCreatedListener } from "./events/listeners/patient/patient-created-listener";
 import { natsWrapper } from "./nats-wrapper";
 
 const start = async () => {
@@ -31,6 +35,11 @@ const start = async () => {
     });
     process.on("SIGINT", () => natsWrapper.client.close());
     process.on("SIGTERM", () => natsWrapper.client.close());
+
+    new OrderCreatedListener(natsWrapper.client).listen();
+    new OrderDeletedListener(natsWrapper.client).listen();
+    new OrderUpdatedListener(natsWrapper.client).listen();
+    new PatientCreatedListener(natsWrapper.client).listen();
 
     await mongoose.connect(process.env.MONGO_URI);
     console.log("Admin connected to MongoDB");

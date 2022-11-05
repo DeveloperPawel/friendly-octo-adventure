@@ -16,6 +16,14 @@ build:
         manual:
           - dest: .
             src: "src/**/*.ts"
+    - image: us.gcr.io/mimenu-366200/admin
+      context: admin
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - dest: .
+            src: "**/*.js"
     - image: us.gcr.io/mimenu-366200/client
       context: client
       docker:

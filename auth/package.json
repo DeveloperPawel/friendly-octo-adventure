@@ -6,6 +6,7 @@
   "scripts": {
     "start": "ts-node-dev --poll src/index.ts",
     "test": "export NODE_ENV=test && jest --watchAll --forceExit --runInBand",
+    "test:ci": "jest",
     "update": "npm update @mimenu/common"
   },
   "jest": {
