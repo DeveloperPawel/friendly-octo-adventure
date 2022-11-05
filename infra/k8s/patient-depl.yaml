@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: patient
-          image: us.gcr.io/mimenu-366200/patient
+          image: developerpawel/mimenu-patient
           env:
             - name: NATS_CLIENT_ID
               valueFrom:

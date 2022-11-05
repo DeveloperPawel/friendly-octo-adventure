@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: client
-          image: us.gcr.io/mimenu-366200/client
+          image: developerpawel/mimenu-client
 ---
 apiVersion: v1
 kind: Service

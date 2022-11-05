@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: auth
-          image: us.gcr.io/mimenu-366200/auth
+          image: developerpawel/mimenu-auth
           env:
             - name: NATS_CLIENT_ID
               valueFrom:

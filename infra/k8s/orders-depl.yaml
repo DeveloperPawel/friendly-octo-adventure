@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: orders
-          image: us.gcr.io/mimenu-366200/orders
+          image: developerpawel/mimenu-orders
           env:
             - name: NATS_CLIENT_ID
               valueFrom:

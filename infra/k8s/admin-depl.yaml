@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: admin
-          image: us.gcr.io/mimenu-366200/admin
+          image: developerpawel/mimenu-admin
           env:
             - name: NATS_CLIENT_ID
               valueFrom:
