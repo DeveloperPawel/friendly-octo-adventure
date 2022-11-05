@@ -21,8 +21,6 @@ router.post(
   ],
   validateRequest,
   async (req: Request, res: Response) => {
-    console.log("Creating user");
-
     const { email, password } = req.body;
 
     const existingUser = await User.findOne({ email });
