@@ -20,6 +20,6 @@ export class PatientDeletedListener extends Listener<PatientDeletedEvent> {
       } else {
         throw new NotFoundError();
       }
-    });
+    }).clone();
   }
 }
