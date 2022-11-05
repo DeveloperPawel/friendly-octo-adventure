@@ -9,7 +9,7 @@ build:
   googleCloudBuild:
     projectId: mimenu-366200
   artifacts:
-    - image: us.gcr.io/mimenu-366200/auth
+    - image: developerpawel/mimenu-auth
       context: auth
       docker:
         dockerfile: Dockerfile
@@ -17,7 +17,7 @@ build:
         manual:
           - dest: .
             src: "src/**/*.ts"
-    - image: us.gcr.io/mimenu-366200/admin
+    - image: developerpawel/mimenu-admin
       context: admin
       docker:
         dockerfile: Dockerfile
@@ -25,7 +25,7 @@ build:
         manual:
           - dest: .
             src: "**/*.js"
-    - image: us.gcr.io/mimenu-366200/client
+    - image: developerpawel/mimenu-client
       context: client
       docker:
         dockerfile: Dockerfile
@@ -33,7 +33,7 @@ build:
         manual:
           - dest: .
             src: "**/*.js"
-    - image: us.gcr.io/mimenu-366200/patient
+    - image: developerpawel/mimenu-patient
       context: patient
       docker:
         dockerfile: Dockerfile
@@ -41,7 +41,7 @@ build:
         manual:
           - dest: .
             src: "src/**/*.ts"
-    - image: us.gcr.io/mimenu-366200/orders
+    - image: developerpawel/mimenu-orders
       context: orders
       docker:
         dockerfile: Dockerfile
