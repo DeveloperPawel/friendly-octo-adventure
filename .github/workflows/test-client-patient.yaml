@@ -1,0 +1,13 @@
+name: test-client-patient
+
+on:
+  pull_request:
+    paths:
+      - "client/patient/**"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: cd client/patient && npm install && npm run test:ci

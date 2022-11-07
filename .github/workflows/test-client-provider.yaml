@@ -1,0 +1,13 @@
+name: test-client-provider
+
+on:
+  pull_request:
+    paths:
+      - "client/provider/**"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: cd client/provider && npm install && npm run test:ci

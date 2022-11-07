@@ -1,0 +1,13 @@
+name: test-client-admin
+
+on:
+  pull_request:
+    paths:
+      - "client/admin/**"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: cd client/admin && npm install && npm run test:ci
