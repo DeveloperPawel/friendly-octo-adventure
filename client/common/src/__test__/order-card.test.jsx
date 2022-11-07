@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import { OrderCard } from "../../components/order-card";
+import { OrderCard } from "../components/order-card";
 import "@testing-library/jest-dom";
 
 test("displays the current order", async () => {

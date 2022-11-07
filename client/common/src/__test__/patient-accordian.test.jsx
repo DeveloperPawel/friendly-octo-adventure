@@ -1,5 +1,5 @@
 import { getByTestId, render, screen } from "@testing-library/react";
-import { PatientAccordian } from "../../components/provider-patient-accordian";
+import { PatientAccordian } from "../components/provider-patient-accordian";
 import { formatDateAlpha } from "../../functions/date";
 import "@testing-library/jest-dom";
 

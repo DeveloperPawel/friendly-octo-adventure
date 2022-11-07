@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import { ChipCard } from "../../components/chip-card";
+import { ChipCard } from "../components/chip-card";
 import "@testing-library/jest-dom";
 
 test("displays chips with buttons", async () => {
