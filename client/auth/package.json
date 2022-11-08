@@ -3,6 +3,8 @@
   "version": "1.0.0",
   "scripts": {
     "start": "webpack serve --config config/webpack.dev.js",
+    "test": "react-scripts test",
+    "test:ci": "react-scripts test --watchAll=false",
     "build": "webpack --config config/webpack.prod.js"
   },
   "dependencies": {
