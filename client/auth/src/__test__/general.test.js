@@ -155,3 +155,31 @@ test("signup button disabled when the username and password are empty", async ()
 
   expect(signupButton).toBeEnabled();
 });
+
+test("toggles the form", async () => {
+  const { container } = render(<Form type="login" />);
+
+  const formText = container.querySelector("h2");
+
+  const userNameTextInput = await screen.findByRole("textbox", {
+    name: "username",
+  });
+  const passwordTextInput = await screen.getByLabelText(/password/i);
+
+  const signupButton = await screen.findByRole("button", { name: "SignUp" });
+  const loginButton = await screen.findByRole("button", { name: "Login" });
+
+  expect(formText).toBeDefined();
+  expect(userNameTextInput).toBeDefined();
+  expect(passwordTextInput).toBeDefined();
+  expect(signupButton).toBeDefined();
+  expect(loginButton).toBeDefined();
+
+  expect(formText.innerHTML).toBe("Login");
+
+  await waitFor(async () => {
+    await UserEvent.click(signupButton);
+  });
+
+  expect(formText.innerHTML).toBe("SignUp");
+});
