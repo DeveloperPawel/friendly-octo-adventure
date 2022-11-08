@@ -1,18 +1,23 @@
-import { render, screen } from "@testing-library/react";
+import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { Form } from "../components/Form";
 import UserEvent from "@testing-library/user-event";
 import "@testing-library/jest-dom";
 
+const loginfn = jest.fn();
+const signUp = jest.fn();
+
 test("renders login form", async () => {
-  render(<Form type="login" />);
+  render(<Form type="login" login={() => {}} signup={() => {}} />);
 
-  const userNameTextINput = await screen.findAllByRole();
-  const passwordTextInput = await screen.findAllByRole();
+  const userNameTextInput = await screen.findByRole("textbox", {
+    name: "username",
+  });
+  const passwordTextInput = await screen.getByLabelText(/password/i);
 
-  const signupButton = await screen.findAllByRole();
-  const loginButton = await screen.findAllByRole();
+  const signupButton = await screen.findByRole("button", { name: "SignUp" });
+  const loginButton = await screen.findByRole("button", { name: "Login" });
 
-  expect(userNameTextINput).toBeDefined();
+  expect(userNameTextInput).toBeDefined();
   expect(passwordTextInput).toBeDefined();
   expect(signupButton).toBeDefined();
   expect(loginButton).toBeDefined();
@@ -21,13 +26,15 @@ test("renders login form", async () => {
 test("renders signup form", async () => {
   render(<Form type="signup" />);
 
-  const userNameTextINput = await screen.findAllByRole();
-  const passwordTextInput = await screen.findAllByRole();
+  const userNameTextInput = await screen.findByRole("textbox", {
+    name: "username",
+  });
+  const passwordTextInput = await screen.getByLabelText(/password/i);
 
-  const signupButton = await screen.findAllByRole();
-  const loginButton = await screen.findAllByRole();
+  const signupButton = await screen.findByRole("button", { name: "SignUp" });
+  const loginButton = await screen.findByRole("button", { name: "Login" });
 
-  expect(userNameTextINput).toBeDefined();
+  expect(userNameTextInput).toBeDefined();
   expect(passwordTextInput).toBeDefined();
   expect(signupButton).toBeDefined();
   expect(loginButton).toBeDefined();
@@ -36,21 +43,25 @@ test("renders signup form", async () => {
 test("login button disabled when username and pass empty", async () => {
   render(<Form type="login" />);
 
-  const userNameTextINput = await screen.findAllByRole();
-  const passwordTextInput = await screen.findAllByRole();
+  const userNameTextInput = await screen.findByRole("textbox", {
+    name: "username",
+  });
+  const passwordTextInput = await screen.getByLabelText(/password/i);
 
-  const signupButton = await screen.findAllByRole();
-  const loginButton = await screen.findAllByRole();
+  const signupButton = await screen.findByRole("button", { name: "SignUp" });
+  const loginButton = await screen.findByRole("button", { name: "Login" });
 
-  expect(userNameTextINput).toBeDefined();
+  expect(userNameTextInput).toBeDefined();
   expect(passwordTextInput).toBeDefined();
   expect(signupButton).toBeDefined();
   expect(loginButton).toBeDefined();
 
   expect(loginButton).toBeDisabled();
 
-  UserEvent.type(userNameTextInput, "username");
-  UserEvent.type(passwordTextInput, "password");
+  await waitFor(async () => {
+    await UserEvent.type(userNameTextInput, "password");
+    await UserEvent.type(passwordTextInput, "password");
+  });
 
   expect(loginButton).toBeEnabled();
 });
@@ -58,11 +69,13 @@ test("login button disabled when username and pass empty", async () => {
 test("signup button disabled when the username and password are empty", async () => {
   render(<Form type="signup" />);
 
-  const userNameTextInput = await screen.findAllByRole();
-  const passwordTextInput = await screen.findAllByRole();
+  const userNameTextInput = await screen.findByRole("textbox", {
+    name: "username",
+  });
+  const passwordTextInput = await screen.getByLabelText(/password/i);
 
-  const signupButton = await screen.findAllByRole();
-  const loginButton = await screen.findAllByRole();
+  const signupButton = await screen.findByRole("button", { name: "SignUp" });
+  const loginButton = await screen.findByRole("button", { name: "Login" });
 
   expect(userNameTextInput).toBeDefined();
   expect(passwordTextInput).toBeDefined();
@@ -71,8 +84,10 @@ test("signup button disabled when the username and password are empty", async ()
 
   expect(signupButton).toBeDisabled();
 
-  UserEvent.type(userNameTextInput, "username");
-  UserEvent.type(passwordTextInput, "password");
+  await waitFor(async () => {
+    await UserEvent.type(userNameTextInput, "password");
+    await UserEvent.type(passwordTextInput, "password");
+  });
 
   expect(signupButton).toBeEnabled();
 });
