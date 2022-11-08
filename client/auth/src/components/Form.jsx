@@ -6,13 +6,20 @@ import TextField from "@mui/material/TextField";
 export const Form = ({ type, login, signup }) => {
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
+  const [formState, setFormState] = useState(type);
 
-  const toggleForm = () => {};
+  const toggleForm = () => {
+    if (formState === "login") {
+      setFormState("signup");
+    } else {
+      setFormState("login");
+    }
+  };
 
   const FormOutput = (type) => {
     return (
       <Paper>
-        {type === "login" ? <h2>Login</h2> : <h2>SignUp</h2>}
+        {formState === "login" ? <h2>Login</h2> : <h2>SignUp</h2>}
 
         <TextField
           onChange={(e) => setUserName(e.target.value)}
@@ -22,20 +29,20 @@ export const Form = ({ type, login, signup }) => {
 
         <TextField
           onChange={(e) => setPassword(e.target.value)}
-          type="password"
+          formState="password"
           value={password}
           label={"password"}
         />
 
         <Button variant="text" onClick={toggleForm}>
-          {type === "login" ? "SignUp" : "Login"}
+          {formState === "login" ? "SignUp" : "Login"}
         </Button>
         <Button
           disabled={!(!!userName.length && !!password.length)}
           variant="outlined"
-          onClick={type === "login" ? login : signup}
+          onClick={formState === "login" ? login : signup}
         >
-          {type === "login" ? "Login" : "SignUp"}
+          {formState === "login" ? "Login" : "SignUp"}
         </Button>
       </Paper>
     );
