@@ -177,9 +177,15 @@ test("toggles the form", async () => {
 
   expect(formText.innerHTML).toBe("Login");
 
+  expect(signupButton.textContent).toBe("SignUp");
+  expect(loginButton.textContent).toBe("Login");
+
   await waitFor(async () => {
     await UserEvent.click(signupButton);
   });
+
+  expect(signupButton.textContent).toBe("Login");
+  expect(loginButton.textContent).toBe("SignUp");
 
   expect(formText.innerHTML).toBe("SignUp");
 });
