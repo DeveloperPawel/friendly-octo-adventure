@@ -43,7 +43,7 @@ export const OrderCard = ({ patientOrder, parentFn }) => {
       ) : (
         <div className="card text-center">
           <div className="card-body">
-            <h5>Dinner</h5>
+            <h5>Breakfast</h5>
           </div>
         </div>
       )}
@@ -83,7 +83,7 @@ export const OrderCard = ({ patientOrder, parentFn }) => {
       ) : (
         <div className="card text-center">
           <div className="card-body">
-            <h5>Dinner</h5>
+            <h5>Lunch</h5>
           </div>
         </div>
       )}
