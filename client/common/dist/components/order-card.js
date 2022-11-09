@@ -43,7 +43,7 @@ const OrderCard = _ref => {
     className: "card text-center"
   }, /*#__PURE__*/_react.default.createElement("div", {
     className: "card-body"
-  }, /*#__PURE__*/_react.default.createElement("h5", null, "Dinner"))), patientOrder.lunch ? /*#__PURE__*/_react.default.createElement("div", {
+  }, /*#__PURE__*/_react.default.createElement("h5", null, "Breakfast"))), patientOrder.lunch ? /*#__PURE__*/_react.default.createElement("div", {
     className: "card text-center"
   }, /*#__PURE__*/_react.default.createElement("div", {
     className: "card-body"
@@ -71,7 +71,7 @@ const OrderCard = _ref => {
     className: "card text-center"
   }, /*#__PURE__*/_react.default.createElement("div", {
     className: "card-body"
-  }, /*#__PURE__*/_react.default.createElement("h5", null, "Dinner"))), patientOrder.dinner ? /*#__PURE__*/_react.default.createElement("div", {
+  }, /*#__PURE__*/_react.default.createElement("h5", null, "Lunch"))), patientOrder.dinner ? /*#__PURE__*/_react.default.createElement("div", {
     className: "card text-center"
   }, /*#__PURE__*/_react.default.createElement("div", {
     className: "card-body"

@@ -1,9 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, lazy, Suspense } from "react";
 import Accordion from "@mui/material/Accordion";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import { OrderCard } from "./order-card";
+import Paper from "@mui/material/Paper";
 
 export const PatientAccordian = ({ patients, day }) => {
   const [patientTable, setPatientTable] = useState({});
@@ -13,7 +15,6 @@ export const PatientAccordian = ({ patients, day }) => {
     dinner: [],
   });
   const [expanded, setExpanded] = React.useState(false);
-
   const handleChange = (panel) => (event, isExpanded) => {
     setExpanded(isExpanded ? panel : false);
   };
@@ -37,6 +38,7 @@ export const PatientAccordian = ({ patients, day }) => {
 
     setPatientTable(patientTable);
   };
+
   const formatDayData = (dayData) => {
     let dayTable = {
       breakfast: [],
@@ -124,9 +126,19 @@ export const PatientAccordian = ({ patients, day }) => {
               </Typography>
             </AccordionSummary>
             <AccordionDetails>
-              <div>
-                <h1>Hello</h1>
-              </div>
+              <Paper>
+                {patient.orders &&
+                patientTable[patient.patientId] !== undefined ? (
+                  <OrderCard
+                    patientOrder={
+                      patient.orders[patientTable[patient.patientId]]
+                    }
+                    day={day}
+                  />
+                ) : (
+                  <span>No order found.</span>
+                )}
+              </Paper>
             </AccordionDetails>
           </Accordion>
         );

@@ -1,18 +1,56 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
-export const OrderCard = ({ patientOrder, parentFn }) => {
+export const OrderCard = ({ patientOrder, day, parentFn }) => {
+  const [breakfastEntree, setBreakfastEntree] = useState(null);
+  const [lunchEntree, setLunchEntree] = useState(null);
+  const [dinnerEntree, setDinnerEntree] = useState(null);
+  const [loading, setLoading] = useState(true);
+
   let breakfastIngredients = [];
   let lunchIngredients = [];
   let dinnerIngredients = [];
 
+  useEffect(() => {
+    populateData();
+  }, []);
+
+  const populateData = () => {
+    for (const entree of day.breakfast) {
+      if (entree.entreeId === patientOrder.breakfast) {
+        setBreakfastEntree(entree);
+        break;
+      }
+    }
+
+    for (const entree of day.lunch) {
+      if (entree.entreeId === patientOrder.lunch) {
+        setLunchEntree(entree);
+        break;
+      }
+    }
+
+    for (const entree of day.dinner) {
+      if (entree.entreeId === patientOrder.dinner) {
+        setDinnerEntree(entree);
+        break;
+      }
+    }
+
+    setLoading(false);
+  };
+
+  if (loading) {
+    return <div>loading...</div>;
+  }
+
   return (
     <>
-      {patientOrder.breakfast ? (
+      {breakfastEntree ? (
         <div className="card text-center">
           <div className="card-body">
-            <h5 className="card-title">{patientOrder.breakfast.name}</h5>
+            <h5 className="card-title">{breakfastEntree.name}</h5>
             <p className="card-text">
-              {patientOrder.breakfast.foodItems.map((foodItem, index) => {
+              {breakfastEntree.foodItems.map((foodItem, index) => {
                 breakfastIngredients = [
                   ...breakfastIngredients,
                   ...foodItem.ingredients,
@@ -29,7 +67,7 @@ export const OrderCard = ({ patientOrder, parentFn }) => {
             <button
               onClick={() =>
                 parentFn({
-                  entreeId: patientOrder.breakfast.entreeId,
+                  entreeId: patientOrder.breakfast,
                   key: "breakfast",
                 })
               }
@@ -47,12 +85,12 @@ export const OrderCard = ({ patientOrder, parentFn }) => {
           </div>
         </div>
       )}
-      {patientOrder.lunch ? (
+      {lunchEntree ? (
         <div className="card text-center">
           <div className="card-body">
-            <h5 className="card-title">{patientOrder.lunch.name}</h5>
+            <h5 className="card-title">{lunchEntree.name}</h5>
             <p className="card-text">
-              {patientOrder.lunch.foodItems.map((foodItem, index) => {
+              {lunchEntree.foodItems.map((foodItem, index) => {
                 lunchIngredients = [
                   ...lunchIngredients,
                   ...foodItem.ingredients,
@@ -69,7 +107,7 @@ export const OrderCard = ({ patientOrder, parentFn }) => {
             <button
               onClick={() =>
                 parentFn({
-                  entreeId: patientOrder.lunch.entreeId,
+                  entreeId: patientOrder.lunch,
                   key: "lunch",
                 })
               }
@@ -87,12 +125,12 @@ export const OrderCard = ({ patientOrder, parentFn }) => {
           </div>
         </div>
       )}
-      {patientOrder.dinner ? (
+      {dinnerEntree ? (
         <div className="card text-center">
           <div className="card-body">
-            <h5 className="card-title">{patientOrder.dinner.name}</h5>
+            <h5 className="card-title">{dinnerEntree.name}</h5>
             <p className="card-text">
-              {patientOrder.dinner.foodItems.map((foodItem, index) => {
+              {dinnerEntree.foodItems.map((foodItem, index) => {
                 dinnerIngredients = [
                   ...dinnerIngredients,
                   ...foodItem.ingredients,
@@ -109,7 +147,7 @@ export const OrderCard = ({ patientOrder, parentFn }) => {
             <button
               onClick={() =>
                 parentFn({
-                  entreeId: patientOrder.dinner.entreeId,
+                  entreeId: patientOrder.dinner,
                   key: "dinner",
                 })
               }
