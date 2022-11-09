@@ -8,7 +8,8 @@
   "scripts": {
     "start": "react-scripts start",
     "test": "react-scripts test",
-    "test:ci": "react-scripts test --watchAll=false"
+    "test:ci": "react-scripts test --watchAll=false",
+    "pub": "npm version patch && npm publish"
   },
   "dependencies": {
     "@emotion/react": "^11.10.5",
