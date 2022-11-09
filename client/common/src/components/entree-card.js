@@ -3,7 +3,7 @@ import React from "react";
 export const EntreeCard = ({
   mealLabel,
   entreeList,
-  patientOrder,
+  patientEntreeId,
   parentFn,
 }) => {
   return (
@@ -18,19 +18,19 @@ export const EntreeCard = ({
               <p className="card-text">
                 {entree.foodItems.map((foodItem, index) => {
                   ingredientList = [...ingredientList, ...foodItem.ingredients];
-                  return <span key={index}>{foodItem.name}</span>;
+                  return <span key={index}>{foodItem.name + " "}</span>;
                 })}
               </p>
               <p className="card-text">
                 ingredients:{" "}
                 {ingredientList.map((ingredient, index) => {
-                  return <span key={index}>{ingredient.name}</span>;
+                  return <span key={index}>{ingredient.name + " "}</span>;
                 })}
               </p>
               <button
                 onClick={() => parentFn(entree.entreeId)}
                 aria-label={entree.name}
-                disabled={patientOrder == entree.entreeId}
+                disabled={patientEntreeId == entree.entreeId}
                 className="btn btn-primary"
               >
                 Select
