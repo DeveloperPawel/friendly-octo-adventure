@@ -3,11 +3,15 @@
   "version": "1.0.0",
   "scripts": {
     "start": "webpack serve --config config/webpack.dev.js",
-    "build": "webpack --config config/webpack.prod.js"
+    "test": "react-scripts test",
+    "test:ci": "react-scripts test --watchAll=false",
+    "build": "webpack --config config/webpack.prod.js",
+    "update:common": "npm update @mimenu/client-common"
   },
   "dependencies": {
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
+    "@mimenu/client-common": "^1.0.0",
     "@mui/material": "^5.10.12",
     "react": "^18.0.1",
     "react-dom": "^18.0.1",
@@ -18,20 +22,20 @@
     "@babel/plugin-transform-runtime": "^7.12.1",
     "@babel/preset-env": "^7.12.1",
     "@babel/preset-react": "^7.12.1",
+    "@testing-library/dom": "^8.19.0",
+    "@testing-library/jest-dom": "^5.16.5",
+    "@testing-library/react": "^13.4.0",
+    "@testing-library/user-event": "^14.4.3",
     "babel-loader": "^8.1.0",
     "clean-webpack-plugin": "^3.0.0",
     "css-loader": "^5.0.0",
+    "eslint-plugin-jest-dom": "^4.0.2",
+    "eslint-plugin-testing-library": "^5.9.1",
     "html-webpack-plugin": "^4.5.0",
     "style-loader": "^2.0.0",
     "webpack": "^5.4.0",
     "webpack-cli": "^4.1.0",
     "webpack-dev-server": "^3.11.0",
-    "webpack-merge": "^5.2.0",
-    "@testing-library/dom": "^8.19.0",
-    "@testing-library/jest-dom": "^5.16.5",
-    "@testing-library/react": "^13.4.0",
-    "@testing-library/user-event": "^14.4.3",
-    "eslint-plugin-jest-dom": "^4.0.2",
-    "eslint-plugin-testing-library": "^5.9.1"
+    "webpack-merge": "^5.2.0"
   }
 }

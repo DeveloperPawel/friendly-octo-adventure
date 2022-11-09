@@ -1,4 +1,4 @@
-import { fireEvent, render, screen, waitFor } from "@testing-library/react";
+import { render, screen, waitFor } from "@testing-library/react";
 import { Form } from "../components/Form";
 import UserEvent from "@testing-library/user-event";
 import "@testing-library/jest-dom";
@@ -154,6 +154,21 @@ test("signup button disabled when the username and password are empty", async ()
   });
 
   expect(signupButton).toBeEnabled();
+});
+
+test("selector appears and disappears between signup and login", async () => {
+  const { container } = render(<Form type="signup" />);
+
+  const selector = container.querySelector("select");
+  const loginButton = await screen.findByRole("button", { name: "Login" });
+
+  expect(selector).toBeDefined();
+
+  await waitFor(async () => {
+    await UserEvent.click(loginButton);
+  });
+
+  expect(selector).toBe(null);
 });
 
 test("toggles the form", async () => {

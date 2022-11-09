@@ -1,4 +1,9 @@
 import React, { useEffect, useState } from "react";
+import Accordion from "@mui/material/Accordion";
+import AccordionDetails from "@mui/material/AccordionDetails";
+import AccordionSummary from "@mui/material/AccordionSummary";
+import Typography from "@mui/material/Typography";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
 export const PatientAccordian = ({ patients, day }) => {
   const [patientTable, setPatientTable] = useState({});
@@ -7,6 +12,11 @@ export const PatientAccordian = ({ patients, day }) => {
     lunch: [],
     dinner: [],
   });
+  const [expanded, setExpanded] = React.useState(false);
+
+  const handleChange = (panel) => (event, isExpanded) => {
+    setExpanded(isExpanded ? panel : false);
+  };
 
   useEffect(() => {
     formatPatientData(patients, day.date);
@@ -53,80 +63,72 @@ export const PatientAccordian = ({ patients, day }) => {
     <div className="accordion">
       {patients.map((patient, index) => {
         return (
-          <div key={index} className="accordion-item">
-            <h2 className="accordion-header" id="panelsStayOpen-headingOne">
-              <button
-                className="accordion-button"
-                type="button"
-                data-bs-toggle="collapse"
-                data-bs-target="#panelsStayOpen-collapseOne"
-                aria-expanded="true"
-                aria-controls="panelsStayOpen-collapseOne"
-              >
-                {`patient ${index + 1} `}
-                <span
-                  style={{
-                    color: entreeTable.breakfast.includes(
-                      patient.orders &&
-                        patientTable[patient.patientId] !== undefined
-                        ? patient.orders[patientTable[patient.patientId]]
-                            .breakfast
-                        : ""
-                    )
-                      ? "green"
-                      : "red",
-                  }}
-                >
-                  Breakfast
-                </span>{" "}
-                <span
-                  style={{
-                    color: entreeTable.lunch.includes(
-                      patient.orders &&
-                        patientTable[patient.patientId] !== undefined
-                        ? patient.orders[patientTable[patient.patientId]].lunch
-                        : ""
-                    )
-                      ? "green"
-                      : "red",
-                  }}
-                >
-                  Lunch
-                </span>{" "}
-                <span
-                  style={{
-                    color: entreeTable.dinner.includes(
-                      patient.orders &&
-                        patientTable[patient.patientId] !== undefined
-                        ? patient.orders[patientTable[patient.patientId]].dinner
-                        : ""
-                    )
-                      ? "green"
-                      : "red",
-                  }}
-                >
-                  Dinner
-                </span>
-              </button>
-            </h2>
-            <div
-              id="panelsStayOpen-collapseOne"
-              className="accordion-collapse collapse show"
-              aria-labelledby="panelsStayOpen-headingOne"
+          <Accordion
+            key={index}
+            expanded={expanded === `patient${index}`}
+            onChange={handleChange(`patient${index}`)}
+          >
+            <AccordionSummary
+              expandIcon={<ExpandMoreIcon />}
+              aria-controls="panel1bh-content"
+              id="panel1bh-header"
             >
-              <div className="accordion-body">
-                <strong>This is the first item's accordion body.</strong> It is
-                shown by default, until the collapse plugin adds the appropriate
-                classNamees that we use to styles each element. These
-                classNamees control the overall appearance, as well as the
-                showing and hiding via CSS transitions. You can modify any of
-                this with custom CSS or overriding our default variables. It's
-                also worth noting that just about any HTML can go within the{" "}
-                <code>.accordion-body</code>, though the transition does limit
-                overflow.
+              <Typography sx={{ width: "33%", flexShrink: 0 }}>
+                {`patient ${index + 1}`}
+              </Typography>
+              <Typography
+                sx={{
+                  color: entreeTable.breakfast.includes(
+                    patient.orders &&
+                      patientTable[patient.patientId] !== undefined
+                      ? patient.orders[patientTable[patient.patientId]]
+                          .breakfast
+                      : ""
+                  )
+                    ? "green"
+                    : "red",
+                  width: "25%",
+                }}
+              >
+                Breakfast
+              </Typography>
+              <Typography
+                sx={{
+                  color: entreeTable.breakfast.includes(
+                    patient.orders &&
+                      patientTable[patient.patientId] !== undefined
+                      ? patient.orders[patientTable[patient.patientId]].lunch
+                      : ""
+                  )
+                    ? "green"
+                    : "red",
+                  width: "20%",
+                }}
+              >
+                Lunch
+              </Typography>
+              <Typography
+                sx={{
+                  color: entreeTable.breakfast.includes(
+                    patient.orders &&
+                      patientTable[patient.patientId] !== undefined
+                      ? patient.orders[patientTable[patient.patientId]].dinner
+                      : ""
+                  )
+                    ? "green"
+                    : "red",
+                  width: "50%",
+                }}
+              >
+                Dinner
+              </Typography>
+            </AccordionSummary>
+            <AccordionDetails>
+              <div>
+                <h1>Hello</h1>
               </div>
-            </div>
-          </div>
+            </AccordionDetails>
+          </Accordion>
         );
       })}
     </div>
