@@ -94,7 +94,7 @@ export const PatientAccordian = ({ patients, day }) => {
               </Typography>
               <Typography
                 sx={{
-                  color: entreeTable.breakfast.includes(
+                  color: entreeTable.lunch.includes(
                     patient.orders &&
                       patientTable[patient.patientId] !== undefined
                       ? patient.orders[patientTable[patient.patientId]].lunch
@@ -109,7 +109,7 @@ export const PatientAccordian = ({ patients, day }) => {
               </Typography>
               <Typography
                 sx={{
-                  color: entreeTable.breakfast.includes(
+                  color: entreeTable.dinner.includes(
                     patient.orders &&
                       patientTable[patient.patientId] !== undefined
                       ? patient.orders[patientTable[patient.patientId]].dinner

@@ -1,6 +1,6 @@
 import { getByTestId, render, screen } from "@testing-library/react";
 import { PatientAccordian } from "../components/provider-patient-accordian";
-import { formatDateAlpha } from "../../functions/date";
+import { formatDateAlpha } from "../functions/date";
 import "@testing-library/jest-dom";
 
 const patientData = [
@@ -197,7 +197,7 @@ test("renders all of the patients", async () => {
   expect(await screen.findByText("patient 4")).toBeInTheDocument();
 });
 
-xtest("[does not work with materialui] title indicates the status of the patients orders", async () => {
+test("[does not work with materialui] title indicates the status of the patients orders", async () => {
   const { container } = render(
     <PatientAccordian patients={patientData} day={dayData} />
   );
