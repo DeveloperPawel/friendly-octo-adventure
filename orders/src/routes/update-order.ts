@@ -33,7 +33,11 @@ router.post(
       throw new NotFoundError();
     }
 
-    const foundOrder = await Order.findOne({ orderId });
+    let foundOrder = await Order.findOne({ id: orderId });
+
+    if (!foundOrder) {
+      foundOrder = await Order.findOne({ orderId });
+    }
 
     if (!foundOrder) {
       throw new NotFoundError();
