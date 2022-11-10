@@ -7,7 +7,13 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { OrderCard } from "./order-card";
 import Paper from "@mui/material/Paper";
 
-export const PatientAccordian = ({ patients, day }) => {
+export const PatientAccordian = ({
+  patients,
+  day,
+  activePatient,
+  activeOrder,
+  initialOrder,
+}) => {
   const [patientTable, setPatientTable] = useState({});
   const [entreeTable, setEntreeTable] = useState({
     breakfast: [],
@@ -62,13 +68,21 @@ export const PatientAccordian = ({ patients, day }) => {
   };
 
   return (
-    <div className="accordion">
+    <>
       {patients.map((patient, index) => {
         return (
           <Accordion
             key={index}
             expanded={expanded === `patient${index}`}
-            onChange={handleChange(`patient${index}`)}
+            onChange={() => {
+              handleChange(`patient${index}`);
+              activePatient(patient.patientId);
+              if (patient.orders[patientTable[patient.patientId]]) {
+                activeOrder(patient.orders[patientTable[patient.patientId]]);
+              } else {
+                initialOrder(patient.patientId);
+              }
+            }}
           >
             <AccordionSummary
               expandIcon={<ExpandMoreIcon />}
@@ -143,6 +157,6 @@ export const PatientAccordian = ({ patients, day }) => {
           </Accordion>
         );
       })}
-    </div>
+    </>
   );
 };

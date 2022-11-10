@@ -29,7 +29,7 @@ export const EntreeCard = ({
               </p>
               <button
                 onClick={() => parentFn(entree.entreeId)}
-                aria-label={entree.name}
+                aria-label={entree.entreeId}
                 disabled={patientEntreeId == entree.entreeId}
                 className="btn btn-primary"
               >

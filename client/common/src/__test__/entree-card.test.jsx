@@ -6,7 +6,7 @@ test("displays food options", async () => {
   render(
     <EntreeCard
       mealLabel={"breakfast"}
-      patientOrder={"234n4l345n324ln54"}
+      patientEntreeId={"234n4l345n324ln54"}
       entreeList={[
         {
           entreeId: "234n4l345n324ln54",
@@ -59,7 +59,7 @@ test("displays selected food disabled", async () => {
   render(
     <EntreeCard
       mealLabel={"breakfast"}
-      patientOrder={"234n4l345n324ln54"}
+      patientEntreeId={"234n4l345n324ln54"}
       entreeList={[
         {
           entreeId: "234n4l345n324ln54",

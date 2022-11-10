@@ -73,6 +73,7 @@ export const OrderCard = ({ patientOrder, day, parentFn }) => {
               }
               href="#"
               className="btn btn-primary"
+              aria-label={patientOrder.patientId + "breakfast"}
             >
               Remove
             </button>
@@ -113,6 +114,7 @@ export const OrderCard = ({ patientOrder, day, parentFn }) => {
               }
               href="#"
               className="btn btn-primary"
+              aria-label={patientOrder.patientId + "lunch"}
             >
               Remove
             </button>
@@ -153,6 +155,7 @@ export const OrderCard = ({ patientOrder, day, parentFn }) => {
               }
               href="#"
               className="btn btn-primary"
+              aria-label={patientOrder.patientId + "dinner"}
             >
               Remove
             </button>
