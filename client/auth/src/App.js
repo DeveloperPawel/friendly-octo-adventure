@@ -4,8 +4,7 @@ import { Form } from "./components/Form.js";
 export const App = () => {
   return (
     <div>
-      <h2>Auth</h2>
-      {/* <Form /> */}
+      <Form type={"signup"} />
     </div>
   );
 };
