@@ -7,7 +7,7 @@ import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
 
-export const Header = ({ user, signin }) => {
+export const Header = ({ user, login, signOut }) => {
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
@@ -25,7 +25,9 @@ export const Header = ({ user, signin }) => {
             Mimenu
           </Typography>
           {user ? (
-            <Button color="inherit">Logout</Button>
+            <Button onClick={() => signOut()} color="inherit">
+              Logout
+            </Button>
           ) : (
             <Button color="inherit">Login</Button>
           )}

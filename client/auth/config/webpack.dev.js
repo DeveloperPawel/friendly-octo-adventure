@@ -3,6 +3,7 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const ModuleFederationPlugin = require("webpack/lib/container/ModuleFederationPlugin");
 const commonConfig = require("./webpack.common");
 const packageJson = require("../package.json");
+const dotenv = require("dotenv-webpack");
 
 const devConfig = {
   mode: "development",
@@ -27,6 +28,7 @@ const devConfig = {
     new HtmlWebpackPlugin({
       template: "./public/index.html",
     }),
+    new dotenv(),
   ],
 };
 
