@@ -45,7 +45,7 @@ export const Form = ({ type, login, signup }) => {
     console.log("cookie: " + JSON.stringify(cookies, null, 2));
   }, []);
 
-  const FormOutput = (type) => {
+  const FormOutput = () => {
     return (
       <Box>
         <Grid m={45}>
@@ -118,5 +118,5 @@ export const Form = ({ type, login, signup }) => {
     );
   };
 
-  return FormOutput(type);
+  return FormOutput();
 };

@@ -43,14 +43,12 @@ export const App = () => {
     switch (type) {
       case "admin":
         return <LazyAdmin user={user} />;
-        break;
+
       case "provider":
         return <LazyProvider user={user} />;
-        break;
 
       default:
         return <LazyPatient user={user} />;
-        break;
     }
   };
 
