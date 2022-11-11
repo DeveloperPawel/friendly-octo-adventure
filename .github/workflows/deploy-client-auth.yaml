@@ -18,7 +18,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - run: npm install
-      - run: npm run build --jwtkey="$REACT_APP_JWT_KEY"
+      - run: npm run build
         env:
           REACT_APP_JWT_KEY: ${{ secrets.JWT_KEY }}
 

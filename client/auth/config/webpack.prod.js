@@ -3,14 +3,7 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const ModuleFederationPlugin = require("webpack/lib/container/ModuleFederationPlugin");
 const commonConfig = require("./webpack.common");
 const packageJson = require("../package.json");
-const webpack = require("webpack");
-
-const generateKeys = (env) => {
-  return Object.keys(env).reduce((prev, next) => {
-    prev[`process.env.${next}`] = JSON.stringify(env[next]);
-    return prev;
-  }, {});
-};
+const dotenv = require("dotenv-webpack");
 
 const prodConfig = {
   mode: "production",
@@ -27,11 +20,10 @@ const prodConfig = {
       },
       shared: packageJson.dependencies,
     }),
+    new dotenv({
+      systemvars: true,
+    }),
   ],
 };
 
-module.exports = (env) =>
-  merge(commonConfig, () => {
-    let copyProd = prodConfig;
-    return copyProd.plugins.push(new webpack.DefinePlugin(generateKeys(env)));
-  });
+module.exports = merge(commonConfig, prodConfig);
