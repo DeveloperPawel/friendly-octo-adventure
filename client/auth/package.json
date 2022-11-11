@@ -5,7 +5,7 @@
     "start": "webpack serve --config config/webpack.dev.js",
     "test": "react-scripts test",
     "test:ci": "react-scripts test --watchAll=false",
-    "build": "webpack --config config/webpack.prod.js"
+    "build": "func() {webpack --env.REACT_APP_JWT_KEY=\"$1\" --config config/webpack.prod.js} func()"
   },
   "dependencies": {
     "@emotion/react": "^11.10.5",
