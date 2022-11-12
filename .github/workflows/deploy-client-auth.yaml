@@ -17,10 +17,8 @@ jobs:
 
     steps:
       - uses: bash
-      - run: chmod +x ${GITHUB_WORKSPACE}/secrets.sh
-
-      - uses: bash
-      - run: bash ${GITHUB_WORKSPACE}/secrets.sh REACT_APP_JWT_KEY="$REACT_APP_JWT_KEY"
+      - run: chmod +x secrets.sh
+      - run: bash secrets.sh REACT_APP_JWT_KEY="$REACT_APP_JWT_KEY"
         env:
           REACT_APP_JWT_KEY: ${{ secrets.JWT_KEY }}
 
