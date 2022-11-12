@@ -16,9 +16,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: bash
-      - run: chmod +x ./mimenu/client/auth/secrets.sh
-      - run: ./mimenu/client/auth/secrets.sh REACT_APP_JWT_KEY="$REACT_APP_JWT_KEY"
+      - name: run script
+      - run: bash ${GITHUB_WORKSPACE}/secrets.sh REACT_APP_JWT_KEY="$REACT_APP_JWT_KEY"
         env:
           REACT_APP_JWT_KEY: ${{ secrets.JWT_KEY }}
 
