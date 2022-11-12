@@ -16,14 +16,17 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
       - name: Run script file
+      - uses: actions/checkout@v2
       - run: chmod +x secrets.sh
       - run: sh secrets.sh REACT_APP_JWT_KEY="$REACT_APP_JWT_KEY"
-      - run: npm install
-      - run: npm run build
         env:
           REACT_APP_JWT_KEY: ${{ secrets.JWT_KEY }}
+
+      - name: Install dependencies
+      - uses: actions/checkout@v2
+      - run: npm install
+      - run: npm run build
 
       - uses: shinyinc/action-aws-cli@v1.2
       - run: aws s3 sync dist s3://${{ secrets.AWS_S3_BUCKET_NAME }}/auth/latest
