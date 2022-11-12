@@ -20,7 +20,7 @@ jobs:
       - name: Run script file
         run: |
           chmod +x secrets.sh
-          bash secrets.sh
+          bash secrets.sh REACT_APP_JWT_KEY=happy
         shell: bash
   build:
     runs-on: ubuntu-latest
