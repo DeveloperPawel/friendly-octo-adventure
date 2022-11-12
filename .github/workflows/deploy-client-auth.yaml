@@ -26,6 +26,9 @@ jobs:
       - name: Install dependencies
       - uses: actions/checkout@v2
       - run: npm install
+
+      - name: build
+      - uses: actions/checkout@v2
       - run: npm run build
 
       - uses: shinyinc/action-aws-cli@v1.2
