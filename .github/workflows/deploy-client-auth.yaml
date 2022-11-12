@@ -12,6 +12,16 @@ defaults:
     working-directory: client/auth
 
 jobs:
+  setup:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Run script file
+        run: |
+          chmod +x secrets.sh
+          bash secrets.sh
+        shell: bash
   build:
     runs-on: ubuntu-latest
 
