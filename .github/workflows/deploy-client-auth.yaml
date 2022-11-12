@@ -16,7 +16,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: bash
+      - uses: actions/checkout@v2
       - run: chmod +x secrets.sh
       - run: bash secrets.sh REACT_APP_JWT_KEY="$REACT_APP_JWT_KEY"
         env:
