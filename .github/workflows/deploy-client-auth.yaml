@@ -20,9 +20,10 @@ jobs:
       - name: Run script file
         run: |
           chmod +x secrets.sh
-          bash secrets.sh REACT_APP_JWT_KEY="$REACT_APP_JWT_KEY"
+          bash secrets.sh REACT_APP_JWT_KEY="$REACT_APP_JWT_KEY" REACT_APP_API_URL="$REACT_APP_API_URL"
         env:
           REACT_APP_JWT_KEY: ${{ secrets.JWT_KEY }}
+          REACT_APP_API_URL: ${{ secrets.API_URL }}
       - run: cat .env
       - run: npm install
       - run: npm run build

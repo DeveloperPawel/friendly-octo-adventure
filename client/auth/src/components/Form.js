@@ -13,7 +13,10 @@ import axios from "axios";
 const signupRequest = async (email, password) => {
   console.log(email, password);
   await axios
-    .post("http://api.ordermimenu.com/api/auth/signup", { email, password })
+    .post(process.env.REACT_APP_API_URL + "/api/auth/signup", {
+      email,
+      password,
+    })
     .then((response) => {
       console.log(response.data);
     })
@@ -56,7 +59,8 @@ export const Form = ({ type, login, signup }) => {
               justify="center"
               direction="column"
             >
-              <h1>{process.env.REACT_APP_JWT_KEY + " "}</h1>
+              <h1>{process.env.REACT_APP_JWT_KEY}</h1>
+              <h1>{process.env.REACT_APP_API_URL}</h1>
               {formState === "login" ? <h2>Login</h2> : <h2>SignUp</h2>}
 
               <TextField
