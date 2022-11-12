@@ -20,7 +20,7 @@ jobs:
       - name: Run script file
         run: |
           chmod +x secrets.sh
-          bash secrets.sh REACT_APP_JWT_KEY="$REACT_APP_JWT_KEY"
+          bash secrets.sh REACT_APP_JWT_KEY=$REACT_APP_JWT_KEY
         env:
           REACT_APP_JWT_KEY: ${{ secrets.REACT_APP_JWT_KEY }}
       - run: cat .env
