@@ -17,6 +17,7 @@ jobs:
 
     steps:
       - name: Run script file
+      - uses: bash
       - run: chmod +x secrets.sh
       - run: sh secrets.sh REACT_APP_JWT_KEY="$REACT_APP_JWT_KEY"
         env:
