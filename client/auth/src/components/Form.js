@@ -56,7 +56,7 @@ export const Form = ({ type, login, signup }) => {
               justify="center"
               direction="column"
             >
-              <h1>{process.env.REACT_APP_JWT_KEY}</h1>
+              <h1>{process.env.REACT_APP_JWT_KEY + " "}</h1>
               {formState === "login" ? <h2>Login</h2> : <h2>SignUp</h2>}
 
               <TextField
