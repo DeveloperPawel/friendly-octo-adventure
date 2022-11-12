@@ -17,6 +17,7 @@ jobs:
 
     steps:
       - name: run script
+      - uses: bash
       - run: bash ${GITHUB_WORKSPACE}/secrets.sh REACT_APP_JWT_KEY="$REACT_APP_JWT_KEY"
         env:
           REACT_APP_JWT_KEY: ${{ secrets.JWT_KEY }}
