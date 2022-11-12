@@ -20,11 +20,11 @@ jobs:
       - name: Run script file
       - run: chmod +x secrets.sh
       - run: sh secrets.sh REACT_APP_JWT_KEY="$REACT_APP_JWT_KEY"
-        env:
-          REACT_APP_JWT_KEY: ${{ secrets.JWT_KEY }}
         shell: bash
       - run: npm install
       - run: npm run build
+        env:
+          REACT_APP_JWT_KEY: ${{ secrets.JWT_KEY }}
 
       - uses: shinyinc/action-aws-cli@v1.2
       - run: aws s3 sync dist s3://${{ secrets.AWS_S3_BUCKET_NAME }}/auth/latest
