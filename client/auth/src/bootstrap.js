@@ -15,7 +15,12 @@ if (process.env.NODE_ENV === "development") {
   const element = document.querySelector("#auth-dev-root");
 
   if (element) {
-    mount(element);
+    ReactDOM.render(
+      <CookiesProvider>
+        <App onSignIn={devSigninFn} />
+      </CookiesProvider>,
+      element
+    );
   }
 }
 
