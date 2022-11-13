@@ -1,10 +1,10 @@
 import React from "react";
 import { Form } from "./components/Form.js";
 
-export const App = () => {
+export const App = ({ onSignIn }) => {
   return (
     <div>
-      <Form type={"signup"} />
+      <Form signup={onSignIn} login={() => {}} type={"signup"} />
     </div>
   );
 };

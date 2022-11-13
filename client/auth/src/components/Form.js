@@ -10,21 +10,6 @@ import MenuItem from "@mui/material/MenuItem";
 import { useCookies } from "react-cookie";
 import axios from "axios";
 
-const signupRequest = async (email, password) => {
-  console.log(email, password);
-  await axios
-    .post(process.env.REACT_APP_API_URL + "/api/auth/signup", {
-      email,
-      password,
-    })
-    .then((response) => {
-      console.log(response.data);
-    })
-    .catch((error) => {
-      console.log(error);
-    });
-};
-
 export const Form = ({ type, login, signup }) => {
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
@@ -44,9 +29,36 @@ export const Form = ({ type, login, signup }) => {
     }
   };
 
-  useEffect(() => {
-    console.log("cookie: " + JSON.stringify(cookies, null, 2));
-  }, []);
+  // useEffect(() => {
+  //   console.log("cookie: " + JSON.stringify(cookies, null, 2));
+  // }, []);
+
+  const signupRequest = async (email, password) => {
+    await axios
+      .post(process.env.REACT_APP_API_URL + "/api/auth/signup", {
+        email,
+        password,
+      })
+      .then((response) => {
+        console.log(response.data);
+        signup(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  const loginRequest = async (email, password) => {
+    await axios
+      .post(process.env.REACT_APP_API_URL + "/api/auth/login", {
+        email,
+        password,
+      })
+      .then((response) => {
+        console.log(response.data);
+        login(response.data);
+      });
+  };
 
   const FormOutput = () => {
     return (
@@ -59,21 +71,19 @@ export const Form = ({ type, login, signup }) => {
               justify="center"
               direction="column"
             >
-              <h1>{process.env.REACT_APP_JWT_KEY}</h1>
-              <h1>{process.env.REACT_APP_API_URL}</h1>
               {formState === "login" ? <h2>Login</h2> : <h2>SignUp</h2>}
 
               <TextField
                 onChange={(e) => setUserName(e.target.value)}
                 value={userName}
-                label={"username"}
+                label={"Email"}
               />
 
               <TextField
                 onChange={(e) => setPassword(e.target.value)}
                 formState="password"
                 value={password}
-                label={"password"}
+                label={"Password"}
               />
               <br />
               {formState !== "login" && (
@@ -98,16 +108,7 @@ export const Form = ({ type, login, signup }) => {
                   variant="outlined"
                   onClick={
                     formState === "login"
-                      ? login
-                        ? () => login({ username: userName, password })
-                        : () => {}
-                      : signup
-                      ? () =>
-                          signup({
-                            username: userName,
-                            password,
-                            type: signUpType,
-                          })
+                      ? async () => await loginRequest(userName, password)
                       : async () => await signupRequest(userName, password)
                   }
                 >

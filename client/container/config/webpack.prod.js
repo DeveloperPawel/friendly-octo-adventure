@@ -2,6 +2,7 @@ const { merge } = require("webpack-merge");
 const ModuleFederationPlugin = require("webpack/lib/container/ModuleFederationPlugin");
 const commonConfig = require("./webpack.common");
 const packageJson = require("../package.json");
+const dotenv = require("dotenv-webpack");
 
 const domain = process.env.PRODUCTION_DOMAIN;
 
@@ -21,6 +22,9 @@ const prodConfig = {
         provider: `provider@${domain}/provider/latest/remoteEntry.js`,
       },
       shared: packageJson.dependencies,
+    }),
+    new dotenv({
+      systemvars: true,
     }),
   ],
 };
