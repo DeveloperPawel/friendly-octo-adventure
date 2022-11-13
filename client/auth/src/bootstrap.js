@@ -4,6 +4,15 @@ import { App } from "./App";
 import { CookiesProvider } from "react-cookie";
 
 const mount = (element, { onSignIn }) => {
+  let func;
+  if (!onSignIn) {
+    console.log("onSignIn is null");
+    func = () => {
+      console.log("onSignIn is null");
+    };
+    onSignIn = func;
+  }
+
   ReactDOM.render(<App onSignIn={onSignIn} />, element);
 };
 
