@@ -1,7 +1,7 @@
 import { mount } from "admin/Admin";
 import React, { useEffect, useRef } from "react";
 
-export const AdminApp = () => {
+export const AdminApp = ({ user }) => {
   const ref = useRef(null);
 
   useEffect(() => {

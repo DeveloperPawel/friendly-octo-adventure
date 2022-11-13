@@ -1,7 +1,7 @@
 import { mount } from "patient/Patient";
 import React, { useEffect, useRef } from "react";
 
-export const PatientApp = () => {
+export const PatientApp = ({ user }) => {
   const ref = useRef(null);
 
   useEffect(() => {

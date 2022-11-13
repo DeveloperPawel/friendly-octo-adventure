@@ -59,7 +59,8 @@ export const App = () => {
         <Suspense fallback={<p>loading...</p>}>
           <Switch>
             <Route path={"/auth"}>
-              <LazyAuth onSignIn={setUser} />
+              {user && <Redirect to={"/"} />}
+              {!user && <LazyAuth onSignIn={setUser} />}
             </Route>
             <Route path={"/"}>
               {!user && <Redirect to={"/auth"} />}
