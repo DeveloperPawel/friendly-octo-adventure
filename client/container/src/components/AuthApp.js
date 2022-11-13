@@ -5,7 +5,7 @@ export const AuthApp = ({ onSignIn }) => {
   const ref = useRef(null);
 
   useEffect(() => {
-    const { onParentNavigate } = mount(ref.current, {
+    mount(ref.current, {
       onSignIn,
     });
   }, []);
