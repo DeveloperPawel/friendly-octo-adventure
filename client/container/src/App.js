@@ -39,10 +39,6 @@ export const App = () => {
     }
   }, [user]);
 
-  const setActiveuser = (user) => {
-    setUser(user);
-  };
-
   const ComponentSwitch = (type) => {
     switch (type) {
       case "admin":
@@ -64,7 +60,13 @@ export const App = () => {
           <Switch>
             <Route path={"/auth"}>
               {user && <Redirect to={"/"} />}
-              <LazyAuth onSignIn={setUser} />
+              <LazyPatient
+                user={{
+                  id: "adsfasdlfkjasdf",
+                  email: "apple@hotmail.com",
+                  role: "patient",
+                }}
+              />
             </Route>
             <Route path={"/"}>
               {!user && <Redirect to={"/auth"} />}

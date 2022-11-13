@@ -3,4 +3,9 @@ import ReactDOM from "react-dom";
 import { App } from "./App";
 import { CookiesProvider } from "react-cookie";
 
-ReactDOM.render(<App />, document.querySelector("#root"));
+ReactDOM.render(
+  <CookiesProvider>
+    <App />
+  </CookiesProvider>,
+  document.querySelector("#root")
+);

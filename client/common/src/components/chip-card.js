@@ -4,7 +4,9 @@ export const ChipCard = ({ displayChipList, parentFn }) => {
   const populateButtonData = (chip, index) => {
     return (
       <button
-        onClick={() => parentFn(chip.preferenceId)}
+        onClick={() =>
+          parentFn(chip.preferenceId ? chip.preferenceId : chip.restrictionId)
+        }
         aria-label={chip.value}
         key={index}
         type="button"
