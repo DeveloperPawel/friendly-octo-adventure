@@ -17,7 +17,7 @@ if (process.env.NODE_ENV === "development") {
   if (element) {
     ReactDOM.render(
       <CookiesProvider>
-        <App onSignIn={devSigninFn} />
+        <App />
       </CookiesProvider>,
       element
     );
