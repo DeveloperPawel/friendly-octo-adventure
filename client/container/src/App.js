@@ -10,23 +10,23 @@ const LazyAuth = lazy(() =>
   }))
 );
 
-// const LazyPatient = lazy(() =>
-//   import("./components/PatientApp").then((module) => ({
-//     default: module.PatientApp,
-//   }))
-// );
+const LazyPatient = lazy(() =>
+  import("./components/PatientApp").then((module) => ({
+    default: module.PatientApp,
+  }))
+);
 
-// const LazyProvider = lazy(() =>
-//   import("./components/ProviderApp").then((module) => ({
-//     default: module.ProviderApp,
-//   }))
-// );
+const LazyProvider = lazy(() =>
+  import("./components/ProviderApp").then((module) => ({
+    default: module.ProviderApp,
+  }))
+);
 
-// const LazyAdmin = lazy(() =>
-//   import("./components/AdminApp").then((module) => ({
-//     default: module.AdminApp,
-//   }))
-// );
+const LazyAdmin = lazy(() =>
+  import("./components/AdminApp").then((module) => ({
+    default: module.AdminApp,
+  }))
+);
 
 const history = createBrowserHistory();
 
@@ -39,18 +39,18 @@ export const App = () => {
     }
   }, [user]);
 
-  // const ComponentSwitch = (type) => {
-  //   switch (type) {
-  //     case "admin":
-  //       return <LazyAdmin user={user} />;
+  const ComponentSwitch = (type) => {
+    switch (type) {
+      case "admin":
+        return <LazyAdmin user={user} />;
 
-  //     case "provider":
-  //       return <LazyProvider user={user} />;
+      case "provider":
+        return <LazyProvider user={user} />;
 
-  //     default:
-  //       return <LazyPatient user={user} />;
-  //   }
-  // };
+      default:
+        return <LazyPatient user={user} />;
+    }
+  };
 
   return (
     <Router history={history}>
@@ -60,18 +60,11 @@ export const App = () => {
           <Switch>
             <Route path={"/auth"}>
               {user && <Redirect to={"/"} />}
-              {/* <LazyPatient
-                user={{
-                  id: "adsfasdlfkjasdf",
-                  email: "apple@hotmail.com",
-                  role: "patient",
-                }}
-              /> */}
               <LazyAuth signOut={signOut} />
             </Route>
             <Route path={"/"}>
               {!user && <Redirect to={"/auth"} />}
-              {/* {user && ComponentSwitch(user.type)} */}
+              {user && ComponentSwitch(user.type)}
               <div></div>
             </Route>
           </Switch>
