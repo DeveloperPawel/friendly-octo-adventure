@@ -13,8 +13,6 @@ const mount = (element, { onSignIn }) => {
   //   onSignIn = func;
   // }
 
-  consoel.log("mount : ", !!onSignIn);
-
   ReactDOM.render(<App onSignIn={onSignIn} />, element);
 };
 
