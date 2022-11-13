@@ -13,6 +13,7 @@
     "@emotion/styled": "^11.10.5",
     "@mimenu/client-common": "^1.0.8",
     "@mui/material": "^5.10.12",
+    "dotenv-webpack": "^8.0.1",
     "react": "^18.0.1",
     "react-dom": "^18.0.1",
     "react-router-dom": "^5.2.0"
