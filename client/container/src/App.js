@@ -40,6 +40,10 @@ export const App = () => {
     }
   }, [user]);
 
+  const setActiveuser = (user) => {
+    setUser(user);
+  };
+
   const ComponentSwitch = (type) => {
     switch (type) {
       case "admin":
@@ -61,11 +65,7 @@ export const App = () => {
           <Switch>
             <Route path={"/auth"}>
               {user && <Redirect to={"/"} />}
-              <LazyAuth
-                onSignIn={() => {
-                  console.log("hello!");
-                }}
-              />
+              <LazyAuth onSignIn={setActiveuser} />
             </Route>
             <Route path={"/"}>
               {!user && <Redirect to={"/auth"} />}
