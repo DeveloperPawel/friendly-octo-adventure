@@ -2,7 +2,6 @@ import React, { useState, useEffect, lazy, Suspense } from "react";
 import { Header } from "./components/Header";
 import { Router, Route, Switch, Redirect } from "react-router-dom";
 import { createBrowserHistory } from "history";
-import { useCookies } from "react-cookie";
 
 const LazyAuth = lazy(() =>
   import("./components/AuthApp").then((module) => ({
