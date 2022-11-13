@@ -6,7 +6,7 @@ export const AuthApp = ({ onSignIn }) => {
 
   useEffect(() => {
     console.log("auth component exists: ", !!onSignIn);
-    mount(ref.current, { onSignIn });
+    mount(ref.current);
   }, []);
 
   return <div ref={ref} />;

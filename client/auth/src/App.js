@@ -6,7 +6,7 @@ export const App = ({ onSignIn }) => {
   return (
     <div>
       <h1>Auth</h1>
-      <Form signup={onSignIn} login={onSignIn} type={"signup"} />
+      {/* <Form signup={onSignIn} login={onSignIn} type={"signup"} /> */}
     </div>
   );
 };

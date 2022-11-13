@@ -3,8 +3,8 @@ import ReactDOM from "react-dom";
 import { App } from "./App";
 import { CookiesProvider } from "react-cookie";
 
-const mount = (element, { onSignIn }) => {
-  ReactDOM.render(<App onSignIn={onSignIn} />, element);
+const mount = (element) => {
+  ReactDOM.render(<App />, element);
 };
 
 const devSigninFn = (user) => {
