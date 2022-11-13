@@ -3,9 +3,10 @@ import React, { useEffect, useRef } from "react";
 
 export const AuthApp = ({ onSignIn }) => {
   const ref = useRef(null);
-  console.log("auth component exists: ", !!onSignIn);
+
   useEffect(() => {
-    mount(ref.current);
+    console.log("auth component exists: ", !!onSignIn);
+    mount(ref.current, { onSignIn });
   }, []);
 
   return <div ref={ref} />;

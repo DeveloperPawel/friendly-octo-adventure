@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import { App } from "./App";
 import { CookiesProvider } from "react-cookie";
 
-const mount = (element) => {
+const mount = (element, { onSignIn }) => {
   // let func;
   // if (!onSignIn) {
   //   console.log("onSignIn is null");
@@ -13,7 +13,7 @@ const mount = (element) => {
   //   onSignIn = func;
   // }
 
-  ReactDOM.render(<App />, element);
+  ReactDOM.render(<App onSignIn={onSignIn} />, element);
 };
 
 const devSigninFn = (user) => {
@@ -26,7 +26,7 @@ if (process.env.NODE_ENV === "development") {
   if (element) {
     ReactDOM.render(
       <CookiesProvider>
-        <App />
+        <App onSignIn={devSigninFn} />
       </CookiesProvider>,
       element
     );
