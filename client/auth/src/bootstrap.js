@@ -15,7 +15,7 @@ const mount = (element, { onSignIn }) => {
 
   consoel.log("mount : ", !!onSignIn);
 
-  ReactDOM.render(<App onSignIn={onSignIn || (() => {})} />, element);
+  ReactDOM.render(<App onSignIn={onSignIn} />, element);
 };
 
 const devSigninFn = (user) => {
