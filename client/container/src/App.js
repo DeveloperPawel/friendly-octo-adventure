@@ -64,7 +64,7 @@ export const App = () => {
           <Switch>
             <Route path={"/auth"}>
               {user && <Redirect to={"/"} />}
-              <LazyAuth />
+              <LazyAuth onSignIn={setUser} />
             </Route>
             <Route path={"/"}>
               {!user && <Redirect to={"/auth"} />}
