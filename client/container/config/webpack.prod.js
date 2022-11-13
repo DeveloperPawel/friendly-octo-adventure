@@ -15,7 +15,10 @@ const prodConfig = {
     new ModuleFederationPlugin({
       name: "container",
       remotes: {
+        patient: `patient@${domain}/patient/latest/remoteEntry.js`,
+        admin: `admin@${domain}/admin/latest/remoteEntry.js`,
         auth: `auth@${domain}/auth/latest/remoteEntry.js`,
+        provider: `provider@${domain}/provider/latest/remoteEntry.js`,
       },
       shared: packageJson.dependencies,
     }),
