@@ -3,6 +3,7 @@ import { Header } from "./components/Header";
 import { Router, Route, Switch, Redirect } from "react-router-dom";
 import { createBrowserHistory } from "history";
 import { useCookies } from "react-cookie";
+import { AuthApp } from "./components/AuthApp";
 
 const LazyAuth = lazy(() =>
   import("./components/AuthApp").then((module) => ({
@@ -60,7 +61,8 @@ export const App = () => {
           <Switch>
             <Route path={"/auth"}>
               {user && <Redirect to={"/"} />}
-              <LazyAuth onSignIn={setUser} />
+              {/* <LazyAuth onSignIn={setUser} /> */}
+              <AuthApp onSignIn={setUser} />
             </Route>
             <Route path={"/"}>
               {!user && <Redirect to={"/auth"} />}
