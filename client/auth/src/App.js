@@ -5,7 +5,8 @@ export const App = ({ onSignIn }) => {
   console.log("onSignOnExists: ", !!onSignIn);
   return (
     <div>
-      <Form signup={onSignIn} login={() => {}} type={"signup"} />
+      <h1>Auth</h1>
+      {/* <Form signup={onSignIn} login={() => {}} type={"signup"} /> */}
     </div>
   );
 };
