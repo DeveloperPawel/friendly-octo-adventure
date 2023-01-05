@@ -1,5 +1,4 @@
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-const dotenv = require("dotenv-webpack");
 
 module.exports = {
   module: {
@@ -21,6 +20,5 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: "./public/index.html",
     }),
-    new dotenv(),
   ],
 };
