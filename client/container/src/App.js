@@ -58,8 +58,8 @@ export const App = () => {
         <Header user={user} signOut={() => setUser(null)} />
         <Suspense fallback={<p>loading...</p>}>
           {/* <LazyAuth /> */}
-          {/* <LazyPatient />
-          <LazyAdmin />
+          <LazyPatient />
+          {/* <LazyAdmin />
           <LazyProvider /> */}
           {/* <Switch>
             <Route path={"/auth"}>
