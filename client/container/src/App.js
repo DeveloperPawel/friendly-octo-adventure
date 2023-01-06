@@ -60,8 +60,8 @@ export const App = () => {
           <LazyAuth />
 
           <LazyPatient />
-          {/* <LazyAdmin />
-          <LazyProvider /> */}
+          <LazyAdmin />
+          <LazyProvider />
           {/* <Switch>
             <Route path={"/auth"}>
               {user && <Redirect to={"/"} />}
