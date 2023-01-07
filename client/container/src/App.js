@@ -66,7 +66,7 @@ export const App = () => {
             {/* {!user && <Redirect to={"/auth"} />}
               {user && ComponentSwitch(user.type)}
               <div></div> */}
-            <WelcomePage />
+            <LazyAuth />
           </Route>
         </Switch>
       </Suspense>

@@ -1,11 +1,8 @@
 import React from "react";
-import { Form } from "./components/Form.js";
+import { Login } from "./pages/Login";
+import { SignUp } from "./pages/SignUp";
+import { ForgotPassword } from "./pages/ForgotPassword";
 
 export const App = () => {
-  return (
-    <div>
-      <h1>Auth</h1>
-      {/* <Form signup={onSignIn} login={onSignIn} type={"signup"} /> */}
-    </div>
-  );
+  return <SignUp />;
 };
