@@ -15,7 +15,7 @@
 }
 .signUp {
   position: absolute;
-  width: 74.69%;
+  width: 300px;
   top: 0;
   left: 0;
   font-size: var(--desktop-display-medium-bold-size);
@@ -23,7 +23,7 @@
   line-height: 56px;
 }
 .alreadyHaveAn {
-  width: 73.6%;
+  width: 300px;
   top: 89.11%;
   letter-spacing: 0.75px;
   line-height: 32px;
@@ -85,6 +85,7 @@
   font-weight: 600;
   font-family: var(--font-inter);
   color: var(--color-gray-600);
+  width: 400px;
 }
 .div,
 .groupItem,
@@ -136,4 +137,86 @@
   font-size: var(--desktop-display-small-bold-size);
   color: var(--color-indigo-100);
   font-family: var(--desktop-display-small-bold);
+}
+
+@media screen and (max-width: 428px) {
+  .mimenuSignUp1 {
+    position: relative;
+    background: linear-gradient(180deg, #4545ee, #fff);
+    width: 100%;
+    height: 844px;
+    overflow: hidden;
+    text-align: left;
+    font-size: var(--font-size-6xl);
+    color: var(--color-white);
+    font-family: var(--font-inter);
+  }
+
+  .mimenu {
+    visibility: hidden;
+  }
+
+  .signUpParent {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 844px;
+  }
+
+  .signUp {
+    display: none;
+  }
+
+  .whatRoomAre {
+    top: 163px;
+    left: 80px;
+    font-size: var(--font-size-6xl);
+    text-shadow: 0 4px 8px rgba(0, 0, 0, 0.25);
+    color: var(--color-white);
+  }
+
+  .rectangleGroup {
+    top: 256px;
+    left: 144px;
+  }
+
+  .dotsHorizontalIcon {
+    visibility: hidden;
+  }
+
+  .rectangleParent {
+    top: 584px;
+    left: 32px;
+    width: 366px;
+    height: 44px;
+    font-size: var(--font-size-3xl);
+  }
+
+  .groupChild {
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-radius: var(--br-2xs);
+    background-color: var(--color-pink-100);
+    width: 366px;
+    height: 44px;
+  }
+
+  .next {
+    position: absolute;
+    top: 13px;
+    left: 162px;
+    font-weight: 600;
+  }
+
+  .alreadyHaveAn {
+    top: 640px;
+    left: 31px;
+  }
+
+  .logIn {
+    top: 76.59%;
+    left: 341px;
+    color: var(--color-gray-600);
+  }
 }

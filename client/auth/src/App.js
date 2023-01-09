@@ -4,5 +4,5 @@ import { SignUp } from "./pages/SignUp";
 import { ForgotPassword } from "./pages/ForgotPassword";
 
 export const App = () => {
-  return <SignUp />;
+  return <ForgotPassword />;
 };
