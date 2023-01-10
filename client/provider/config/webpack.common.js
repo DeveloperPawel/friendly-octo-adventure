@@ -14,6 +14,31 @@ module.exports = {
           },
         },
       },
+      {
+        test: /\.css$/,
+        use: [
+          "style-loader",
+          {
+            loader: "css-loader",
+            options: {
+              importLoaders: 1,
+              modules: true,
+            },
+          },
+        ],
+        include: /\.module\.css$/,
+      },
+      {
+        test: /\.(png|jpg|gif|svg)$/,
+        use: [
+          {
+            loader: "file-loader",
+            options: {
+              name: "public/images/[name].[ext]",
+            },
+          },
+        ],
+      },
     ],
   },
   plugins: [
