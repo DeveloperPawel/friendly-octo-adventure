@@ -8,18 +8,22 @@ export const ForgotPassword = () => {
         <div className={styles.groupChild} />
         <b className={styles.mimenu}>MiMenu</b>
       </div>
-      <b className={styles.forgotPassword}>Forgot Password</b>
-      <div className={styles.alreadyHaveAn}>Already have an account?</div>
-      <div className={styles.login}>Login</div>
-      <div className={styles.input}>
-        <div className={styles.emailAddressWrapper}>
-          <div className={styles.emailAddress}>Email Address</div>
+      <diV className={styles.container}>
+        <b className={styles.forgotPassword}>Forgot Password</b>
+        <div className={styles.alreadyHaveAn}>Already have an account?</div>
+        <div className={styles.login}>Login</div>
+        <div className={styles.input}>
+          <div className={styles.email}>Email</div>
+          <div className={styles.inputItem} />
+          <div className={styles.emailAddressWrapper}>
+            <div className={styles.emailAddress}>Email Address</div>
+          </div>
         </div>
-      </div>
-      <div className={styles.rectangleGroup}>
-        <div className={styles.groupItem} />
-        <div className={styles.submit}>Submit</div>
-      </div>
+        <div className={styles.rectangleGroup}>
+          <div className={styles.groupItem} />
+          <div className={styles.submit}>Submit</div>
+        </div>
+      </diV>
     </div>
   );
 };
