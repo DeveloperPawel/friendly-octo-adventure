@@ -1,0 +1,83 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
+
+body {
+  margin: 0;
+  line-height: normal;
+}
+:root {
+  /* fonts */
+  --font-inter: Inter;
+  --desktop-display-small-bold: Poppins;
+
+  /* font sizes */
+  --font-size-sm: 8px;
+  --font-size-base: 12px;
+  --desktop-link-x-small-size: 13px;
+  --font-size-xl: 14px;
+  --desktop-text-small-size: 15px;
+  --font-size-3xl: 16px;
+  --desktop-text-medium-size: 18px;
+  --desktop-link-large-size: 20px;
+  --font-size-6xl: 24px;
+  --desktop-display-small-bold-size: 36px;
+  --desktop-display-medium-bold-size: 48px;
+  --font-size-9xl: 54px;
+  --desktop-display-large-bold-size: 56px;
+
+  /* Colors */
+  --grayscale-off-white: #fcfcfc;
+  --color-gray-200: #f5f5fd;
+  --alias-grayscale-input: #eff0f6;
+  --color-gray-400: #e3e3e8;
+  --grayscale-line: #d9dbe9;
+  --color-gray-600: #7777bb;
+  --alias-grayscale-label: #6e7191;
+  --grayscale-body: #4e4b66;
+  --color-gray-900: rgba(255, 255, 255, 0);
+  --color-beige: #cfc;
+  --color-violet: #8686f9;
+  --color-indigo-100: #444488;
+  --color-indigo-200: #2828a4;
+  --color-indigo-300: rgba(68, 68, 136, 0.5);
+  --color-indigo-400: rgba(68, 68, 136, 0.6);
+  --color-indigo-500: rgba(68, 68, 136, 0.4);
+  --color-red: #c60000;
+  --color-pink-100: #adadeb;
+  --color-pink-200: #fe8b8b;
+  --color-blue: #4545ee;
+  --color-turquoise: #60eca0;
+  --color-tan: #edc68c;
+  --color-white: #fff;
+  --color-brown-100: #eb7676;
+  --color-brown-200: #cc6666;
+  --color-green-100: #51e360;
+  --color-green-200: #66cc76;
+
+  /* Gaps */
+  --gap-2xs: 5px;
+  --gap-xs: 8px;
+  --gap-sm: 10px;
+  --gap-md: 12px;
+  --gap-lg: 16px;
+  --gap-xl: 40px;
+
+  /* Paddings */
+  --padding-3xs: 5px;
+  --padding-2xs: 6px;
+  --padding-xs: 8px;
+  --padding-sm: 16px;
+  --padding-md: 24px;
+  --padding-lg: 27px;
+  --padding-xl: 28px;
+  --padding-2xl: 32px;
+
+  /* border radiuses */
+  --br-2xs: 4px;
+  --br-xs: 8px;
+  --br-sm: 10px;
+  --br-md: 12px;
+  --br-lg: 16px;
+  --br-xl: 20px;
+  --br-2xl: 40px;
+}

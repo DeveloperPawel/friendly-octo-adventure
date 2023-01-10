@@ -1,11 +1,11 @@
 import React from "react";
 import { Dashboard } from "./components/Dashboard";
+import { ProviderHome } from "./pages/ProviderHome";
 
 export const App = () => {
   return (
     <div>
-      <h1>Provider.</h1>
-      {/* <Dashboard /> */}
+      <ProviderHome />
     </div>
   );
 };
