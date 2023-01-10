@@ -1,0 +1,265 @@
+@import "../global.css";
+
+.loginContainer {
+  position: absolute;
+  width: 50%;
+  height: 1024px;
+  left: 700px;
+}
+.groupChild {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: var(--color-blue);
+  width: 717px;
+  height: 1024px;
+  mix-blend-mode: normal;
+}
+.mimenu {
+  position: absolute;
+  top: 466px;
+  left: 241px;
+  letter-spacing: 1px;
+  line-height: 72px;
+}
+.rectangleParent {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 717px;
+  height: 1024px;
+  font-size: var(--desktop-display-large-bold-size);
+  color: var(--color-gray-200);
+}
+.createAnAccount,
+.dontAlreadyHave,
+.forgotPassword,
+.logIn {
+  position: absolute;
+  left: 25%;
+  display: flex;
+  align-items: center;
+}
+.logIn {
+  height: 3.52%;
+  width: 30%;
+  top: 27.15%;
+  font-size: var(--desktop-display-medium-bold-size);
+  letter-spacing: 1px;
+  line-height: 56px;
+}
+.createAnAccount,
+.dontAlreadyHave,
+.forgotPassword {
+  letter-spacing: 0.75px;
+  line-height: 32px;
+}
+.dontAlreadyHave {
+  height: 3.52%;
+  width: 30%;
+  top: 66.8%;
+  color: var(--grayscale-body);
+}
+.createAnAccount,
+.forgotPassword {
+  height: 2.54%;
+  width: 30%;
+  top: 72%;
+  font-weight: 600;
+}
+.forgotPassword {
+  width: 30%;
+  top: 51.46%;
+  left: 62%;
+}
+.emailAddress {
+  position: relative;
+  letter-spacing: 0.75px;
+  line-height: 24px;
+}
+.emailAddressWrapper {
+  position: absolute;
+  top: calc(50% - 18px);
+  left: 24px;
+  border-radius: var(--br-lg);
+  display: flex;
+  flex-direction: column;
+  padding: var(--padding-2xs) 0;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+.input {
+  top: 352px;
+  left: 25%;
+  border-radius: var(--br-lg);
+  background-color: var(--alias-grayscale-input);
+  height: 64px;
+  font-size: var(--desktop-text-small-size);
+  color: var(--alias-grayscale-label);
+}
+.groupItem,
+.input,
+.input1 {
+  position: absolute;
+  width: 428px;
+}
+.input1 {
+  top: 438px;
+  left: 25%;
+  border-radius: var(--br-lg);
+  background-color: var(--alias-grayscale-input);
+  height: 64px;
+  font-size: var(--desktop-text-small-size);
+  color: var(--alias-grayscale-label);
+}
+.groupItem {
+  top: 0;
+  left: 0;
+  border-radius: var(--br-sm);
+  background: linear-gradient(88.96deg, #11b, #a2a2f6);
+  box-shadow: 0 4px 8px rgba(69, 69, 238, 0.4);
+  height: 72px;
+}
+.login {
+  position: absolute;
+  top: 25.64px;
+  left: 190px;
+  font-weight: 600;
+  display: inline-block;
+  width: 49px;
+  height: 21.7px;
+}
+.rectangleGroup {
+  position: absolute;
+  top: 582px;
+  left: 25%;
+  width: 428px;
+  height: 72px;
+  color: var(--color-white);
+  font-family: var(--font-inter);
+}
+.mimenuLogin {
+  position: relative;
+  background-color: var(--color-gray-200);
+  width: 100%;
+  height: 1024px;
+  overflow: hidden;
+  text-align: left;
+  font-size: var(--desktop-text-medium-size);
+  color: var(--color-indigo-100);
+  font-family: var(--desktop-display-small-bold);
+}
+.email {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  letter-spacing: 0.75px;
+  line-height: 24px;
+  font-family: var(--desktop-display-small-bold);
+}
+
+@media screen and (max-width: 428px) {
+  .mimenuLogin {
+    position: relative;
+    background: linear-gradient(180deg, #4545ee, #fff);
+    width: 428px;
+    height: 844px;
+    overflow: hidden;
+    text-align: left;
+    font-size: var(--font-size-base);
+    color: var(--color-indigo-100);
+    font-family: var(--font-inter);
+  }
+  .logIn {
+    position: absolute;
+    top: 163px;
+    left: 170px;
+    font-size: var(--font-size-6xl);
+    font-weight: 600;
+    color: var(--color-white);
+    text-shadow: 0 4px 8px rgba(0, 0, 0, 0.25);
+  }
+  .rectangleParent {
+    display: none;
+  }
+  .input,
+  .input1 {
+    position: absolute;
+    top: 390px;
+    left: 32px;
+    width: 366px;
+    height: 64px;
+    background-color: transparent;
+  }
+  .input {
+    top: 454px;
+  }
+  .inputItem {
+    position: relative;
+    width: 366px;
+    height: 44px;
+  }
+  .inputItem {
+    top: 20px;
+    left: 0;
+    border-radius: var(--br-xs);
+    background-color: var(--color-white);
+    box-shadow: 0 4px 8px rgba(40, 40, 164, 0.4);
+    border: 1px solid var(--color-green-200);
+    box-sizing: border-box;
+  }
+  .email {
+    position: relative;
+    display: visible;
+    top: 0;
+  }
+  .loginContainer {
+    width: 100%;
+    left: 0;
+  }
+  .emailAddress {
+    position: relative;
+    left: 17px;
+    top: 0;
+    font-size: var(--font-size-xl);
+  }
+  .emailAddressWrapper {
+    top: 24px;
+    left: 17px;
+  }
+  .checkIcon {
+    position: absolute;
+    top: 30px;
+    left: 290px;
+    width: 24px;
+    height: 24px;
+    overflow: hidden;
+  }
+  .groupItem,
+  .rectangleGroup {
+    height: 44px;
+    width: 366px;
+  }
+  .rectangleGroup {
+    left: 32px;
+  }
+  .login {
+    position: relative;
+    top: 17px;
+    left: 140px;
+  }
+  .createAnAccount,
+  .dontAlreadyHave {
+    left: 7%;
+    top: 61%;
+    width: 60%;
+  }
+  .createAnAccount {
+    top: 64%;
+  }
+  .forgotPassword {
+    left: 67.5%;
+    top: 52.5%;
+  }
+}

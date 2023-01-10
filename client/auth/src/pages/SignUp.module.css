@@ -1,0 +1,222 @@
+@import "../global.css";
+
+.mimenu {
+  position: absolute;
+  top: 48px;
+  left: 158px;
+  letter-spacing: 1px;
+  line-height: 48px;
+}
+.alreadyHaveAn,
+.signUp {
+  height: 6.03%;
+  display: flex;
+  align-items: center;
+}
+.signUp {
+  position: absolute;
+  width: 300px;
+  top: 0;
+  left: 0;
+  font-size: var(--desktop-display-medium-bold-size);
+  letter-spacing: 1px;
+  line-height: 56px;
+}
+.alreadyHaveAn {
+  width: 300px;
+  top: 89.11%;
+  letter-spacing: 0.75px;
+  line-height: 32px;
+  color: var(--color-gray-600);
+}
+.alreadyHaveAn,
+.groupChild,
+.logIn {
+  position: absolute;
+  left: 0;
+}
+.logIn {
+  height: 4.36%;
+  width: 50.47%;
+  top: 95.64%;
+  letter-spacing: 0.75px;
+  line-height: 32px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+}
+.groupChild {
+  top: 0;
+  border-radius: var(--br-sm);
+  background: linear-gradient(88.96deg, #11b, #a2a2f6);
+  box-shadow: 0 4px 8px rgba(69, 69, 238, 0.4);
+  width: 428px;
+  height: 72px;
+}
+.next {
+  position: absolute;
+  top: 25px;
+  left: 190px;
+  font-weight: 600;
+  display: inline-block;
+  width: 49px;
+  height: 21.7px;
+}
+.rectangleParent {
+  position: absolute;
+  top: 431px;
+  left: 0;
+  width: 428px;
+  height: 72px;
+  color: var(--color-white);
+  font-family: var(--font-inter);
+}
+.dotsHorizontalIcon {
+  position: absolute;
+  top: 312px;
+  left: 150px;
+  width: 128px;
+  height: 128px;
+}
+.whatRoomAre {
+  top: 84px;
+  left: 20px;
+  font-size: var(--desktop-display-small-bold-size);
+  font-weight: 600;
+  font-family: var(--font-inter);
+  color: var(--color-gray-600);
+  width: 400px;
+}
+.div,
+.groupItem,
+.whatRoomAre {
+  position: absolute;
+}
+.groupItem {
+  top: 0;
+  left: 0;
+  border-radius: var(--br-xs);
+  background-color: var(--color-white);
+  border: 1px solid var(--color-violet);
+  box-sizing: border-box;
+  width: 127px;
+  height: 104px;
+}
+.div {
+  top: 20px;
+  left: 29px;
+  font-weight: 600;
+}
+.rectangleGroup {
+  position: absolute;
+  top: 192px;
+  left: 151px;
+  width: 127px;
+  height: 104px;
+  font-size: var(--font-size-9xl);
+  color: var(--color-gray-400);
+  font-family: var(--font-inter);
+}
+.signUpParent {
+  position: absolute;
+  height: 58.3%;
+  width: 29.85%;
+  top: 20.8%;
+  right: 35.08%;
+  bottom: 20.9%;
+  left: 35.08%;
+  font-size: var(--desktop-text-medium-size);
+}
+.mimenuSignUp1 {
+  position: relative;
+  background-color: var(--color-gray-200);
+  width: 100%;
+  height: 1024px;
+  overflow: hidden;
+  text-align: left;
+  font-size: var(--desktop-display-small-bold-size);
+  color: var(--color-indigo-100);
+  font-family: var(--desktop-display-small-bold);
+}
+
+@media screen and (max-width: 428px) {
+  .mimenuSignUp1 {
+    position: relative;
+    background: linear-gradient(180deg, #4545ee, #fff);
+    width: 100%;
+    height: 844px;
+    overflow: hidden;
+    text-align: left;
+    font-size: var(--font-size-6xl);
+    color: var(--color-white);
+    font-family: var(--font-inter);
+  }
+
+  .mimenu {
+    visibility: hidden;
+  }
+
+  .signUpParent {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 844px;
+  }
+
+  .signUp {
+    display: none;
+  }
+
+  .whatRoomAre {
+    top: 163px;
+    left: 80px;
+    font-size: var(--font-size-6xl);
+    text-shadow: 0 4px 8px rgba(0, 0, 0, 0.25);
+    color: var(--color-white);
+  }
+
+  .rectangleGroup {
+    top: 256px;
+    left: 144px;
+  }
+
+  .dotsHorizontalIcon {
+    visibility: hidden;
+  }
+
+  .rectangleParent {
+    top: 584px;
+    left: 32px;
+    width: 366px;
+    height: 44px;
+    font-size: var(--font-size-3xl);
+  }
+
+  .groupChild {
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-radius: var(--br-2xs);
+    background-color: var(--color-pink-100);
+    width: 366px;
+    height: 44px;
+  }
+
+  .next {
+    position: absolute;
+    top: 13px;
+    left: 162px;
+    font-weight: 600;
+  }
+
+  .alreadyHaveAn {
+    top: 640px;
+    left: 31px;
+  }
+
+  .logIn {
+    top: 76.59%;
+    left: 341px;
+    color: var(--color-gray-600);
+  }
+}
