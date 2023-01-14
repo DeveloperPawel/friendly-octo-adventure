@@ -1,0 +1,309 @@
+@import "../global.css";
+
+.mimenu {
+  position: relative;
+  letter-spacing: 1px;
+  line-height: 56px;
+}
+.mimenuWrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+.groupChild {
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: var(--br-xs);
+  background-color: var(--grayscale-off-white);
+  border: 1px solid var(--color-blue);
+  box-sizing: border-box;
+  width: 120px;
+  height: 48px;
+}
+.logout {
+  position: absolute;
+  top: 13px;
+  left: 37px;
+  letter-spacing: 0.25px;
+  line-height: 22px;
+  font-weight: 600;
+}
+.groupItem,
+.rectangleParent {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 120px;
+  height: 48px;
+}
+.groupItem {
+  left: 136px;
+  width: 48px;
+}
+.groupParent {
+  position: relative;
+  width: 184px;
+  height: 48px;
+  flex-shrink: 0;
+}
+.frameParent,
+.groupWrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.groupWrapper {
+  width: 421px;
+  flex-shrink: 0;
+  justify-content: flex-end;
+  text-align: right;
+  font-size: var(--desktop-link-x-small-size);
+  color: var(--color-blue);
+}
+.frameParent {
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: var(--br-md);
+  background-color: var(--grayscale-off-white);
+  width: 1440px;
+  padding: var(--padding-lg) var(--padding-2xl) var(--padding-xl);
+  box-sizing: border-box;
+  justify-content: flex-start;
+  gap: var(--gap-xl);
+}
+.frameChild {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+}
+.provider {
+  flex: 1;
+  position: relative;
+  letter-spacing: 0.25px;
+  line-height: 22px;
+  font-weight: 500;
+}
+.groupContainer {
+  align-self: stretch;
+  display: flex;
+  flex-direction: row;
+  padding: 0 var(--padding-sm);
+  align-items: center;
+  justify-content: flex-start;
+  gap: var(--gap-sm);
+  font-size: var(--desktop-link-x-small-size);
+  color: var(--alias-grayscale-label);
+}
+.primaryLabel,
+.secondaryLabel,
+.div,
+.frameItem {
+  position: relative;
+}
+.frameItem {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+}
+.primaryLabel,
+.secondaryLabel,
+.div {
+  flex: 1;
+  letter-spacing: 0.75px;
+  line-height: 24px;
+}
+.frameDiv {
+  align-self: stretch;
+  border-radius: var(--br-lg);
+  background-color: var(--color-white);
+  display: flex;
+  flex-direction: row;
+  padding: 0 var(--padding-sm);
+  align-items: center;
+  justify-content: flex-start;
+  gap: var(--gap-sm);
+}
+.frameInner {
+  align-self: stretch;
+  position: relative;
+  border-top: 1px solid var(--grayscale-line);
+  box-sizing: border-box;
+  height: 1px;
+  flex-shrink: 0;
+}
+.groupParent1 {
+  align-self: stretch;
+  border-radius: var(--br-lg);
+  background-color: var(--color-blue);
+  flex-direction: row;
+  padding: 0 var(--padding-sm);
+  align-items: center;
+  color: var(--color-gray-200);
+}
+.frameContainer,
+.groupParent1,
+.groupParent6,
+.groupParent7 {
+  display: flex;
+  justify-content: flex-start;
+  gap: var(--gap-sm);
+}
+.frameContainer {
+  width: 514px;
+  flex-shrink: 0;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.groupParent6,
+.groupParent7 {
+  align-self: stretch;
+  border-radius: var(--br-lg);
+  background-color: var(--color-blue);
+  flex-direction: row;
+  padding: 0 var(--padding-sm);
+  align-items: center;
+}
+.groupParent7 {
+  background-color: var(--color-white);
+  color: var(--color-indigo-100);
+}
+.frameGroup,
+.frameParent1 {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+.frameParent1 {
+  width: 514px;
+  flex-shrink: 0;
+  flex-direction: column;
+  gap: var(--gap-sm);
+  color: var(--color-gray-200);
+}
+.frameGroup {
+  top: 133px;
+  left: 313px;
+  flex-direction: row;
+  padding: 0 var(--padding-md);
+  gap: var(--gap-md);
+  font-size: var(--desktop-text-small-size);
+}
+.frameGroup,
+.home,
+.homeIcon {
+  position: absolute;
+}
+.home {
+  top: 6px;
+  left: 49px;
+  letter-spacing: 0.75px;
+  line-height: 32px;
+  font-weight: 600;
+}
+.homeIcon {
+  top: 0;
+  left: 0;
+  width: 44px;
+  height: 44px;
+  overflow: hidden;
+}
+.homeParent,
+.patientsParent {
+  position: relative;
+  width: 112px;
+  height: 44px;
+  flex-shrink: 0;
+}
+.patientsParent {
+  width: 138px;
+  color: var(--color-blue);
+}
+.dayParent,
+.settingsParent {
+  position: relative;
+  width: 91px;
+  height: 44px;
+  flex-shrink: 0;
+}
+.settingsParent {
+  width: 138px;
+}
+.groupParent11 {
+  position: absolute;
+  top: 125px;
+  left: 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: var(--gap-xl);
+  font-size: var(--desktop-link-large-size);
+  color: var(--color-violet);
+}
+.mimenuPatients {
+  position: relative;
+  background: var(--color-gray-200);
+  width: 100%;
+  height: 1024px;
+  overflow: hidden;
+  text-align: left;
+  font-size: var(--desktop-display-medium-bold-size);
+  color: var(--color-indigo-100);
+  font-family: var(--desktop-display-small-bold);
+}
+
+@media screen and (max-width: 428px) {
+  .mimenuPatients {
+    background: linear-gradient(180deg, #4545ee, #fff);
+    height: 844px;
+    width: 430px;
+    text-align: center;
+  }
+  .frameParent,
+  .mimenu,
+  .secondaryLabel,
+  .frameInner,
+  .groupContainer {
+    display: none;
+  }
+  .frameParent1,
+  .frameContainer {
+    width: 366px;
+    background-color: transparent;
+    gap: 16px;
+    padding-top: 16px;
+  }
+  .frameDiv,
+  .groupParent1 {
+    align-self: center;
+    border-radius: var(--br-xs);
+    background-color: var(--color-gray-200);
+    box-shadow: 0 8px 16px rgba(40, 40, 164, 0.4);
+    width: 294px;
+    height: 44px;
+  }
+  .groupParent1 {
+    background-color: var(--color-blue);
+  }
+  .frameGroup {
+    top: 64px;
+    left: 0;
+    flex-direction: column;
+    gap: var(--gap-32);
+  }
+  .frameItem {
+    position: absolute;
+    left: 130px;
+  }
+  .outerContainerFrame {
+    background-color: var(--color-violet);
+    border-radius: var(--br-xl);
+    height: 320px;
+    width: 366px;
+  }
+}

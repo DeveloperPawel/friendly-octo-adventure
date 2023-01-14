@@ -1,0 +1,266 @@
+@import "../global.css";
+
+.mimenu {
+  position: relative;
+  letter-spacing: 1px;
+  line-height: 56px;
+}
+.mimenuWrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+.groupChild {
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: var(--br-xs);
+  background-color: var(--grayscale-off-white);
+  border: 1px solid var(--color-blue);
+  box-sizing: border-box;
+  width: 120px;
+  height: 48px;
+}
+.logout {
+  position: absolute;
+  top: 13px;
+  left: 37px;
+  letter-spacing: 0.25px;
+  line-height: 22px;
+  font-weight: 600;
+}
+.groupItem,
+.rectangleParent {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 120px;
+  height: 48px;
+}
+.groupItem {
+  left: 136px;
+  width: 48px;
+}
+.groupParent {
+  position: relative;
+  width: 184px;
+  height: 48px;
+  flex-shrink: 0;
+}
+.groupWrapper {
+  width: 421px;
+  flex-shrink: 0;
+  flex-direction: row;
+  justify-content: flex-end;
+  text-align: right;
+  font-size: var(--desktop-link-x-small-size);
+  color: var(--color-blue);
+}
+.frameParent,
+.groupWrapper,
+.restriction {
+  display: flex;
+  align-items: center;
+}
+.frameParent {
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: var(--br-md);
+  background-color: var(--grayscale-off-white);
+  width: 1440px;
+  flex-direction: row;
+  padding: var(--padding-lg) var(--padding-2xl) var(--padding-xl);
+  box-sizing: border-box;
+  justify-content: flex-start;
+  gap: var(--gap-xl);
+  font-size: var(--desktop-display-medium-bold-size);
+}
+.restriction {
+  position: relative;
+  font-weight: 500;
+  width: 326px;
+  height: 25px;
+  flex-shrink: 0;
+}
+.groupInner,
+.rectangleDiv {
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: var(--br-xs);
+  background-color: var(--color-gray-200);
+  border: 1px solid var(--color-violet);
+  box-sizing: border-box;
+  width: 254px;
+  height: 64px;
+}
+.rectangleDiv {
+  background-color: var(--color-beige);
+  width: 76px;
+  height: 44px;
+}
+.regular {
+  position: absolute;
+  top: 13px;
+  left: 8px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  width: 73px;
+}
+.rectangleContainer {
+  position: absolute;
+  top: 10px;
+  left: 15px;
+  width: 81px;
+  height: 44px;
+}
+.rectangleGroup {
+  flex: 1;
+  position: relative;
+  height: 64px;
+}
+.frameChild {
+  position: relative;
+  width: 80px;
+  height: 80px;
+  flex-shrink: 0;
+}
+.groupContainer {
+  align-self: stretch;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: var(--gap-xs);
+  font-size: var(--font-size-3xl);
+  color: var(--color-gray-200);
+}
+.groupChild1,
+.groupChild2 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: var(--br-xl);
+  background-color: var(--color-beige);
+  width: 326px;
+  height: 72px;
+}
+.groupChild2 {
+  background-color: var(--color-gray-200);
+  border: 1px solid var(--color-violet);
+  box-sizing: border-box;
+  width: 75px;
+  height: 44px;
+}
+.regular1 {
+  position: absolute;
+  top: 15px;
+  left: 8px;
+  font-weight: 500;
+}
+.groupIcon,
+.rectangleParent1 {
+  position: absolute;
+  top: 14px;
+  left: 54px;
+  width: 16px;
+  height: 16px;
+}
+.rectangleParent1 {
+  left: 16px;
+  width: 75px;
+  height: 44px;
+}
+.groupDiv {
+  position: relative;
+  width: 326px;
+  height: 72px;
+  flex-shrink: 0;
+  font-size: var(--font-size-base);
+}
+.restrictionParent {
+  width: 326px;
+  gap: var(--gap-lg);
+}
+.frameWrapper,
+.mimenuSettingsInner,
+.restrictionParent {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+.mimenuSettingsInner {
+  position: absolute;
+  top: 133px;
+  left: 533px;
+  padding: 0 var(--padding-md);
+  align-items: center;
+  font-family: var(--font-inter);
+}
+.home,
+.homeIcon {
+  position: absolute;
+}
+.home {
+  top: 6px;
+  left: 49px;
+  letter-spacing: 0.75px;
+  line-height: 32px;
+  font-weight: 600;
+}
+.homeIcon {
+  top: 0;
+  left: 0;
+  width: 44px;
+  height: 44px;
+  overflow: hidden;
+}
+.dayParent,
+.homeParent,
+.patientsParent,
+.settingsParent {
+  position: relative;
+  width: 112px;
+  height: 44px;
+  flex-shrink: 0;
+}
+.dayParent,
+.patientsParent,
+.settingsParent {
+  width: 138px;
+}
+.dayParent,
+.settingsParent {
+  width: 91px;
+}
+.settingsParent {
+  width: 138px;
+  color: var(--color-blue);
+}
+.frameDiv {
+  position: absolute;
+  top: 125px;
+  left: 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: var(--gap-xl);
+  color: var(--color-violet);
+}
+.mimenuSettings {
+  position: relative;
+  background-color: var(--color-gray-200);
+  width: 100%;
+  height: 1024px;
+  overflow: hidden;
+  text-align: left;
+  font-size: var(--desktop-link-large-size);
+  color: var(--color-indigo-100);
+  font-family: var(--desktop-display-small-bold);
+}
