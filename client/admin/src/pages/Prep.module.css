@@ -81,7 +81,7 @@
 }
 .groupInner {
   border-radius: var(--br-lg);
-  background-color: var(--color-blue);
+  background-color: var(--color-beige);
   border: 1px solid var(--color-violet);
   width: 105px;
   height: 44px;
@@ -105,7 +105,7 @@
   top: 0;
   left: 0;
   border-radius: var(--br-lg);
-  background-color: var(--color-beige);
+  background-color: var(--color-blue);
   border: 1px solid var(--color-violet);
   box-sizing: border-box;
   width: 105px;
@@ -126,7 +126,7 @@
   justify-content: center;
   gap: var(--gap-md);
 }
-.breakfast {
+.ingredients {
   position: relative;
   font-weight: 500;
   display: flex;
@@ -149,23 +149,23 @@
 }
 .groupChild2 {
   background-color: var(--color-beige);
-  width: 83px;
+  width: 54px;
   height: 44px;
 }
-.oatmeal {
+.beef {
   position: absolute;
   top: 13px;
   left: 8px;
   font-weight: 500;
   display: flex;
   align-items: center;
-  width: 65px;
+  width: 38px;
 }
 .rectangleParent1 {
   position: absolute;
   top: 10px;
   left: 15px;
-  width: 83px;
+  width: 54px;
   height: 44px;
 }
 .groupDiv {
@@ -206,7 +206,7 @@
   width: 62px;
   height: 44px;
 }
-.eggs {
+.dairy {
   position: absolute;
   top: 15px;
   left: 8px;
@@ -236,7 +236,7 @@
   box-sizing: border-box;
   width: 68px;
 }
-.yogurt {
+.wheat {
   position: absolute;
   top: 15px;
   left: 9.34px;
@@ -267,28 +267,28 @@
   background-color: var(--color-gray-200);
   border: 1px solid var(--color-violet);
   box-sizing: border-box;
-  width: 78px;
+  width: 57px;
 }
-.oatmeal1 {
+.beef1 {
   position: absolute;
   top: 15px;
   left: 8px;
   font-weight: 500;
   display: flex;
   align-items: center;
-  width: 49px;
+  width: 27px;
 }
 .groupChild8,
 .rectangleParent5 {
   position: absolute;
   top: 14px;
-  left: 58px;
+  left: 36px;
   width: 16px;
   height: 16px;
 }
 .rectangleParent5 {
   left: 162px;
-  width: 78px;
+  width: 57px;
   height: 44px;
 }
 .rectangleParent2 {
@@ -298,186 +298,290 @@
   flex-shrink: 0;
   font-size: var(--font-size-base);
 }
-.breakfastParent {
-  width: 326px;
+.foodItems,
+.ingredientsParent {
+  font-size: var(--desktop-link-large-size);
   display: flex;
+}
+.ingredientsParent {
+  width: 326px;
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
   gap: var(--gap-lg);
 }
-.groupChild10 {
+.foodItems {
+  align-self: stretch;
+  position: relative;
+  font-weight: 500;
+  align-items: center;
+  height: 25px;
+  flex-shrink: 0;
+}
+.groupChild10,
+.groupChild9,
+.buttonlessChild {
   position: absolute;
   top: 0;
   left: 0;
   border-radius: var(--br-xs);
-  background-color: var(--color-beige);
-  border: 1px solid var(--color-violet);
-  box-sizing: border-box;
-  width: 195px;
-  height: 44px;
-}
-.peanutButterAnd {
-  position: absolute;
-  top: 13px;
-  left: 11px;
-  font-weight: 500;
-  display: flex;
-  align-items: center;
-  width: 174px;
-}
-.groupChild12,
-.rectangleParent7 {
-  position: absolute;
-  top: 10px;
-  left: 17px;
-  width: 195px;
-  height: 44px;
-}
-.groupChild12 {
-  top: 0;
-  left: 0;
-  border-radius: var(--br-xl);
   background-color: var(--color-gray-200);
   border: 1px solid var(--color-violet);
   box-sizing: border-box;
-  width: 131px;
+  width: 276.95px;
+  height: 72px;
 }
-.hamAndCheese {
-  position: absolute;
-  top: 14px;
-  left: 9px;
-  font-weight: 500;
-  display: flex;
-  align-items: center;
-  width: 106px;
+.buttonlessChild {
+  width: 352px;
 }
-.groupChild13,
-.rectangleParent9 {
-  position: absolute;
-  top: 14px;
-  left: 109px;
-  width: 16px;
-  height: 16px;
-}
-.rectangleParent9 {
-  left: 17px;
-  width: 131px;
+.groupChild10 {
+  width: 55px;
   height: 44px;
 }
-.pbAndJ {
+.burger {
   position: absolute;
   top: 15px;
   left: 8px;
   font-weight: 500;
   display: flex;
   align-items: center;
+  width: 41px;
+}
+.rectangleParent7 {
+  position: relative;
+  top: 14px;
+  left: 17px;
   width: 55px;
-}
-.groupChild15 {
-  position: absolute;
-  top: 14px;
-  left: 59px;
-  width: 16px;
-  height: 16px;
-}
-.groupChild17,
-.rectangleParent10 {
-  position: absolute;
-  top: 14px;
-  left: 156px;
-  width: 78px;
   height: 44px;
 }
-.groupChild17 {
+.rectangleParent6 {
+  position: relative;
+  width: 276.95px;
+  height: 72px;
+  flex-shrink: 0;
+}
+.groupParent1 {
+  align-self: stretch;
+  display: flex;
+  flex-direction: row;
+  padding: var(--padding-3xs) 0;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: var(--gap-xs);
+  color: var(--color-gray-200);
+}
+.groupChild11 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: var(--br-xl);
+  background-color: var(--color-violet);
+  width: 352px;
+  height: 72px;
+}
+.beef2 {
+  position: absolute;
+  top: 15px;
+  left: 6px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  width: 28.79px;
+}
+.groupChild13 {
+  position: absolute;
+  top: 14px;
+  left: 36.12px;
+  width: 17.06px;
+  height: 16px;
+}
+.rectangleParent9 {
+  position: relative;
+  top: 13px;
+  left: 16px;
+  width: 57px;
+  height: 44px;
+}
+.frameInner,
+.rectangleParent8 {
+  position: relative;
+  flex-shrink: 0;
+}
+.rectangleParent8 {
+  align-self: stretch;
+  height: 72px;
+}
+.frameInner {
+  width: 80px;
+  height: 81.77px;
+}
+.groupChild14,
+.groupChild15 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: var(--br-xl);
+  background-color: var(--color-violet);
+  width: 272px;
+  height: 72px;
+}
+.groupChild15 {
+  border-radius: var(--br-xs);
+  background-color: var(--color-gray-200);
+  border: 1px solid var(--color-violet);
+  box-sizing: border-box;
+  width: 55px;
+  height: 44px;
+}
+.groupChild16,
+.rectangleParent11 {
+  position: absolute;
+  top: 14px;
+  left: 16px;
+  width: 55px;
+  height: 44px;
+}
+.groupChild16 {
+  top: 0;
+  left: 0;
+  border-radius: var(--br-2xs);
+  background-color: var(--color-gray-200);
+  border: 1px solid var(--color-violet);
+  box-sizing: border-box;
+  width: 50px;
+  background: var(--color-blue);
+}
+.bread {
+  position: absolute;
+  top: 14.23px;
+  left: 8px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  width: 41px;
+  color: var(--color-gray-200);
+}
+.burger1 {
+  color: var(--color-indigo-100);
+  position: absolute;
+  top: 14.55px;
+  left: 8px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  width: 41px;
+}
+.rectangleParent12 {
+  position: relative;
+  top: 14px;
+  left: 82px;
+  width: 50px;
+  height: 44px;
+}
+.rectangleParent10 {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: var(--br-xs);
+  position: relative;
+  width: 272px;
+  height: 72px;
+  flex-shrink: 0;
+}
+.foodItemsParent,
+.groupParent2,
+.groupParent3 {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+}
+.foodItemsParent,
+.groupParent2 {
+  flex-direction: column;
+  align-items: stretch;
+  gap: var(--gap-xs);
+}
+.foodItemsParent {
+  align-items: flex-start;
+  gap: var(--gap-2xs);
+}
+.groupChild18 {
+  position: absolute;
   top: 0;
   left: 0;
   border-radius: var(--br-xs);
   background-color: var(--color-beige);
   border: 1px solid var(--color-violet);
   box-sizing: border-box;
-  width: 136px;
+  width: 107px;
+  height: 44px;
 }
 .amazingBurger {
   position: absolute;
-  top: 13px;
+  top: 14px;
   left: 8px;
   font-weight: 500;
   display: flex;
   align-items: center;
-  width: 128px;
+  width: 94px;
 }
-.groupChild19,
-.rectangleParent12 {
+.groupChild23,
+.rectangleParent14 {
   position: absolute;
-  top: 10px;
+  top: 14.46px;
   left: 17px;
-  width: 136px;
+  width: 107px;
   height: 44px;
 }
-.groupChild19 {
+.groupChild23 {
   top: 0;
   left: 0;
-  border-radius: var(--br-xl);
-  background-color: var(--color-gray-200);
+  border-radius: var(--br-xs);
+  background-color: var(--color-blue);
   border: 1px solid var(--color-violet);
   box-sizing: border-box;
-  width: 121px;
+  width: 104px;
 }
 .amazingBurger1 {
   position: absolute;
   top: 15px;
-  left: 8px;
+  left: 6px;
   font-weight: 500;
   display: flex;
   align-items: center;
-  width: 97px;
+  width: 92px;
 }
-.groupChild20 {
+.rectangleParent18 {
   position: absolute;
-  top: 14px;
-  left: 101px;
-  width: 16px;
-  height: 16px;
-}
-.groupChild21,
-.rectangleParent14 {
-  position: absolute;
-  top: 14px;
-  left: 17px;
-  width: 121px;
+  top: 13.69px;
+  left: 93.76px;
+  width: 104px;
   height: 44px;
-}
-.groupChild21 {
-  top: 0;
-  left: 0;
-  border-radius: var(--br-xl);
-  background-color: var(--color-gray-200);
-  border: 1px solid var(--color-violet);
-  box-sizing: border-box;
-  width: 61px;
 }
 .salad {
   position: absolute;
-  top: 15px;
-  left: 8px;
+  top: 14.69px;
+  left: 8.76px;
   font-weight: 500;
   display: flex;
   align-items: center;
-  width: 35px;
+  width: 32px;
 }
-.groupChild22,
-.rectangleParent15 {
+.rectangleParent19 {
   position: absolute;
   top: 14px;
-  left: 42px;
-  width: 16px;
-  height: 16px;
-}
-.rectangleParent15 {
-  left: 146px;
-  width: 61px;
+  left: 206px;
+  width: 50px;
   height: 44px;
+  color: var(--color-indigo-100);
+}
+.groupParent6 {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  color: var(--color-gray-200);
 }
 .frameContainer,
 .frameGroup {
@@ -488,6 +592,7 @@
 }
 .frameContainer {
   align-items: flex-start;
+  font-size: var(--font-size-base);
   color: var(--color-indigo-100);
   font-family: var(--font-inter);
 }
@@ -533,7 +638,7 @@
   width: 91px;
   color: var(--color-blue);
 }
-.groupParent3 {
+.groupParent7 {
   position: absolute;
   top: 125px;
   left: 32px;
@@ -544,7 +649,7 @@
   gap: var(--gap-xl);
   color: var(--color-violet);
 }
-.mimenuDay {
+.mimenuPrep {
   position: relative;
   background-color: var(--color-gray-200);
   width: 100%;
@@ -554,4 +659,93 @@
   font-size: var(--desktop-link-large-size);
   color: var(--color-indigo-100);
   font-family: var(--desktop-display-small-bold);
+}
+
+@media screen and (min-width: 428px) {
+  .mimenuPrep {
+    background: linear-gradient(180deg, #4545ee, #fff);
+    height: 844px;
+    width: 430px;
+  }
+  .foodItemsParent {
+    width: 326px;
+  }
+  .frameGroup {
+    left: 24px;
+  }
+  .foodItems {
+    font-size: var(--font-size-3xl);
+    font-weight: 500;
+    height: 25px;
+    width: 326px;
+  }
+  .groupChild9,
+  .buttonlessChild,
+  .rectangleParent6,
+  .groupParent1 {
+    height: 44px;
+  }
+  .frameInner,
+  .frameChild {
+    height: 50px;
+    width: 46px;
+  }
+  .groupChild10,
+  .rectangleParent7 {
+    height: 27px;
+  }
+  .rectangleParent7 {
+    top: 9px;
+  }
+  .burger1 {
+    top: 6px;
+  }
+  .rectangleParent8,
+  .groupChild11 {
+    height: 56px;
+    width: 326px;
+  }
+  .buttonlessChild,
+  .rectangleParent8 {
+    width: 326px;
+  }
+  .rectangleParent9 {
+    top: 4px;
+    height: 36px;
+  }
+  .groupChild7 {
+    top: 8px;
+    height: 27px;
+    border-radius: var(--br-xs);
+  }
+  .groupChild13 {
+    top: 0;
+    left: 47px;
+  }
+  .beef2 {
+    top: 14px;
+    left: 16px;
+  }
+  .groupParent3 {
+    width: 326px;
+  }
+  .groupChild14,
+  .rectangleParent10 {
+    width: 280px;
+    height: 44px;
+  }
+  .groupChild16,
+  .rectangleParent12,
+  .groupChild15,
+  .rectangleParent11 {
+    height: 27px;
+  }
+  .rectangleParent11,
+  .rectangleParent12 {
+    top: 8px;
+  }
+  .bread,
+  .burger {
+    top: 7px;
+  }
 }

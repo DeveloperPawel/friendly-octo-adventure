@@ -526,8 +526,11 @@
 .searchChild {
   display: none;
 }
+.completeParent {
+  background-color: var(--color-turquoise);
+}
 
-@media screen and (min-width: 428px) {
+@media screen and (max-width: 428px) {
   .mimenuHome {
     position: relative;
     background: linear-gradient(180deg, #4545ee, #fff);
