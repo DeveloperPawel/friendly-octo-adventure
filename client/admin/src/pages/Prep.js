@@ -34,45 +34,6 @@ export const Prep = () => {
           </div>
         </div>
         <div className={styles.frameContainer}>
-          <div className={styles.ingredientsParent}>
-            <div className={styles.ingredients}>Ingredients</div>
-            <div className={styles.groupParent1}>
-              <div className={styles.rectangleParent6}>
-                <div className={styles.groupChild9} />
-                <div className={styles.rectangleParent1}>
-                  <div className={styles.groupChild2} />
-                  <div className={styles.beef}>Beef</div>
-                </div>
-              </div>
-              <img className={styles.frameChild} alt="" src={plusIcon} />
-            </div>
-            <div className={styles.rectangleParent2}>
-              <div className={styles.groupChild3} />
-              <div className={styles.rectangleParent3}>
-                <div className={styles.groupChild4} />
-                <div className={styles.dairy}>Dairy</div>
-                <img className={styles.groupIcon} alt="" src={littleRed} />
-              </div>
-              <div className={styles.rectangleParent4}>
-                <div className={styles.groupChild5} />
-                <div className={styles.wheat}>Wheat</div>
-                <img
-                  className={styles.groupChild6}
-                  alt=""
-                  src="../group-457.svg"
-                />
-              </div>
-              <div className={styles.rectangleParent5}>
-                <div className={styles.groupChild7} />
-                <div className={styles.beef1}>Beef</div>
-                <img
-                  className={styles.groupChild8}
-                  alt=""
-                  src="../group-468.svg"
-                />
-              </div>
-            </div>
-          </div>
           <div className={styles.foodItemsParent}>
             <div className={styles.foodItems}>Food Items</div>
             {bool ? (

@@ -81,7 +81,7 @@
 }
 .groupInner {
   border-radius: var(--br-lg);
-  background-color: var(--color-beige);
+  background-color: var(--grayscale-off-white);
   border: 1px solid var(--color-violet);
   width: 105px;
   height: 44px;
@@ -93,6 +93,7 @@
   letter-spacing: 0.75px;
   line-height: 32px;
   font-weight: 500;
+  color: var(--color-indigo-100);
 }
 .rectangleGroup {
   position: relative;
